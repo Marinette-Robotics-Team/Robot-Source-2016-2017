@@ -7,6 +7,7 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Drive"/>
 <fullyQualifiedTypeName name="java.awt.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.DriveSingleStick"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.OI"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 </qualifiedTypeNameHistroy>

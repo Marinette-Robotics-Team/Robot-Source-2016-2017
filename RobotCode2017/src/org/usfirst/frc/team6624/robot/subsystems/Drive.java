@@ -25,20 +25,20 @@ public class Drive extends Subsystem {
     	setDefaultCommand(new DriveSingleStick());
     }
     
-    /*
+    /**
      * Sets speed of left drive motors
      * 
-     * @param speed - Speed to set, from -1 to 1
+     * @param speed Speed to set, from -1 to 1
      */
     public void setLeftSpeed(double speed) {
     	frontLeftMotor.set(speed);
     	backLeftMotor.set(speed);
     }
     
-    /*
+    /**
      * Sets speed of right drive motors
      * 
-     * @param speed - Speed to set, from -1 to 1
+     * @param speed Speed to set, from -1 to 1
      */
     public void setRightSpeed(double speed) {
     	frontRightMotor.set(speed);
