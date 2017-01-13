@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6624.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
@@ -36,4 +37,16 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	
+	public static XboxController xbox = new XboxController(RobotMap.xboxPort);
+	
+	//xbox consts
+	public static int xboxLeftX = 1;
+	public static int xboxLeftY = 2;
+	public static int xboxRightX = 4;
+	public static int xboxRightY = 5;
+	
+	
+	
 }

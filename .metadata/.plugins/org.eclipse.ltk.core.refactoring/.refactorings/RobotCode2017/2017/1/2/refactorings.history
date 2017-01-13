@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;org.usfirst.frc.team6624.robot.commands.DriveDuelStick&apos; to &apos;DriveTank&apos;&#x0A;- Original project: &apos;RobotCode2017&apos;&#x0A;- Original element: &apos;org.usfirst.frc.team6624.robot.commands.DriveDuelStick&apos;&#x0A;- Renamed element: &apos;org.usfirst.frc.team6624.robot.commands.DriveTank&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DriveDuelStick&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;org.usfirst.frc.team6624.robot.commands{DriveDuelStick.java[DriveDuelStick" matchStrategy="1" name="DriveTank" qualified="false" references="true" similarDeclarations="false" stamp="1484265385514" textual="false" version="1.0"/>
+</session>
