@@ -25,18 +25,14 @@ public class DriveTank extends Command {
     	double stickLeft = OI.xbox.getRawAxis(OI.xboxLeftY);
     	double stickRight = OI.xbox.getRawAxis(OI.xboxRightY);
     	
-    	//scales RawAxis input to a -1 to 1 scale 
-    	double scaledYRight = (stickLeft - 127) / 127;
-    	double scaledYLeft = (stickRight - 127) / 127;
-    
     	//Sets motors to their scaled speed
-    	Robot.drive.setLeftSpeed(scaledYLeft);
-    	Robot.drive.setRightSpeed(scaledYRight);
+    	Robot.drive.setLeftSpeed(-stickLeft);//inverse y
+    	Robot.drive.setRightSpeed(-stickRight);
     	
     	
     	//Debug output
-    	System.out.println("Left Speed: " + scaledYRight);
-    	System.out.println("Right Speed: " + scaledYLeft);
+    	System.out.println("Left Speed: " + -stickLeft);
+    	System.out.println("Right Speed: " + -stickRight);
     	
     	
     	

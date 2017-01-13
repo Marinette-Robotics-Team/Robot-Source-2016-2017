@@ -2,7 +2,11 @@ package org.usfirst.frc.team6624.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
+import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
+import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 
 /**
@@ -42,10 +46,24 @@ public class OI {
 	public static XboxController xbox = new XboxController(RobotMap.xboxPort);
 	
 	//xbox consts
-	public static int xboxLeftX = 1;
-	public static int xboxLeftY = 2;
+	public static int xboxLeftX = 0;
+	public static int xboxLeftY = 1;
 	public static int xboxRightX = 4;
 	public static int xboxRightY = 5;
+	
+	//xbox buttons
+	Button aButton = new JoystickButton(xbox, 1);
+	Button xButton = new JoystickButton(xbox, 3);
+	Button yButton = new JoystickButton(xbox, 4);
+	
+	
+	public OI() {
+		
+		//toggle input schemes
+		aButton.whenPressed(new DriveTank());
+		xButton.whenPressed(new DriveDualPowerTurn());
+		yButton.whenPressed(new DriveSingleStick());
+	}
 	
 	
 	

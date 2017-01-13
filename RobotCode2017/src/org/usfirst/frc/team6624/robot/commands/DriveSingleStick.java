@@ -35,21 +35,17 @@ public class DriveSingleStick extends Command {
     	double stickX = OI.xbox.getRawAxis(xAxis);
     	double stickY = OI.xbox.getRawAxis(yAxis);
     	
-    	//scale from -1 to 1
-    	double scaledX = (stickX - 127) / 127;
-    	double scaledY = (stickY - 127) / 127;
-    	
     	//scale right and left motor power by x axis
     	double rightPower;
     	double leftPower;
     	
-    	if (scaledX < 0) {
-    		rightPower = 1 + scaledX;
+    	if (stickX < 0) {
+    		rightPower = 1 + stickX;
     		leftPower = 1;
     	}
-    	else if (scaledX > 0) {
+    	else if (stickX > 0) {
     		rightPower = 1;
-    		leftPower = 1 - scaledX;
+    		leftPower = 1 - stickX;
     	}
     	else {
     		leftPower = 1;
@@ -58,11 +54,11 @@ public class DriveSingleStick extends Command {
     	
     	
     	//set motors
-    	Robot.drive.setLeftSpeed(scaledY * leftPower);	
-    	Robot.drive.setRightSpeed(scaledY * rightPower);
+    	Robot.drive.setLeftSpeed(-stickY * leftPower); //negative accounts for inverse y axis
+    	Robot.drive.setRightSpeed(-stickY * rightPower);
     	
-    	System.out.println("Left Speed: " + scaledY * leftPower);
-    	System.out.println("Right Speed: " + scaledY * rightPower);
+    	System.out.println("Left Speed: " + -stickY * leftPower);
+    	System.out.println("Right Speed: " + -stickY * rightPower);
     	
     }
 
