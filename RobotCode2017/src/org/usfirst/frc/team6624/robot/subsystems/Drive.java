@@ -31,7 +31,7 @@ public class Drive extends Subsystem {
      * @param speed Speed to set, from -1 to 1
      */
     public void setLeftSpeed(double speed) {
-    	frontLeftMotor.set(speed);
+    	frontLeftMotor.set(-speed);
     	backLeftMotor.set(speed);
     }
     
@@ -41,7 +41,7 @@ public class Drive extends Subsystem {
      * @param speed Speed to set, from -1 to 1
      */
     public void setRightSpeed(double speed) {
-    	frontRightMotor.set(speed);
+    	frontRightMotor.set(-speed);
     	backRightMotor.set(speed);
     }
     

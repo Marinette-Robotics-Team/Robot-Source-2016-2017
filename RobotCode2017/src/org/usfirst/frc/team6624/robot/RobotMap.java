@@ -18,6 +18,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static int xboxPort = 0;
+	public static int joystickPort = 1;
 	
 	//drive speedcontrollers
 	//Motor Port Map

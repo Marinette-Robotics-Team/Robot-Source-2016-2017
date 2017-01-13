@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6624.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -45,6 +46,8 @@ public class OI {
 	
 	public static XboxController xbox = new XboxController(RobotMap.xboxPort);
 	
+	public static Joystick joystick = new Joystick(RobotMap.joystickPort);
+	
 	//xbox consts
 	public static int xboxLeftX = 0;
 	public static int xboxLeftY = 1;
@@ -56,6 +59,11 @@ public class OI {
 	Button xButton = new JoystickButton(xbox, 3);
 	Button yButton = new JoystickButton(xbox, 4);
 	
+	//Joystick consts
+	public static int joystickX = 0;
+	public static int joystickY = 1;
+	
+	//Joystick buttons (to be setup later)
 	
 	public OI() {
 		
