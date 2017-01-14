@@ -20,10 +20,17 @@ public class RobotMap {
 	public static int xboxPort = 0;
 	public static int joystickPort = 1;
 	
+	//PWM Ports
 	//drive speedcontrollers
-	//Motor Port Map
+	// Motor Port Map
 	public static int frontLeftMotorPort = 1;
 	public static int frontRightMotorPort = 2;
 	public static int backLeftMotorPort = 3;
 	public static int backRightMotorPort = 4;
+	
+	
+	//DIO ports
+	public static int gyroPort = 0;
+	public static int rangeFinderPortOut = 1;
+	public static int rangeFinderPortIn = 2;
 }

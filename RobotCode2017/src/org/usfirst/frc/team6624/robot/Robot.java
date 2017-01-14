@@ -11,7 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.ExampleSubsystem;
+<<<<<<< Updated upstream
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
+=======
+import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
+>>>>>>> Stashed changes
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +29,11 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static Drive drive;
+<<<<<<< Updated upstream
 	public static Gyroscope gyroscope;
+=======
+	public static UltraSonicSensors USS;
+>>>>>>> Stashed changes
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -36,7 +44,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+<<<<<<< Updated upstream
 		gyroscope = new Gyroscope();
+=======
+		
+>>>>>>> Stashed changes
 		drive = new Drive();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());

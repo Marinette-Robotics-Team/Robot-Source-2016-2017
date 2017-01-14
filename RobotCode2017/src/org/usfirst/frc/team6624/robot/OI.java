@@ -9,6 +9,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
+import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -64,13 +65,14 @@ public class OI {
 	public static int joystickY = 1;
 	
 	//Joystick buttons (to be setup later)
-	
+	Button two = new JoystickButton(joystick, 2);
 	public OI() {
 		
 		//toggle input schemes
 		aButton.whenPressed(new DriveTank());
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
+		two.whenPressed(new daBeeperBooper());
 	}
 	
 	
