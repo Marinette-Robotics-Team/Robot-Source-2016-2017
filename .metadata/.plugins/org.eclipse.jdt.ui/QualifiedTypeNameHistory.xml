@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.XboxController"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.RobotMap"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Spark"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Drive"/>
 <fullyQualifiedTypeName name="java.awt.Robot"/>
@@ -10,4 +9,7 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.OI"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.RobotMap"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.AnalogGyro"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Gyroscope"/>
 </qualifiedTypeNameHistroy>

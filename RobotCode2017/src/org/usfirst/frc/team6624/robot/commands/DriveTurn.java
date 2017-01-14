@@ -11,11 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTurn extends Command {
 
 	float degrees;
-	float rotConstant;
 	
 	float rotTime;
 	
-	Timer timer;
 	/**
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
 	 */
@@ -24,25 +22,14 @@ public class DriveTurn extends Command {
         // eg. requires(chassis);
     	super("DriveTurn");
     	requires(Robot.drive);
+    	requires(Robot.gyroscope);
     	
     	this.degrees = degrees;
-    	rotConstant = 1;
-    	
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
-    	//ratios
-    	rotTime = rotConstant * degrees;
-    	
-    	//sqrt ratios
-    	rotTime = (float)Math.sqrt(rotConstant * degrees);
-    	
-    	//set timer
-    	timer.reset();
-    	timer.start();
+    	Robot.gyroscope.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -58,12 +45,15 @@ public class DriveTurn extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	
-    	if (timer.hasPeriodPassed(rotTime)) {
+    	//get if robot has rotated through given degree measurement
+    	Boolean finished = Math.abs( Robot.gyroscope.getRotation() ) >= Math.abs( degrees );
+    	
+    	if (finished) {
     		Robot.drive.setRightSpeed(0);
     		Robot.drive.setLeftSpeed(0);
     	}
     	
-        return timer.hasPeriodPassed(rotTime);
+        return finished;
     }
 
     // Called once after isFinished returns true
