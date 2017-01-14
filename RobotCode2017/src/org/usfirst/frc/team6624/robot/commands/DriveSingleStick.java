@@ -39,13 +39,13 @@ public class DriveSingleStick extends Command {
     	double rightPower;
     	double leftPower;
     	
-    	if (stickX < 0) {
-    		rightPower = 1 + stickX;
+    	if (stickX > 0) {
+    		rightPower = 1 - Math.pow(stickX, 3);
     		leftPower = 1;
     	}
-    	else if (stickX > 0) {
+    	else if (stickX < 0) {
     		rightPower = 1;
-    		leftPower = 1 - stickX;
+    		leftPower = 1 + Math.pow(stickX, 3);
     	}
     	else {
     		leftPower = 1;

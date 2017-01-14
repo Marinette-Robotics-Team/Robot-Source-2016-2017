@@ -54,13 +54,13 @@ public class AimJoyStick extends Command {
     	else if (joystickY > 0.1){
     		
     		//instert some motor speed code here
-    		System.out.println("turning right:" + joystickY);
+    		System.out.println("turning down:" + joystickY);
     		
     	}
     	else if (joystickY < -0.1){
     		
     		//insert even more motor speed code here
-    		System.out.println("turning left:" + joystickY);
+    		System.out.println("turning up:" + joystickY);
     	}
     	
     }

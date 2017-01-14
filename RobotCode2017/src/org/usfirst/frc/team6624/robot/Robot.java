@@ -39,9 +39,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		gyroscope = new Gyroscope();
+		USS = new UltraSonicSensors();
 		drive = new Drive();
 		oi = new OI();
-		USS = new UltraSonicSensors();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
