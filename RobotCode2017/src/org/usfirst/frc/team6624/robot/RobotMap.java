@@ -24,9 +24,9 @@ public class RobotMap {
 	//drive speedcontrollers
 	// Motor Port Map
 	public static int frontLeftMotorPort = 1;
-	public static int frontRightMotorPort = 2;
-	public static int backLeftMotorPort = 3;
-	public static int backRightMotorPort = 4;
+	public static int frontRightMotorPort = 3;
+	public static int backLeftMotorPort = 0;
+	public static int backRightMotorPort = 2;
 	
 	
 	//DIO ports
