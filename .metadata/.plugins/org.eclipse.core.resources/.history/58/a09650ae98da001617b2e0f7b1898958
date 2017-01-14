@@ -11,8 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.ExampleSubsystem;
+<<<<<<< Updated upstream
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
+=======
 import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
+>>>>>>> Stashed changes
 
 /**
  * The VM is configured to automatically run this class, and to call the

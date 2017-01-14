@@ -7,9 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
-import org.usfirst.frc.team6624.robot.commands.DriveStraight;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
-import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 
@@ -62,9 +60,6 @@ public class OI {
 	Button xButton = new JoystickButton(xbox, 3);
 	Button yButton = new JoystickButton(xbox, 4);
 	
-	Button leftTriggerTop = new JoystickButton(xbox, 5);
-	Button rightTriggerTop = new JoystickButton(xbox, 6);
-	
 	//Joystick consts
 	public static int joystickX = 0;
 	public static int joystickY = 1;
@@ -77,11 +72,6 @@ public class OI {
 		aButton.whenPressed(new DriveTank());
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
-		
-		rightTriggerTop.whenPressed(new DriveStraight(1f, 1f));
-		leftTriggerTop.whenPressed(new DriveTurn(90));
-		
-		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());
 	}
 	
