@@ -51,12 +51,12 @@ public class DriveStraight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	
-    	if (timer.get() > driveTime) {
+    	if (timer.hasPeriodPassed(driveTime)) {
     		Robot.drive.setLeftSpeed(0);
         	Robot.drive.setRightSpeed(0);
     	}
     	
-        return timer.get() > driveTime;
+        return timer.hasPeriodPassed(driveTime);
     }
 
     // Called once after isFinished returns true

@@ -31,8 +31,8 @@ public class DriveTank extends Command {
     	
     	
     	//Debug output
-    	//System.out.println("Left Speed: " + -stickLeft);
-    	//System.out.println("Right Speed: " + -stickRight);
+    	System.out.println("Left Speed: " + -stickLeft);
+    	System.out.println("Right Speed: " + -stickRight);
     	
     	
     	
