@@ -6,12 +6,14 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Drive"/>
 <fullyQualifiedTypeName name="java.awt.Robot"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.DriveSingleStick"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.OI"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.RobotMap"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.AnalogGyro"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Gyroscope"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.DriveStraight"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.DriveTurn"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.PrintGyro"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.OI"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.GetRotConst"/>
 </qualifiedTypeNameHistroy>

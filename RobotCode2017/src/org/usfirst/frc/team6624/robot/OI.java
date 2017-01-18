@@ -11,6 +11,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveStraight;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
+import org.usfirst.frc.team6624.robot.commands.GetRotConst;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 
 /**
@@ -79,7 +80,7 @@ public class OI {
 		yButton.whenPressed(new DriveSingleStick());
 		
 		rightTriggerTop.whenPressed(new DriveStraight(1f, 1f));
-		leftTriggerTop.whenPressed(new DriveTurn(90));
+		leftTriggerTop.whenPressed(new GetRotConst(90));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());
