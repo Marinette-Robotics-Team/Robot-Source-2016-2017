@@ -30,16 +30,19 @@ public class DriveTurn extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.gyroscope.reset();
+    	
+    	if (degrees > 0) {
+    		Robot.drive.setRightSpeed(1.0);
+    		Robot.drive.setLeftSpeed(-1.0);
+    	}
+    	else {
+    		Robot.drive.setLeftSpeed(1.0);
+    		Robot.drive.setRightSpeed(-1.0);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (degrees > 0) {
-    		Robot.drive.setRightSpeed(1.0);
-    	}
-    	else {
-    		Robot.drive.setLeftSpeed(1.0);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

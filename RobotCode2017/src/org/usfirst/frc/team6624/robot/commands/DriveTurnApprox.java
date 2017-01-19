@@ -16,6 +16,8 @@ public class DriveTurnApprox extends Command {
 	
 	float rotTime;
 	
+	float speed;
+	
 	Timer timer;
 
     public DriveTurnApprox(float degrees) {
@@ -25,7 +27,8 @@ public class DriveTurnApprox extends Command {
     	requires(Robot.drive);
     	
     	this.degrees = degrees;
-    	this.rotConst = 1;
+    	this.rotConst = 135.25f;
+    	this.speed = 0.7f;
     	
     	timer = new Timer();
     }
@@ -33,21 +36,23 @@ public class DriveTurnApprox extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	timer.reset();
+    	timer.start();
     	
-    	rotTime = (float)Math.sqrt(rotConst * degrees);
+    	rotTime = (float)((1 / rotConst) * Math.abs(degrees));
+    	
+    	if (degrees > 0) {
+    		Robot.drive.setRightSpeed(speed);
+    		Robot.drive.setLeftSpeed(-speed);
+    	}
+    	else {
+    		Robot.drive.setLeftSpeed(speed);
+    		Robot.drive.setRightSpeed(-speed);
+    	}
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (degrees > 0) {
-    		Robot.drive.setRightSpeed(0.5);
-    		Robot.drive.setLeftSpeed(-0.5);
-    	}
-    	else {
-    		Robot.drive.setLeftSpeed(0.5);
-    		Robot.drive.setRightSpeed(-0.5);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

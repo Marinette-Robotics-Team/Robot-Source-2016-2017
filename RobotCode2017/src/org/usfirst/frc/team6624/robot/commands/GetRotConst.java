@@ -15,6 +15,8 @@ public class GetRotConst extends Command {
 	
 	float rotConst;
 	
+	float speed;
+	
 	Timer timer;
 	
     public GetRotConst(float angle) {
@@ -25,6 +27,7 @@ public class GetRotConst extends Command {
     	
     	this.angle = angle;
     	this.rotConst = 0;
+    	this.speed = 0.7f;
     	
     	timer = new Timer();
     }
@@ -32,18 +35,20 @@ public class GetRotConst extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	timer.reset();
+    	timer.start();
+    	
+    	if (angle > 0) {
+    		Robot.drive.setRightSpeed(speed);
+    		Robot.drive.setLeftSpeed(-speed);
+    	}
+    	else {
+    		Robot.drive.setLeftSpeed(speed);
+    		Robot.drive.setRightSpeed(-speed);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (angle > 0) {
-    		Robot.drive.setRightSpeed(0.5);
-    		Robot.drive.setLeftSpeed(-0.5);
-    	}
-    	else {
-    		Robot.drive.setLeftSpeed(0.5);
-    		Robot.drive.setRightSpeed(-0.5);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -52,8 +57,12 @@ public class GetRotConst extends Command {
     	Boolean finished = OI.xbox.getBButton();
     	
     	if (finished) {
-    		rotConst = (float)(Math.pow(timer.get(), 2) / angle);
-    		System.out.println("Rotation constant for speed: " + 0.5 + "and angle: " + angle +" is:" + rotConst + ".");
+    		System.out.println(timer.get());
+    		//rotConst = (float)(Math.pow(timer.get(), 2) / angle);
+    		rotConst = (float)(angle / timer.get());
+    		System.out.println("Rotation constant for speed: " + speed + " and angle: " + angle +" is: " + rotConst + ".");
+    		Robot.drive.setRightSpeed(0);
+    		Robot.drive.setLeftSpeed(0);
     	}
     	
         return finished;
