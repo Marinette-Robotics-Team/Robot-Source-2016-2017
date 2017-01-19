@@ -23,7 +23,7 @@ public class daBeeperBooper extends Command {
     protected void execute() {
     	
     		//finds distence to object from the ultrasound sensor
-    	double result =	 Robot.USS.rangeFinder.getRangeInches();
+    	double result =	 Robot.USS.rangeFinder.getVoltage() * Robot.USS.sensorSensitiviy * 100;
     	
     	System.out.println("Something is " + result + " " + "away.");
     	
