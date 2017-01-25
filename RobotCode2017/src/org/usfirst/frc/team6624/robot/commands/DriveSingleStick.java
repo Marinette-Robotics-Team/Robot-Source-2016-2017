@@ -60,6 +60,8 @@ public class DriveSingleStick extends Command {
     	//System.out.println("Left Speed: " + -stickY * leftPower);
     	//System.out.println("Right Speed: " + -stickY * rightPower);
     	
+    	Robot.drive.updateTrimInput();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

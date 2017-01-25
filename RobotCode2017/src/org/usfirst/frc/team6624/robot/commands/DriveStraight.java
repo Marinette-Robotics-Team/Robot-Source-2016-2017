@@ -46,6 +46,8 @@ public class DriveStraight extends Command {
     protected void execute() {
     	Robot.drive.setLeftSpeed(driveSpeed);
     	Robot.drive.setRightSpeed(driveSpeed);
+    	
+    	Robot.drive.updateTrimInput();
     }
 
     // Make this return true when this Command no longer needs to run execute()

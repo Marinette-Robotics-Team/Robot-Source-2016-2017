@@ -80,8 +80,8 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
 		
-		rightTriggerTop.whenPressed(new DriveStraight(1f, 1f));
-		leftTriggerTop.whenPressed(new GetRotConst(90));
+		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.6f));
+		leftTriggerTop.whenPressed(new DriveTurnApprox(-90));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());

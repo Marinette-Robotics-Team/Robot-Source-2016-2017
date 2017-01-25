@@ -30,6 +30,6 @@ public class RobotMap {
 	
 	
 	//DIO ports
-	public static int gyroPort = 0;
+	public static int gyroPort = 1;
 	public static int rangeFinderPort = 0;
 }

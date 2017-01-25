@@ -35,7 +35,7 @@ public class DriveTank extends Command {
     	//System.out.println("Right Speed: " + -stickRight);
     	
     	
-    	
+    	Robot.drive.updateTrimInput();
     	
     }
 
