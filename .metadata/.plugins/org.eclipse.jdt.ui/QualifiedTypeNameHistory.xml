@@ -16,4 +16,6 @@
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.OI"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.GetRotConst"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.AnalogInput"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.commands.daBeeperBooper"/>
 </qualifiedTypeNameHistroy>

@@ -2,6 +2,7 @@ package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.PrintGyro;
+import org.usfurst.frc.team6624.robot.libs.ADXRS453Gyro;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,15 +15,13 @@ public class Gyroscope extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands
 	
-	private AnalogGyro gyro;
+	private ADXRS453Gyro gyro;
 	
 	double localRotation;
 	
 	public Gyroscope() {
-		gyro = new AnalogGyro(RobotMap.gyroPort);
-		gyro.initGyro();
-		gyro.reset();
-		gyro.calibrate();
+		gyro = new ADXRS453Gyro();
+		gyro.startThread();
 		
 		localRotation = 0;
 	}
