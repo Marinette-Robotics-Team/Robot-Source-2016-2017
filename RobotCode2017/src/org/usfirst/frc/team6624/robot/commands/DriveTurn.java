@@ -32,12 +32,12 @@ public class DriveTurn extends Command {
     	Robot.gyroscope.reset();
     	
     	if (degrees > 0) {
-    		Robot.drive.setRightSpeed(1.0);
-    		Robot.drive.setLeftSpeed(-1.0);
+    		Robot.drive.setRightSpeed(0.6);
+    		Robot.drive.setLeftSpeed(-0.6);
     	}
     	else {
-    		Robot.drive.setLeftSpeed(1.0);
-    		Robot.drive.setRightSpeed(-1.0);
+    		Robot.drive.setLeftSpeed(0.6);
+    		Robot.drive.setRightSpeed(-0.6);
     	}
     }
 

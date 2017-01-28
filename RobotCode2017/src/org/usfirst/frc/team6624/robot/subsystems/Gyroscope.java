@@ -29,7 +29,7 @@ public class Gyroscope extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new PrintGyro());
+    	setDefaultCommand(new PrintGyro());
     }
     
     /**

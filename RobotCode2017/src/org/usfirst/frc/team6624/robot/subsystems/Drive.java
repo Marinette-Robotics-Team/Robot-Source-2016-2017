@@ -111,7 +111,7 @@ public class Drive extends Subsystem {
         	}
     	}
     	
-    	System.out.println(trim);
+    	//System.out.println(trim);
     }
 }
 
