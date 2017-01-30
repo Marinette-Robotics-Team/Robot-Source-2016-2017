@@ -80,7 +80,7 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
 		
-		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.6f));
+		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.8f));
 		leftTriggerTop.whenPressed(new DriveTurn(90));
 		
 		//get ultrasonic

@@ -46,6 +46,7 @@ public class DriveStraight extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
+    	// Gyro Assisted straight driving
     	
     	if  ( Robot.gyroscope.getGlobalRotation() < 5){
     		
