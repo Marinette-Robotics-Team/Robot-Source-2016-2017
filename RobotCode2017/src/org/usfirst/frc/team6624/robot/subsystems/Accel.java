@@ -1,5 +1,7 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
+import org.usfirst.frc.team6624.robot.commands.PrintAccelerometer;
+
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
@@ -21,6 +23,7 @@ public class Accel extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new PrintAccelerometer());
     }
 }
 
