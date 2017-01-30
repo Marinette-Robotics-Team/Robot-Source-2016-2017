@@ -24,6 +24,7 @@ public class DriveStraight extends Command {
         // eg. requires(chassis);
     	super("DriveForward");
     	requires(Robot.drive);
+    	requires(Robot.gyroscope);
     	
     	//throw exception if driveSpeed isnt between -1 and 1
     	if (Math.abs((double)driveSpeed) > 1) {
@@ -44,10 +45,29 @@ public class DriveStraight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
+    	
+    	if  ( Robot.gyroscope.getGlobalRotation() < 5){
+    		
+    		Robot.drive.setLeftSpeed(driveSpeed -0.1);
+    	}
+    	else{
+    		
+    	
     	Robot.drive.setLeftSpeed(driveSpeed);
+    	}
+    	
+    	if( Robot.gyroscope.getGlobalRotation() > 5){
+    		Robot.drive.setRightSpeed(driveSpeed - 0.1);
+    	}
+    	else{
     	Robot.drive.setRightSpeed(driveSpeed);
+    	}
     	
     	Robot.drive.updateTrimInput();
+    	
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
