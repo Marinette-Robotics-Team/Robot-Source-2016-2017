@@ -10,8 +10,20 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveStraight extends Command {
 
+	
+	final float DECELERATE_COEFFICIENT = 0.8f;
+	
 	float driveTime;
 	float driveSpeed;
+	float driveSpeedLeft;
+	float driveSpeedRight;
+	
+	double roatationSpeed; // current rotation speed in degrees/sec
+	
+	double[] previousAngles; //angles in the last 50 cycles (1 sec)
+	
+	double refreshRate = 50; // refresh rate for rotation speed calculation (hz)
+	double currentTimeIndex;
 	
 	Timer timer;
 	
@@ -34,6 +46,10 @@ public class DriveStraight extends Command {
     	//set instance vars
     	this.driveSpeed = driveSpeed;
     	this.driveTime = driveTime;
+    	
+    	driveSpeedLeft = driveSpeed;
+    	driveSpeedRight = driveSpeed;
+    	
     	timer = new Timer();
     }
 
@@ -41,28 +57,30 @@ public class DriveStraight extends Command {
     protected void initialize() {
     	timer.reset();
     	timer.start();
+    	Robot.gyroscope.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+    	double currentAngle = Robot.gyroscope.getRotation();
+    	
     	// Gyro Assisted straight driving
     	
-    	if  ( Robot.gyroscope.getGlobalRotation() < 5){
-    		
-    		Robot.drive.setLeftSpeed(driveSpeed -0.1);
-    	}
-    	else{
-    		
+    	Robot.drive.setLeftSpeed(driveSpeedLeft);
+    	Robot.drive.setRightSpeed(driveSpeedRight);
     	
-    	Robot.drive.setLeftSpeed(driveSpeed);
+    	if  (currentAngle > 5) {
+    		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
+    	}
+    	else {
+    		driveSpeedRight = driveSpeed;
     	}
     	
-    	if( Robot.gyroscope.getGlobalRotation() > 5){
-    		Robot.drive.setRightSpeed(driveSpeed - 0.1);
+    	if(currentAngle< -5) {
+    		driveSpeedLeft = DECELERATE_COEFFICIENT * driveSpeed;
     	}
-    	else{
-    	Robot.drive.setRightSpeed(driveSpeed);
+    	else {
+    		driveSpeedLeft = driveSpeed;
     	}
     	
     	Robot.drive.updateTrimInput();
