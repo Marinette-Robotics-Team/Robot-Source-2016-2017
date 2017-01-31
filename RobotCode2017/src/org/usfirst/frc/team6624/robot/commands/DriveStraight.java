@@ -11,19 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveStraight extends Command {
 
 	
-	final float DECELERATE_COEFFICIENT = 0.8f;
+	final float DECELERATE_COEFFICIENT = 0.98f;
+	final float DEGREE_THRESHOLD = 2; //number of degrees to correct after
 	
 	float driveTime;
 	float driveSpeed;
 	float driveSpeedLeft;
 	float driveSpeedRight;
-	
-	double roatationSpeed; // current rotation speed in degrees/sec
-	
-	double[] previousAngles; //angles in the last 50 cycles (1 sec)
-	
-	double refreshRate = 50; // refresh rate for rotation speed calculation (hz)
-	double currentTimeIndex;
 	
 	Timer timer;
 	
@@ -64,23 +58,25 @@ public class DriveStraight extends Command {
     protected void execute() {
     	double currentAngle = Robot.gyroscope.getRotation();
     	
+    	System.out.println(currentAngle);
+    	
     	// Gyro Assisted straight driving
     	
     	Robot.drive.setLeftSpeed(driveSpeedLeft);
     	Robot.drive.setRightSpeed(driveSpeedRight);
     	
-    	if  (currentAngle > 5) {
-    		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
-    	}
-    	else {
-    		driveSpeedRight = driveSpeed;
-    	}
-    	
-    	if(currentAngle< -5) {
+    	if  (currentAngle > DEGREE_THRESHOLD) {
     		driveSpeedLeft = DECELERATE_COEFFICIENT * driveSpeed;
     	}
-    	else {
+    	else if (currentAngle <= 0) {
     		driveSpeedLeft = driveSpeed;
+    	}
+    	
+    	if(currentAngle < -DEGREE_THRESHOLD) {
+    		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
+    	}
+    	else if (currentAngle >= 0){
+    		driveSpeedRight = driveSpeed;
     	}
     	
     	Robot.drive.updateTrimInput();

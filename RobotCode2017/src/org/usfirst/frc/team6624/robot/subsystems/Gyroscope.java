@@ -15,7 +15,7 @@ public class Gyroscope extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands
 	
-	private ADXRS453Gyro gyro;
+	public ADXRS453Gyro gyro;
 	
 	double localRotation;
 	
@@ -29,7 +29,7 @@ public class Gyroscope extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new PrintGyro());
+    	setDefaultCommand(new PrintGyro(false));
     }
     
     /**
