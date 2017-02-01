@@ -1,5 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc.team6624.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -13,7 +15,10 @@ public class DriveStraightDistence extends Command {
 	
 	final float DECELERATE_COEFFICIENT = 0.98f;
 	final float DEGREE_THRESHOLD = 2; //number of degrees to correct after
+	final int ACCEL_SAMPLE_SIZE = 5; //samples for accelerometer to take to determine distence
 	
+	
+	double globalMovement = 0;
 	float driveDistence;
 	float driveTime;
 	float driveSpeed;
@@ -26,7 +31,7 @@ public class DriveStraightDistence extends Command {
 	 * @param driveTime number of seconds to drive forward for
 	 * @param driveSpeed speed to set motors, from -1 to 1
 	 */
-    public DriveStraightDistence(float driveTime, float driveSpeed) {
+    public DriveStraightDistence(float driveDistence, float driveSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super("DriveForward");
@@ -40,7 +45,7 @@ public class DriveStraightDistence extends Command {
     	
     	//set instance vars
     	this.driveSpeed = driveSpeed;
-    	this.driveTime = driveTime;
+    	this.driveDistence = driveDistence;
     	
     	driveSpeedLeft = driveSpeed;
     	driveSpeedRight = driveSpeed;
@@ -61,11 +66,21 @@ public class DriveStraightDistence extends Command {
     	
     	System.out.println(currentAngle);
     	
+    	
+    	double x;
+    	double y;
+    	double xMovement = 0;
+    	
+    	int count = 0;
+    	ArrayList <Number> distenceList = new ArrayList<Number>();
+    	ArrayList<Number> xList = new ArrayList <Number> ();
+    	ArrayList<Number> gyroY = new ArrayList <Number> ();
+    	float distencetraveled = 0;
+		while (driveDistence < distencetraveled){
+    		
+		
+    	
     	// Gyro Assisted straight driving
-    	
-    	Robot.drive.setLeftSpeed(driveSpeedLeft);
-    	Robot.drive.setRightSpeed(driveSpeedRight);
-    	
     	if  (currentAngle > DEGREE_THRESHOLD) {
     		driveSpeedLeft = DECELERATE_COEFFICIENT * driveSpeed;
     	}
@@ -81,22 +96,57 @@ public class DriveStraightDistence extends Command {
     	}
     	
     	Robot.drive.updateTrimInput();
+    	Robot.drive.setLeftSpeed(driveSpeedLeft);
+    	Robot.drive.setRightSpeed(driveSpeedRight);
     	
+    	count = count + 1;
+        
+    	x = Robot.accel.acc.getX();
+        xList.add(x);
+        
+        
+        if (count == ACCEL_SAMPLE_SIZE ){
+        	
+        	for(Number acceleration : xList){
+        	
+        	//xMovement = (double) xList.get(0);
+        	 
+        	distenceList.add( (double)acceleration * (timer.get() / ACCEL_SAMPLE_SIZE));
+        	 
+        	}//end for
+        	
+        	timer.reset();
+        	
+        	for(int i = 0; i < distenceList.size(); i++){
+                xMovement += (double) distenceList.get(i);
+                }//end for
+        	globalMovement += xMovement;
+                System.out.println(globalMovement);
+                
+        }// end if
+        
+        
+       
+        
     	
-    	
+    }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	
-    	if (timer.get() > driveTime) {
-    		Robot.drive.setLeftSpeed(0);
-        	Robot.drive.setRightSpeed(0);
-    	}
+ 
+    		
+        	
+			if (globalMovement >= driveDistence){
+				Robot.drive.setLeftSpeed(driveSpeedLeft);
+		    	Robot.drive.setRightSpeed(driveSpeedRight);
+		    	return true;
+			}
+			
+			return false;
     	
-        return timer.get() > driveTime;
     }
-
     // Called once after isFinished returns true
     protected void end() {
     }
