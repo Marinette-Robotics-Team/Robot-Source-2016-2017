@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
+import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
