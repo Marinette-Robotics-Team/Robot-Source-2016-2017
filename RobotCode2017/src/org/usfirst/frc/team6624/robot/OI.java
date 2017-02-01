@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
+import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
@@ -80,7 +81,7 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
 		
-		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.8f));
+		rightTriggerTop.whenPressed(new DriveStraightDistence(5f, 0.4f));
 		leftTriggerTop.whenPressed(new DriveTurn(90));
 		
 		//get ultrasonic

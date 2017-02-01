@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraight extends Command {
+public class DriveStraightDistence extends Command {
 
 	
 	final float DECELERATE_COEFFICIENT = 0.98f;
@@ -26,7 +26,7 @@ public class DriveStraight extends Command {
 	 * @param driveTime number of seconds to drive forward for
 	 * @param driveSpeed speed to set motors, from -1 to 1
 	 */
-    public DriveStraight(float driveTime, float driveSpeed) {
+    public DriveStraightDistence(float driveTime, float driveSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super("DriveForward");
