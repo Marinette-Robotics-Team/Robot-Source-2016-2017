@@ -81,7 +81,7 @@ public class OI {
 		yButton.whenPressed(new DriveSingleStick());
 		
 		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.8f));
-		leftTriggerTop.whenPressed(new DriveTurn(90));
+		leftTriggerTop.whenPressed(new DriveTurn(90, false));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());

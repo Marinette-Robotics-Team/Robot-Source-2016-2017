@@ -66,17 +66,17 @@ public class DriveStraight extends Command {
     	Robot.drive.setRightSpeed(driveSpeedRight);
     	
     	if  (currentAngle > DEGREE_THRESHOLD) {
-    		driveSpeedLeft = DECELERATE_COEFFICIENT * driveSpeed;
+    		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
     	}
     	else if (currentAngle <= 0) {
-    		driveSpeedLeft = driveSpeed;
+    		driveSpeedRight = driveSpeed;
     	}
     	
     	if(currentAngle < -DEGREE_THRESHOLD) {
-    		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
+    		driveSpeedLeft = DECELERATE_COEFFICIENT * driveSpeed;
     	}
     	else if (currentAngle >= 0){
-    		driveSpeedRight = driveSpeed;
+    		driveSpeedLeft = driveSpeed;
     	}
     	
     	Robot.drive.updateTrimInput();
