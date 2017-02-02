@@ -39,12 +39,6 @@ public class DriveTurn extends Command {
     	//simplify angle
     	Gyroscope.simplifyAngle(degrees);
     	
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.gyroscope.reset();
-    	
     	if (absoluteRotation) {
     		if (Math.abs( degrees - Gyroscope.simplifyAngle( Robot.gyroscope.getGlobalRotation() ) ) <= 180)
     			rotateDirection = 1;
@@ -57,6 +51,12 @@ public class DriveTurn extends Command {
 	    	else
 	    		rotateDirection = -1;
     	}
+    	
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	Robot.gyroscope.reset();
     	
     	Robot.drive.setRightSpeed(ROTATE_SPEED * rotateDirection);
 		Robot.drive.setLeftSpeed(-ROTATE_SPEED * rotateDirection);

@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
-import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
+//import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
+import org.usfirst.frc.team6624.robot.commands.DriveToCoords;
 import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
+import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -81,8 +83,8 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		yButton.whenPressed(new DriveSingleStick());
 		
-		rightTriggerTop.whenPressed(new DriveStraight(200f, 0.8f));
-		leftTriggerTop.whenPressed(new DriveTurn(90, false));
+		rightTriggerTop.whenPressed(new DriveToCoords(new Vector2(5, 5)));
+		leftTriggerTop.whenPressed(new DriveTurn(90, true));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());
