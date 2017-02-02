@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
+import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static Gyroscope gyroscope;
 	public static UltraSonicSensors USS;
 	public static Accel accel;
+	public static BallShooter ballshooter;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();

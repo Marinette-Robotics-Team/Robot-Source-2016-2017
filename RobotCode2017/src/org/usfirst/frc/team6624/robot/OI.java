@@ -15,6 +15,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
+import org.usfirst.frc.team6624.robot.commands.Shooter;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
@@ -64,8 +65,10 @@ public class OI {
 	
 	//xbox buttons
 	Button aButton = new JoystickButton(xbox, 1);
+	Button bButton = new JoystickButton(xbox, 2);
 	Button xButton = new JoystickButton(xbox, 3);
 	Button yButton = new JoystickButton(xbox, 4);
+	
 	
 	Button leftTriggerTop = new JoystickButton(xbox, 5);
 	Button rightTriggerTop = new JoystickButton(xbox, 6);
@@ -88,6 +91,14 @@ public class OI {
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());
+		
+		
+		//agitater spin modes   
+		
+		
+	     int rotationMode = 0;
+		bButton.whenPressed(new Shooter() );
+		
 	}
 	
 	
