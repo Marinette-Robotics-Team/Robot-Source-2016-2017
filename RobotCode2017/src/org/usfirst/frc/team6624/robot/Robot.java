@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot {
 		USS = new UltraSonicSensors();
 		drive = new Drive();
 		accel = new Accel();
+		ballshooter = new BallShooter();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

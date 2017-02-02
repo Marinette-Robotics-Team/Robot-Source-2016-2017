@@ -29,14 +29,14 @@ public class Shooter extends Command {
     protected void execute() {
     	
  
-    	if (Robot.ballshooter.shootspeed < 0.9){
-    		Robot.ballshooter.shootspeed += 0.002;
+    	if (Robot.ballshooter.shootspeed > -0.8){
+    		Robot.ballshooter.shootspeed -= 0.002;
     	}
     	(Robot.ballshooter).spinnerSpeed();
     	
     	
     	//brings the agitater up to speed and maintains that speed
-    	if (Robot.ballshooter.agitaterspeed < 0.7 ){
+    	if (Robot.ballshooter.agitaterspeed < 0.4 ){
     		
     		Robot.ballshooter.agitaterspeed += 0.01;
     	}
