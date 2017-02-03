@@ -5,6 +5,10 @@ import java.nio.ByteOrder;
 import java.util.BitSet;
 import java.util.TimerTask;
 
+import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
+
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.Timer;
@@ -16,7 +20,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * @author Kevin Harrilal (kevin@team2168.org)
  */
-public class ADXRS453Gyro {
+public class ADXRS453Gyro implements PIDSource {
 
 	static final int DATA_SIZE = 4; //4 bytes = 32 bits
 	static final byte PARITY_BIT = (byte) 0x01; //parity check on first bit
@@ -361,5 +365,37 @@ public class ADXRS453Gyro {
 		public void run() {
 			gyro.update();
 		}
+	}
+
+	/*
+	 * All below code written by 6624 to make class comply with PIDOutput
+	 */
+	
+	//default source type. Likely the only type that will be used.
+	public PIDSourceType sourceType = PIDSourceType.kDisplacement;
+	
+	/**
+	 * Setter for source type requred by PIDSource interface
+	 * @param pidSource The PIDSourceType to set the value to
+	 */
+	@Override
+	public void setPIDSourceType(PIDSourceType pidSource) {
+		// TODO Auto-generated method stub
+		sourceType = pidSource;
+	}
+
+	@Override
+	public PIDSourceType getPIDSourceType() {
+		// TODO Auto-generated method stub
+		return sourceType;
+	}
+
+	/**
+	 * Return the PID Values for the gyro (simplified onto [0, 360))
+	 */
+	@Override
+	public double pidGet() {
+		// TODO Auto-generated method stub
+		return Gyroscope.simplifyAngle( getAngle() );
 	}
 }

@@ -2,7 +2,9 @@ package org.usfirst.frc.team6624.robot.commands;
 
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
+import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,7 +16,9 @@ public class DriveTurn extends Command {
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
 	
-	final double ANGLE_RANGE = 5;
+	final double ANGLE_RANGE = 2;
+	
+	PIDController PID;
 
 	double degrees;
 	
@@ -26,7 +30,7 @@ public class DriveTurn extends Command {
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
 	 * @param absoluteRotation toggle of whether to rotate relatively from current position (default) or rotate to gloabl angle
 	 */
-    public DriveTurn(double degrees, Boolean absoluteRotation) {
+    public DriveTurn(double degrees, Boolean absoluteRotation, double P, double I, double D) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super("DriveTurn");
@@ -35,6 +39,8 @@ public class DriveTurn extends Command {
     	
     	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
+    	
+    	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup);
     	
     	
     }
@@ -73,8 +79,14 @@ public class DriveTurn extends Command {
 	    		rotateDirection = -1;
     	}
     	
-    	Robot.drive.setRightSpeed(ROTATE_SPEED * rotateDirection);
-		Robot.drive.setLeftSpeed(-ROTATE_SPEED * rotateDirection);
+    	//setup PID and set setpoint
+    	PID.setContinuous();
+    	PID.setSetpoint(degrees);
+    	
+    	PID.enable();
+    	
+    	/*Robot.drive.setRightSpeed(ROTATE_SPEED * rotateDirection);
+		Robot.drive.setLeftSpeed(-ROTATE_SPEED * rotateDirection);*/
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -98,10 +110,12 @@ public class DriveTurn extends Command {
     						//set detection region
     	Boolean finished = (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) - (ANGLE_RANGE * rotateDirection) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + (ANGLE_RANGE * rotateDirection) );
     	
-    	if (finished) {
+    	/*if (finished) {
     		Robot.drive.setRightSpeed(0);
     		Robot.drive.setLeftSpeed(0);
-    	}
+    	}*/
+    	
+    	PID.disable();
     	
         return finished;
     }

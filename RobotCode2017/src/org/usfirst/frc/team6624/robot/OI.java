@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team6624.robot.commands.CalibrateDriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
@@ -79,6 +80,8 @@ public class OI {
 	
 	//Joystick buttons (to be setup later)
 	Button two = new JoystickButton(joystick, 2);
+
+	
 	public OI() {
 		
 		//toggle input schemes
@@ -87,7 +90,7 @@ public class OI {
 		yButton.whenPressed(new DriveSingleStick());
 		
 		rightTriggerTop.whenPressed(new DriveToCoords(new Vector2(5, 5)));
-		leftTriggerTop.whenPressed(new DriveTurn(90, true));
+		leftTriggerTop.whenPressed(new CalibrateDriveTurn());
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());

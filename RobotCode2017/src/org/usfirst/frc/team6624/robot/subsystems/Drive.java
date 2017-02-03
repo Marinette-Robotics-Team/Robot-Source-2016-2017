@@ -6,8 +6,10 @@ import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.FullForward;
+import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -27,6 +29,11 @@ public class Drive extends Subsystem {
 	Spark frontRightMotor = new Spark(RobotMap.frontRightMotorPort);
 	Spark backLeftMotor = new Spark(RobotMap.backLeftMotorPort);
 	Spark backRightMotor = new Spark(RobotMap.backRightMotorPort);
+	
+	//PIDOutput for drive
+	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
+													frontRightMotor, backRightMotor}, 
+													new Boolean[] { false, false, true, true});
 	
 	//trim vals
 	double trim = 1;
