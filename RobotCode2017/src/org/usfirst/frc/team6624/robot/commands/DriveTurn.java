@@ -15,6 +15,8 @@ public class DriveTurn extends Command {
 	final double PERCENT_ERROR = 0.05;
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
+	
+	final float ANGLE_RANGE = 15;
 
 	double degrees;
 	
@@ -95,9 +97,11 @@ public class DriveTurn extends Command {
     	else
     		rotation = Robot.gyroscope.getRotation();
     	
+    	System.out.println("curr: " + Gyroscope.simplifyAngle(rotation) + "\n goal: " + degrees);
     	
     	//get if robot has rotated through given degree measurement
-    	Boolean finished = Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) || Gyroscope.anglesEqual(rotation, degrees, PERCENT_ERROR);
+    						//set detection region
+    	Boolean finished = (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + ANGLE_RANGE * rotateDirection ) || Gyroscope.anglesEqual(rotation, degrees, PERCENT_ERROR);
     	
     	if (finished) {
     		Robot.drive.setRightSpeed(0);
