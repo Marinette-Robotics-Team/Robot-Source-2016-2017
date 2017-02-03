@@ -46,6 +46,9 @@ public class DriveToCoords extends CommandGroup {
     	//TODO: change from DriveStraight to DriveStraightDistance !!IMPORTANT
     	addSequential(new DriveStraight(3.0f, 0.6f));
     	
+    	//set current position to destination
+    	Robot.drive.position = destination;
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
