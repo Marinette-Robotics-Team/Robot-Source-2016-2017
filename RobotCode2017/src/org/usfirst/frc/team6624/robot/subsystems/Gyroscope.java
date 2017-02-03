@@ -67,6 +67,10 @@ public class Gyroscope extends Subsystem {
     	double ang1 = simplifyAngle(a1);
     	double ang2 = simplifyAngle(a2);
     	
+    	if (ang1 == ang2) {
+    		return true;
+    	}
+    	
     	//calculate percent difference and compare to percentError
     	double avg = (ang1 + ang2) / 2;
     	double percentDiff = Math.abs((ang1 - ang2) / avg);
@@ -87,7 +91,7 @@ public class Gyroscope extends Subsystem {
     		adjustConst *= -1;
     	
     	//adjust by 360 until within [0, 360)
-    	while (Math.abs(retAngle) >= 360) {
+    	while (retAngle >= 360 || retAngle < 0) {
     		retAngle += adjustConst;
     	}
     	

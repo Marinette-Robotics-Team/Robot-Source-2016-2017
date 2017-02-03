@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTurn extends Command {
 	
 	//percent difference that is enough to consider the robot at the intended rotation
-	final double PERCENT_ERROR = 0.5;
+	final double PERCENT_ERROR = 0.05;
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
 
@@ -39,11 +39,29 @@ public class DriveTurn extends Command {
     	//simplify angle
     	Gyroscope.simplifyAngle(degrees);
     	
+    	
+    	//calcualte which direction to rotate
     	if (absoluteRotation) {
-    		if (Math.abs( degrees - Gyroscope.simplifyAngle( Robot.gyroscope.getGlobalRotation() ) ) <= 180)
-    			rotateDirection = 1;
-    		else
-    			rotateDirection = -1;
+    		
+    		double current = Gyroscope.simplifyAngle( Robot.gyroscope.getGlobalRotation() );
+    		
+    		
+    		if (Math.max(degrees, current) - Math.min(degrees, current) <= 180) {
+    			if (Math.min(degrees, current) == current) {
+    				rotateDirection = 1;
+    			}
+    			else {
+    				rotateDirection = -1;
+    			}
+    		}
+    		else {
+    			if (Math.min(degrees, current) == current)  {
+    				rotateDirection = -1;
+    			}
+    			else {
+    				rotateDirection = 1;
+    			}
+    		}
     	}
     	else {
 	    	if (degrees > 0)
