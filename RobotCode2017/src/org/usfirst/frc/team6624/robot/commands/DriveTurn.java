@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTurn extends Command {
 	
-	//percent difference that is enough to consider the robot at the intended rotation
-	final double PERCENT_ERROR = 0.05;
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
 	
-	final float ANGLE_RANGE = 15;
+	final double ANGLE_RANGE = 5;
 
 	double degrees;
 	
@@ -35,12 +33,15 @@ public class DriveTurn extends Command {
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
-    	this.degrees = degrees;
+    	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
     	
-    	//simplify angle
-    	Gyroscope.simplifyAngle(degrees);
     	
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	Robot.gyroscope.reset();
     	
     	//calcualte which direction to rotate
     	if (absoluteRotation) {
@@ -72,12 +73,6 @@ public class DriveTurn extends Command {
 	    		rotateDirection = -1;
     	}
     	
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.gyroscope.reset();
-    	
     	Robot.drive.setRightSpeed(ROTATE_SPEED * rotateDirection);
 		Robot.drive.setLeftSpeed(-ROTATE_SPEED * rotateDirection);
     }
@@ -101,7 +96,7 @@ public class DriveTurn extends Command {
     	
     	//get if robot has rotated through given degree measurement
     						//set detection region
-    	Boolean finished = (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + ANGLE_RANGE * rotateDirection ) || Gyroscope.anglesEqual(rotation, degrees, PERCENT_ERROR);
+    	Boolean finished = (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) - (ANGLE_RANGE * rotateDirection) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + (ANGLE_RANGE * rotateDirection) );
     	
     	if (finished) {
     		Robot.drive.setRightSpeed(0);
