@@ -75,7 +75,7 @@ public class OI {
 	Button rightTriggerTop = new JoystickButton(xbox, 6);
 	
 	//Joystick consts
-	//public static int joystickX = 0;
+	public static int joystickX = 0;
 	public static int joystickY = 1;
 	
 	//Joystick buttons (to be setup later)

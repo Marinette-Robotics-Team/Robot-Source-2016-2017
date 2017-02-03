@@ -23,8 +23,11 @@ import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
 public class Robot extends IterativeRobot {
 
+	public static int shooterOnOff = 0;
+	
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static Drive drive;
@@ -51,6 +54,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		
+		//bobs ball shooter variable <_< dont touch
+		int shooterOnOff = 0;
 	}
 
 	/**

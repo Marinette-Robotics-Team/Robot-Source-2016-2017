@@ -14,7 +14,7 @@ public class Shooter extends Command {
 
 	double shootspeed = 0;
 	double agitaterspeed= 0;
-	public static int shooterOnOff = 0;
+	
 	
 	
 	
@@ -29,23 +29,23 @@ public class Shooter extends Command {
     protected void initialize() {
     
     	
-    	if(shooterOnOff > 0){
-    		shooterOnOff = 1;
+		if( Robot.shooterOnOff == 0){
     		
+    		Robot.shooterOnOff = 1;
     		
     	}
     	else{
-    		shooterOnOff = 0;
+    		
+    		Robot.shooterOnOff = 0;
+    		
     	}
-    	
     }
-
  
     
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	if(shooterOnOff != 1){
+    	if(Robot.shooterOnOff != 1){
  
     	if (shootspeed > -0.8){
     		shootspeed -= 0.002;
@@ -66,6 +66,8 @@ public class Shooter extends Command {
     		(Robot.ballshooter).spinnerSpeed(0);
     		
     	}
+    	
+    	 
     	
     	
     	
