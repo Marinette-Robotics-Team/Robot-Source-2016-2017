@@ -27,19 +27,12 @@ public class BallShooter extends Subsystem {
     	
     }
     
-    public double shootspeed = 0;
     
-    public void spinnerSpeed() {	
+    public void spinnerSpeed( double shootspeed) {	
     	ShooterMotor.set(shootspeed);
     }
 
-
-
-public double agitaterspeed = 0;
-
-
-public void agitaterSpeed() {
+    public void agitaterSpeed(double agitaterspeed) {
 	agitaterMotor.set(agitaterspeed);
-}
-}
-
+    }
+	}

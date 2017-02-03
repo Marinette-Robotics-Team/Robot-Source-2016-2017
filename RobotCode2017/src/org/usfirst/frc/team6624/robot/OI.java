@@ -75,7 +75,7 @@ public class OI {
 	Button rightTriggerTop = new JoystickButton(xbox, 6);
 	
 	//Joystick consts
-	public static int joystickX = 0;
+	//public static int joystickX = 0;
 	public static int joystickY = 1;
 	
 	//Joystick buttons (to be setup later)
@@ -99,8 +99,8 @@ public class OI {
 		//agitater spin modes   
 		
 		
-	     int rotationMode = 0;
-		bButton.whenPressed(new Shooter() );
+	     //int rotationMode = 0;
+		bButton.whenPressed(new Shooter());
 		
 	}
 	

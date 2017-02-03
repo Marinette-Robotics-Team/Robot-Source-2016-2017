@@ -12,6 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Shooter extends Command {
 
+	double shootspeed = 0;
+	double agitaterspeed= 0;
+	public static int shooterOnOff = 0;
+	
+	
+	
+	
     public Shooter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,6 +28,16 @@ public class Shooter extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     
+    	
+    	if(shooterOnOff > 0){
+    		shooterOnOff = 1;
+    		
+    		
+    	}
+    	else{
+    		shooterOnOff = 0;
+    	}
+    	
     }
 
  
@@ -28,20 +45,27 @@ public class Shooter extends Command {
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
+    	if(shooterOnOff != 1){
  
-    	if (Robot.ballshooter.shootspeed > -0.8){
-    		Robot.ballshooter.shootspeed -= 0.002;
+    	if (shootspeed > -0.8){
+    		shootspeed -= 0.002;
     	}
-    	(Robot.ballshooter).spinnerSpeed();
+    	(Robot.ballshooter).spinnerSpeed(shootspeed);
     	
     	
     	//brings the agitater up to speed and maintains that speed
-    	if (Robot.ballshooter.agitaterspeed < 0.4 ){
+    	if (agitaterspeed < 0.4 ){
     		
-    		Robot.ballshooter.agitaterspeed += 0.01;
+    		agitaterspeed += 0.01;
     	}
-    	(Robot.ballshooter).agitaterSpeed();
-    	
+    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
+    	}
+    	else{
+    		
+    		(Robot.ballshooter).agitaterSpeed(0);
+    		(Robot.ballshooter).spinnerSpeed(0);
+    		
+    	}
     	
     	
     	
