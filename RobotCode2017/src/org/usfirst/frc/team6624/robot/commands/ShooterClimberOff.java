@@ -12,6 +12,9 @@ public class ShooterClimberOff extends Command {
     public ShooterClimberOff() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ballshooter);
+    	requires(Robot.roperclimberr);
+    	
     }
 
     // Called just before this Command runs the first time
