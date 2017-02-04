@@ -19,6 +19,10 @@ public class DriveTurn extends Command {
 	
 	final double ANGLE_RANGE = 2;
 	
+	double P = 0;
+	double I = 0;
+	double D = 0;
+	
 	PIDController PID;
 
 	double degrees;
@@ -41,8 +45,9 @@ public class DriveTurn extends Command {
     	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
     	
-    	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup);
-    	
+    	this.P = P;
+    	this.I = I;
+    	this.D = D;
     	
     }
 
@@ -78,16 +83,21 @@ public class DriveTurn extends Command {
 	    		rotateDirection = 1;
 	    	else
 	    		rotateDirection = -1;
+	    	
+	    	//adjust degrees by starting pos
+	    	degrees += Robot.gyroscope.gyro.getAngle();
     	}
     	
     	//setup PID and set setpoint
+    	if (rotateDirection == 1)
+    		PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {false, false, false, false}));
+    	else
+        	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
+    	
     	PID.setContinuous();
     	PID.setSetpoint(degrees);
     	
     	PID.enable();
-    	
-    	/*Robot.drive.setRightSpeed(ROTATE_SPEED * rotateDirection);
-		Robot.drive.setLeftSpeed(-ROTATE_SPEED * rotateDirection);*/
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -107,19 +117,9 @@ public class DriveTurn extends Command {
     		rotation = Robot.gyroscope.getRotation();
     	
     	System.out.println("curr: " + Gyroscope.simplifyAngle(rotation) + "\n goal: " + degrees);
+
     	
-    	//get if robot has rotated through given degree measurement
-    						//set detection region
-    	Boolean finished = false && (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) - (ANGLE_RANGE * rotateDirection) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + (ANGLE_RANGE * rotateDirection) );
-    	
-    	/*if (finished) {
-    		Robot.drive.setRightSpeed(0);
-    		Robot.drive.setLeftSpeed(0);
-    	}*/
-    	if (finished)
-    		PID.disable();
-    	
-        return finished;
+        return PID.onTarget();
     }
 
     // Called once after isFinished returns true

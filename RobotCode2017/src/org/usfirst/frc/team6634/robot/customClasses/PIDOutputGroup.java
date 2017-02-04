@@ -27,6 +27,15 @@ public class PIDOutputGroup implements PIDOutput {
 		this.outputCap = outputCap;
 	}
 	
+	
+	public PIDOutput setInverted(Boolean[] inverted) {
+		if (outputs.length != inverted.length) {
+			throw new IllegalArgumentException("There must be a boolean corresponding to every output.");
+		}
+		
+		return new PIDOutputGroup(outputs, inverted, outputCap);
+	}
+	
 	/**
 	 * Write pid data to all outputs, inverting those specified by the boolean array
 	 */
