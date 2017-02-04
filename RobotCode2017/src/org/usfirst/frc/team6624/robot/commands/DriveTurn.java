@@ -7,6 +7,7 @@ import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -91,6 +92,7 @@ public class DriveTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("Error", PID.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -108,24 +110,26 @@ public class DriveTurn extends Command {
     	
     	//get if robot has rotated through given degree measurement
     						//set detection region
-    	Boolean finished = (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) - (ANGLE_RANGE * rotateDirection) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + (ANGLE_RANGE * rotateDirection) );
+    	Boolean finished = false && (Gyroscope.simplifyAngle(rotation) * rotateDirection >= Math.abs( degrees ) - (ANGLE_RANGE * rotateDirection) && Gyroscope.simplifyAngle(rotation) * rotateDirection <= Math.abs( degrees ) + (ANGLE_RANGE * rotateDirection) );
     	
     	/*if (finished) {
     		Robot.drive.setRightSpeed(0);
     		Robot.drive.setLeftSpeed(0);
     	}*/
-    	
-    	PID.disable();
+    	if (finished)
+    		PID.disable();
     	
         return finished;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	PID.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	PID.disable();
     }
 }
