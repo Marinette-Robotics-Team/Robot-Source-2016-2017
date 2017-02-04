@@ -33,10 +33,17 @@ public class PIDOutputGroup implements PIDOutput {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < outputs.length; i++) {
 			double out = output;
-			if (inverted[i]) 
-				out *= -1;
+			if (inverted[i]) {
+				out *= 1;
+				System.out.println("INVERTED: " + out);
+			}
+			else {
+				System.out.println("NORMAL: " + out);
+			}
+				
 			
-			outputs[i].pidWrite(output);
+			outputs[i].pidWrite(out);
+			
 		}
 	}
 

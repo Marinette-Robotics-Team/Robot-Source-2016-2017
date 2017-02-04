@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Shooter extends Command {
 
+	
+	public static int shooterOnOff = 1;
+	
 	double shootspeed = 0;
 	double agitaterspeed= 0;
 	
@@ -29,14 +32,14 @@ public class Shooter extends Command {
     protected void initialize() {
     
     	
-		if( Robot.shooterOnOff == 0){
+		if( Shooter.shooterOnOff == 0){
     		
-    		Robot.shooterOnOff = 1;
+    		Shooter.shooterOnOff = 1;
     		
     	}
     	else{
     		
-    		Robot.shooterOnOff = 0;
+    		Shooter.shooterOnOff = 0;
     		
     	}
     }
@@ -45,20 +48,20 @@ public class Shooter extends Command {
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	if(Robot.shooterOnOff != 1){
- 
-    	if (shootspeed > -0.8){
-    		shootspeed -= 0.002;
-    	}
-    	(Robot.ballshooter).spinnerSpeed(shootspeed);
-    	
-    	
-    	//brings the agitater up to speed and maintains that speed
-    	if (agitaterspeed < 0.4 ){
-    		
-    		agitaterspeed += 0.01;
-    	}
-    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
+    	if(Shooter.shooterOnOff != 1){
+	 
+	    	if (shootspeed > -0.8){
+	    		shootspeed -= 0.002;
+	    	}
+	    	(Robot.ballshooter).spinnerSpeed(shootspeed);
+	    	
+	    	
+	    	//brings the agitater up to speed and maintains that speed
+	    	if (agitaterspeed < 0.4 ){
+	    		
+	    		agitaterspeed += 0.01;
+	    	}
+	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
     	}
     	else{
     		

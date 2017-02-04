@@ -396,6 +396,6 @@ public class ADXRS453Gyro implements PIDSource {
 	@Override
 	public double pidGet() {
 		// TODO Auto-generated method stub
-		return Gyroscope.simplifyAngle( getAngle() );
+		return getAngle();
 	}
 }
