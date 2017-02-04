@@ -33,7 +33,7 @@ public class Drive extends Subsystem {
 	//PIDOutput for drive
 	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
 													frontRightMotor, backRightMotor}, 
-													new Boolean[] { false, false, true, true});
+													new Boolean[] { false, false, false, false}, 0.5);
 	
 	//trim vals
 	double trim = 1;
