@@ -29,6 +29,7 @@ public class RobotMap {
 	public static int backRightMotorPort = 2;
 	public static int ShooterMotor =4;
 	public static int agitaterMoter = 5;
+	public static int climbMotor = 6;
 	
 	
 	//DIO ports

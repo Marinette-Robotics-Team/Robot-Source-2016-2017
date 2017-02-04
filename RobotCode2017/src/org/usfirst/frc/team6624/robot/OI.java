@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team6624.robot.commands.CalibrateDriveTurn;
+import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
@@ -17,6 +18,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
 import org.usfirst.frc.team6624.robot.commands.Shooter;
+import org.usfirst.frc.team6624.robot.commands.ShooterClimberOff;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
@@ -87,7 +89,7 @@ public class OI {
 		//toggle input schemes
 		aButton.whenPressed(new DriveTank());
 		xButton.whenPressed(new DriveDualPowerTurn());
-		yButton.whenPressed(new DriveSingleStick());
+		
 		
 		rightTriggerTop.whenPressed(new DriveToCoords(new Vector2(5, 5)));
 		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0005, 0));
@@ -101,6 +103,12 @@ public class OI {
 		
 	     //int rotationMode = 0;
 		bButton.whenPressed(new Shooter());
+		
+		//do a climb
+		yButton.whenPressed(new ClimbRope());
+		
+		//dont do a climb and dont do a spin ball shoot
+		aButton.whenPressed(new ShooterClimberOff());
 		
 	}
 	

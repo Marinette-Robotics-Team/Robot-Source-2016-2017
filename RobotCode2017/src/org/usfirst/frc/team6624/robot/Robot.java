@@ -14,6 +14,7 @@ import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
+import org.usfirst.frc.team6624.robot.subsystems.RoperClimberr;
 import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
 
 /**
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static Gyroscope gyroscope;
 	public static UltraSonicSensors USS;
 	public static Accel accel;
+	public static RoperClimberr roperclimberr;
 	public static BallShooter ballshooter;
 
 	Command autonomousCommand;
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 		gyroscope = new Gyroscope();
 		USS = new UltraSonicSensors();
 		drive = new Drive();
+		roperclimberr = new RoperClimberr();
 		accel = new Accel();
 		ballshooter = new BallShooter();
 		oi = new OI();
