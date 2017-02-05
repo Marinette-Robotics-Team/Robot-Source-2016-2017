@@ -6,8 +6,10 @@ import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.FullForward;
+import org.usfirst.frc.team6634.robot.customClasses.MapCreator;
 import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
+import org.xguzm.pathfinding.grid.GridCell;
 
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
@@ -24,6 +26,8 @@ public class Drive extends Subsystem {
 	//coordinate system
 	//set starting position here
 	public Vector2 position = Vector2.Zero;
+	
+	public GridCell[][] map = MapCreator.createMap();
 	
 	Spark frontLeftMotor = new Spark(RobotMap.frontLeftMotorPort);
 	Spark frontRightMotor = new Spark(RobotMap.frontRightMotorPort);
