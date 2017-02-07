@@ -17,7 +17,7 @@ public class MapCreator {
 	public static final double BOX_SIZE = 1; //this should be the size of the robot in meters
 	
 	
-	static GridCell[][] map = new GridCell[MAP_HEIGHT][MAP_WIDTH];
+	static GridCell[][] map = new GridCell[MAP_WIDTH][MAP_HEIGHT];
 	
 
 	
@@ -28,15 +28,16 @@ public class MapCreator {
 	public static GridCell[][] createMap() {
 		//list of objects
 		
-		ArrayList<Vector2[]> object1List = new ArrayList<Vector2[]>();
+		/*ArrayList<Vector2[]> object1List = new ArrayList<Vector2[]>();
 		object1List.add(new Vector2[] { new Vector2(3, 3), new Vector2(4, 5) });
+		object1List.add(new Vector2[] { new Vector2(4, 2), new Vector2(4, 0)} );
 		
 		MapObject object1 = new MapObject(object1List);
 		
 		
 		ArrayList<Vector2[]> object2List = new ArrayList<Vector2[]>();
 		object2List.add(new Vector2[] { new Vector2(6, 7), new Vector2(6, 8) });
-		object2List.add(new Vector2[] { new Vector2(7, 8), new Vector2(9, 8) });
+		object2List.add(new Vector2[] { new Vector2(7, 8), new Vector2(8, 8) });
 		object2List.add(new Vector2[] { new Vector2(6, 6), new Vector2(5, 6)} );
 		
 		MapObject object2 = new MapObject(object2List);
@@ -48,6 +49,30 @@ public class MapCreator {
 		objects.add(object1);
 		objects.add(object2);
 		
+		*/
+		
+		ArrayList<Vector2[]> object1List = new ArrayList<Vector2[]>();
+		//object1List.add(new Vector2[] { new Vector2(2, 3), new Vector2(3, 3) } );
+		//object1List.add(new Vector2[] { new Vector2(3, 4), new Vector2(4, 4) } );
+		//object1List.add(new Vector2[] { new Vector2(4, 5), new Vector2(5, 5) } );
+		//object1List.add(new Vector2[] { new Vector2(5, 6), new Vector2(6, 6) } );
+		//object1List.add(new Vector2[] { new Vector2(6, 7), new Vector2(7, 7) } );
+		
+		object1List.add(new Vector2[] { new Vector2(3, 9), new Vector2(3, 6) } );
+		object1List.add(new Vector2[] { new Vector2(2, 0), new Vector2(2, 3) } );
+		object1List.add(new Vector2[] { new Vector2(2, 3), new Vector2(4, 3) } );
+		object1List.add(new Vector2[] { new Vector2(4, 3), new Vector2(3, 2) } );
+		object1List.add(new Vector2[] { new Vector2(5, 1), new Vector2(5, 1) } );
+		object1List.add(new Vector2[] { new Vector2(6, 2), new Vector2(6, 5) } );
+		object1List.add(new Vector2[] { new Vector2(8, 7), new Vector2(8, 7) } );
+		object1List.add(new Vector2[] { new Vector2(9, 8), new Vector2(9, 8) } );
+		
+		MapObject object1 = new MapObject(object1List);
+		
+		//compile list of map objects
+		
+		ArrayList<MapObject> objects = new ArrayList<MapObject>();
+		objects.add(object1);
 		
 		
 		
@@ -58,8 +83,7 @@ public class MapCreator {
 		for (int y = 0; y < MAP_HEIGHT; y++) {
 			for (int x = 0; x < MAP_WIDTH; x++) {
 				//y inverted to make origin in lower left
-														//to 1 index everything
-				map[MAP_HEIGHT - y - 1][x] = new GridCell(x, y, true);
+				map[x][y] = new GridCell(x, y, true);
 			}
 		}
 		
@@ -68,17 +92,19 @@ public class MapCreator {
 			for (Vector2[] region : obj.regions) {
 				for (int y = (int) Math.min(region[0].Y, region[1].Y); y <= (int) Math.max(region[0].Y, region[1].Y); y++) {
 					for (int x = (int) Math.min(region[0].X, region[1].X); x <= (int) Math.max(region[0].X, region[1].X); x++) {
-						map[MAP_HEIGHT - y - 1][x] = new GridCell(x, y, false);
+						map[x][y] = new GridCell(x, y, false);
 					}
 				}
 			}
 		}
 		
 		//debug printout
-		for (GridCell[] cellRow : map) {
+		//printed in reverse (because this library is weird)
+		for (int y = 0; y < MAP_HEIGHT; y++) {
 			System.out.print("[");
-			for (GridCell cell : cellRow) { 
-				System.out.print(getIntFromBool(cell.isWalkable()) + ",");
+			for (int x = 0; x < MAP_WIDTH; x++) { 
+				// y inverted for lower left origin
+				System.out.print(getIntFromBool(map[x][MAP_HEIGHT - y - 1].isWalkable()) + ",");
 			}
 			System.out.println("]\n");
 		}

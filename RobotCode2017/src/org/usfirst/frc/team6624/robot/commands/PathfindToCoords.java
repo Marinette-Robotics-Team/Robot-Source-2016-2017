@@ -31,17 +31,26 @@ public class PathfindToCoords extends CommandGroup {
     	
     	this.currentPosition = Robot.drive.position;
     	
+    	
+    	//convert current position and destination to grid coords
+    	Vector2 destinationGrid = new Vector2((int)(destination.X / MapCreator.BOX_SIZE), (int)(destination.Y / MapCreator.BOX_SIZE));
+    	Vector2 currentPositionGrid = new Vector2((int)(currentPosition.X / MapCreator.BOX_SIZE), (int)(currentPosition.Y / MapCreator.BOX_SIZE));
+    	
     	//line up with nearest A* square
-    	pathToNearestSquare(currentPosition);
+    	addSequential(new DriveToCoords(new Vector2(currentPositionGrid.X * MapCreator.BOX_SIZE, currentPosition.Y * MapCreator.BOX_SIZE)));
     	
     	//get and goto points along path
-    	ArrayList<GridCell> gotoPoints = removeUnnecessaryPoints( getPathLocs(currentPosition, destination) );
+    	ArrayList<GridCell> gotoPoints = removeUnnecessaryPoints( getPathLocs(currentPositionGrid, destinationGrid) );
     	
     	for (GridCell cell : gotoPoints) {
     		addSequential(new DriveToCoords(new Vector2 (MapCreator.BOX_SIZE * cell.x, MapCreator.BOX_SIZE * cell.y)));
     	}
     	
+    	//go to final position
+    	addSequential(new DriveToCoords(destination));
+    	
     	//reset to final angle
+    	//TODO: FIX PID VALUES BEFORE TESTING
     	addSequential(new DriveTurn(finalRotation, true, 1, 1, 1));
 
     }
@@ -51,7 +60,7 @@ public class PathfindToCoords extends CommandGroup {
     	//based on readme for pathfinding library:
     	//https://github.com/xaguzman/pathfinding
     	
-    	NavigationGrid<GridCell> navGrid = new NavigationGrid<GridCell>(/*Robot.drive.map*/ MapCreator.createMap(), true);
+    	NavigationGrid<GridCell> navGrid = new NavigationGrid<GridCell>(/*Robot.drive.map*/ MapCreator.createMap(), true);  
     	
     	//pathfinder options
     	GridFinderOptions opt = new GridFinderOptions();
@@ -108,9 +117,5 @@ public class PathfindToCoords extends CommandGroup {
     	}
     	
     	return finalPoints;
-    }
-    
-    private void pathToNearestSquare(Vector2 position) {
-    	addSequential(new DriveToCoords(new Vector2((int)position.X, (int)position.Y)));
     }
 }

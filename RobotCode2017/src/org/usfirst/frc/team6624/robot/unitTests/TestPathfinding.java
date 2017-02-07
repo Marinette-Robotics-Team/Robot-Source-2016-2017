@@ -14,7 +14,7 @@ public class TestPathfinding {
 	@Test
 	public void test() {
 		
-		ArrayList<GridCell> list = PathfindToCoords.getPathLocs(new Vector2(1,1),  new Vector2(7, 6));
+		ArrayList<GridCell> list = PathfindToCoords.getPathLocs(new Vector2(1,8),  new Vector2(8, 1));
 		
 		for (GridCell cell : list) {
 				System.out.print(cell + ",");

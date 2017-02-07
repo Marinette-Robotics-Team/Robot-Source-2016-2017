@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/Users/robotics/Downloads/pathfinding-0.2.6/pathfinding"/>
 		<item value="/Users/robotics/Robot-Source-2016-2017"/>
 	</list>
 	<section name="CleanDialogSettings">
