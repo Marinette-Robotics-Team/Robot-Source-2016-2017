@@ -17,7 +17,7 @@ public class DriveTurn extends Command {
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
 	
-	final double ANGLE_RANGE = 2;
+	final double ANGLE_RANGE = 0.1;
 	
 	double P = 0;
 	double I = 0;
@@ -89,13 +89,11 @@ public class DriveTurn extends Command {
     	}
     	
     	//setup PID and set setpoint
-    	if (rotateDirection == 1)
-    		PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {false, false, false, false}));
-    	else
-        	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
+    	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
     	
     	PID.setContinuous();
     	PID.setSetpoint(degrees);
+    	PID.setAbsoluteTolerance(ANGLE_RANGE);
     	
     	PID.enable();
     }
@@ -116,7 +114,7 @@ public class DriveTurn extends Command {
     	else
     		rotation = Robot.gyroscope.getRotation();
     	
-    	System.out.println("curr: " + Gyroscope.simplifyAngle(rotation) + "\n goal: " + degrees);
+    	System.out.println("curr: " + rotation + "\n goal: " + degrees);
 
     	
         return PID.onTarget();

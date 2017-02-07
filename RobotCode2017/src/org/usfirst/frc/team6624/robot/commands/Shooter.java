@@ -50,8 +50,8 @@ public class Shooter extends Command {
     	
     	if(Shooter.shooterOnOff != 1){
 	 
-	    	if (shootspeed > -0.8){
-	    		shootspeed -= 0.002;
+	    	if (shootspeed > -1){
+	    		shootspeed -= 0.008;
 	    	}
 	    	(Robot.ballshooter).spinnerSpeed(shootspeed);
 	    	

@@ -92,7 +92,7 @@ public class OI {
 		
 		
 		rightTriggerTop.whenPressed(new DriveToCoords(new Vector2(5, 5)));
-		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0005, 0));
+		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0001, 0));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());

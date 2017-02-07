@@ -46,14 +46,12 @@ public class PIDOutputGroup implements PIDOutput {
 			double out = output;
 			if (inverted[i]) {
 				out *= -1;
-				System.out.println("INVERTED: " + out);
-			}
-			else {
-				System.out.println("NORMAL: " + out);
 			}
 			
 			if (Math.abs(out) > Math.abs(outputCap))
-				out = outputCap;
+				out = outputCap * (out)/Math.abs(out);
+			
+			System.out.println(out);
 			
 			outputs[i].pidWrite(out);
 			

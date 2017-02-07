@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ClimbRope extends Command {
 
-	public static double climbingSpeed = 0.4;
+	public static double climbingSpeed = -0.7;
     public ClimbRope() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
