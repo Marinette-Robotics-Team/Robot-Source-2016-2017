@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 import org.xguzm.pathfinding.grid.GridCell;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -29,15 +31,21 @@ public class Drive extends Subsystem {
 	
 	public GridCell[][] map = MapCreator.createMap();
 	
-	Spark frontLeftMotor = new Spark(RobotMap.frontLeftMotorPort);
-	Spark frontRightMotor = new Spark(RobotMap.frontRightMotorPort);
-	Spark backLeftMotor = new Spark(RobotMap.backLeftMotorPort);
-	Spark backRightMotor = new Spark(RobotMap.backRightMotorPort);
+	
+	//maotor controllers for drive
+	public Spark frontLeftMotor = new Spark(RobotMap.frontLeftMotorPort);
+	public Spark frontRightMotor = new Spark(RobotMap.frontRightMotorPort);
+	public Spark backLeftMotor = new Spark(RobotMap.backLeftMotorPort);
+	public Spark backRightMotor = new Spark(RobotMap.backRightMotorPort);
 	
 	//PIDOutput for drive
 	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
 													frontRightMotor, backRightMotor}, 
 													new Boolean[] { false, false, false, false}, 0.5);
+	
+	//encoders for drivetrain
+	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, false);
+	public Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false);
 	
 	//trim vals
 	double trim = 1;
