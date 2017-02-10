@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *Uses encoder values to drive straight a specified distance
@@ -126,6 +127,13 @@ public class DriveStriaghtDistance extends Command {
     protected void execute() {
     	rightEncoderPID.setSetpoint(getVelocity());
     	leftEncoderPID.setSetpoint(getVelocity());
+    	
+    	//print out debug data to smartdash
+    	SmartDashboard.putNumber("Left Encoder Vel:", Robot.drive.leftEncoder.getRate());
+    	SmartDashboard.putNumber("Right Encoder Vel", Robot.drive.rightEncoder.getRate());
+    	
+    	SmartDashboard.putNumber("Left Encoder Dist", Robot.drive.leftEncoder.getDistance());
+    	SmartDashboard.putNumber("Right Encoder Dist", Robot.drive.leftEncoder.getDistance());
     }
     
     private void updateState() {
