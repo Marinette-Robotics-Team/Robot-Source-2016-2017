@@ -22,8 +22,11 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.setLeftSpeed(0.7);
-    	Robot.drive.setRightSpeed(0.7);
+    	Robot.drive.setLeftSpeed(-0.7);
+    	Robot.drive.setRightSpeed(-0.7);
+    	
+    	Robot.drive.leftEncoder.reset();
+    	Robot.drive.rightEncoder.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,7 +37,7 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (Robot.drive.leftEncoder.getDistance() >= distance && Robot.drive.rightEncoder.getDistance() >= distance);
+    	return (Math.abs(Robot.drive.leftEncoder.getDistance()) >= distance && Math.abs(Robot.drive.rightEncoder.getDistance()) >= distance);
     }
 
     // Called once after isFinished returns true

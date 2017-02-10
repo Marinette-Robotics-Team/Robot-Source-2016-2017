@@ -39,9 +39,9 @@ public class DriveStriaghtDistance extends Command {
 	
 	
 	//arguments
-	int distance;
-	int maxVelocity;
-	int acceleration;
+	double distance;
+	double maxVelocity;
+	double acceleration;
 	
 	
 	//speed calculation vars
@@ -67,7 +67,7 @@ public class DriveStriaghtDistance extends Command {
 	 * @param maxVelocity Velocity to accelerate to (ft/s)
 	 * @param acceleration Acceleration to reach max velocity (ft/s^2)
 	 */
-    public DriveStriaghtDistance(int distance, int maxVelocity, int acceleration) {
+    public DriveStriaghtDistance(double distance, double maxVelocity, double acceleration) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);

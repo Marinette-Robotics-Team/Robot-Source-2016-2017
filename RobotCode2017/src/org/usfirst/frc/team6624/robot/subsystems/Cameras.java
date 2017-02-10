@@ -13,7 +13,7 @@ public class Cameras extends Subsystem {
 	
 	final String URL = "PUT THE URL HERE";
 	
-	HttpCamera camera1 = new HttpCamera("Cam1", URL, HttpCamera.HttpCameraKind.kMJPGStreamer);
+	//HttpCamera camera1 = new HttpCamera("Cam1", URL, HttpCamera.HttpCameraKind.kMJPGStreamer);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
