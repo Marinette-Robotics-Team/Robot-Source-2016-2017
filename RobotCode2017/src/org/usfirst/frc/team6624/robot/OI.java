@@ -10,6 +10,7 @@ import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
+import org.usfirst.frc.team6624.robot.commands.DriveStraightDistanceBasic;
 //import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveToCoords;
@@ -91,7 +92,7 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		
 		
-		rightTriggerTop.whenPressed(new DriveToCoords(new Vector2(5, 5)));
+		rightTriggerTop.whenPressed(new DriveStraightDistanceBasic(5));
 		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0001, 0));
 		
 		//get ultrasonic

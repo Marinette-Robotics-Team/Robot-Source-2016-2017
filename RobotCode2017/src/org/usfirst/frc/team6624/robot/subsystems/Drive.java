@@ -53,6 +53,11 @@ public class Drive extends Subsystem {
 	Boolean isDpadPressed = false;
 	int prevDpad = -1;
 	
+	
+	public Drive() {
+		leftEncoder.setDistancePerPulse(1.0/360);
+		rightEncoder.setDistancePerPulse(1.0/360);
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
