@@ -5,6 +5,7 @@ import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -89,7 +90,9 @@ public class DriveStriaghtDistance extends Command {
     	
     	PIDOutputGroup rightSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontRightMotor, Robot.drive.backRightMotor}, new Boolean[] {true, true}, 1.0);
 
-    	
+    	//set PID type
+    	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
     	
     	leftEncoderPID = new PIDController(lEncoderP, lEncoderI, lEncoderD, Robot.drive.leftEncoder,  leftSide);
     	
