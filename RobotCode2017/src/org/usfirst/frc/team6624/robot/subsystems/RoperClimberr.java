@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.RobotMap;
+import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,7 +18,7 @@ public class RoperClimberr extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    
+    	setDefaultCommand(new ClimbRope());
     }
 
     public void  climb(double ClimbSpeed){

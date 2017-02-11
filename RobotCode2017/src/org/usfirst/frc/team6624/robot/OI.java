@@ -93,7 +93,7 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		
 		
-		rightTriggerTop.whenPressed(new DriveStriaghtDistance(15, 1, 0.2));
+		rightTriggerTop.whenPressed(new DriveStriaghtDistance(15, 0.5, 0.1));
 		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0001, 0));
 		
 		//get ultrasonic
@@ -104,10 +104,12 @@ public class OI {
 		
 		
 	     //int rotationMode = 0;
-		bButton.whenPressed(new Shooter());
+		//bButton.whenPressed(new Shooter());
+		
+		
 		
 		//do a climb
-		yButton.whenPressed(new ClimbRope());
+		//yButton.whenPressed(new ClimbRope());
 		
 		//dont do a climb and dont do a spin ball shoot
 		aButton.whenPressed(new ShooterClimberOff());

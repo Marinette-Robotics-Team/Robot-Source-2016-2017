@@ -93,7 +93,7 @@ public class DriveStriaghtDistance extends Command {
 
     	//set PID type
     	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
-    	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.drive.rightEncoder.setPIDSourceType(PIDSourceType.kRate);
     	
     	leftEncoderPID = new PIDController(lEncoderP, lEncoderI, lEncoderD, Robot.drive.leftEncoder,  leftSide);
     	

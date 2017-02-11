@@ -4,6 +4,7 @@ import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
+import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.FullForward;
@@ -44,7 +45,7 @@ public class Drive extends Subsystem {
 													new Boolean[] { false, false, false, false}, 0.5);
 	
 	//encoders for drivetrain
-	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, false);
+	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true);
 	public Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false);
 	
 	//trim vals
@@ -62,7 +63,7 @@ public class Drive extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DriveTank());
+    	setDefaultCommand(new DriveDualPowerTurn());
     }
     
     /**

@@ -1,8 +1,10 @@
 package org.usfirst.frc.team6624.robot.commands;
 
+import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 
@@ -13,12 +15,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Shooter extends Command {
 
 	
-	public static int shooterOnOff = 1;
+	final double AGITATOR_MAX = 0.4 * 0.85;
+	final double SHOOTER_MAX = -1;
+	final double TIME_DELAY = 2;
+	
+	public static Boolean shooterOnOff = false;
 	
 	double shootspeed = 0;
 	double agitaterspeed= 0;
 	
-	
+	Timer timer;
 	
 	
 	
@@ -26,38 +32,30 @@ public class Shooter extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.ballshooter);
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    
-    	
-		if( Shooter.shooterOnOff == 0){
-    		
-    		Shooter.shooterOnOff = 1;
-    		
-    	}
-    	else{
-    		
-    		Shooter.shooterOnOff = 0;
-    		
-    	}
+    	timer.start();
     }
  
     
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	if(Shooter.shooterOnOff != 1){
+    	Shooter.shooterOnOff = OI.xbox.getBButton();
+    	
+    	if(Shooter.shooterOnOff){
 	 
-	    	if (shootspeed > -1){
+	    	if (shootspeed > SHOOTER_MAX){
 	    		shootspeed -= 0.008;
 	    	}
 	    	(Robot.ballshooter).spinnerSpeed(shootspeed);
 	    	
 	    	
 	    	//brings the agitater up to speed and maintains that speed
-	    	if (agitaterspeed < 0.4 ){
+	    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
 	    		
 	    		agitaterspeed += 0.01;
 	    	}
@@ -67,6 +65,8 @@ public class Shooter extends Command {
     		
     		(Robot.ballshooter).agitaterSpeed(0);
     		(Robot.ballshooter).spinnerSpeed(0);
+    		timer.reset();
+    		timer.start();
     		
     	}
     	
@@ -85,10 +85,14 @@ public class Shooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+		(Robot.ballshooter).agitaterSpeed(0);
+		(Robot.ballshooter).spinnerSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+		(Robot.ballshooter).agitaterSpeed(0);
+		(Robot.ballshooter).spinnerSpeed(0);
     }
 }

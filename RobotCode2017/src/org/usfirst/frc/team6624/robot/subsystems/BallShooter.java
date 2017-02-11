@@ -22,7 +22,7 @@ public class BallShooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	
-    	//setDefaultCommand(new Shooter());
+    	setDefaultCommand(new Shooter());
     	
     	
     }
