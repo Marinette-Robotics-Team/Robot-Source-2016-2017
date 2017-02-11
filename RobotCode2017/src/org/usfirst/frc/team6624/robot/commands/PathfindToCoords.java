@@ -60,7 +60,7 @@ public class PathfindToCoords extends CommandGroup {
     	//based on readme for pathfinding library:
     	//https://github.com/xaguzman/pathfinding
     	
-    	NavigationGrid<GridCell> navGrid = new NavigationGrid<GridCell>(/*Robot.drive.map*/ MapCreator.createMap(), true);  
+    	NavigationGrid<GridCell> navGrid = new NavigationGrid<GridCell>(Robot.drive.map, true);  
     	
     	//pathfinder options
     	GridFinderOptions opt = new GridFinderOptions();

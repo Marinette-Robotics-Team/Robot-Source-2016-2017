@@ -134,6 +134,8 @@ public class DriveStriaghtDistance extends Command {
     	
     	SmartDashboard.putNumber("Left Encoder Dist", Robot.drive.leftEncoder.getDistance());
     	SmartDashboard.putNumber("Right Encoder Dist", Robot.drive.leftEncoder.getDistance());
+    	
+    	updateState();
     }
     
     private void updateState() {
