@@ -37,6 +37,7 @@ public class Shooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.reset();
     	timer.start();
     }
  
@@ -49,7 +50,10 @@ public class Shooter extends Command {
     	if(Shooter.shooterOnOff){
 	 
 	    	if (shootspeed > SHOOTER_MAX){
-	    		shootspeed -= 0.008;
+	    		shootspeed -= 0.016;
+	    	}
+	    	else {
+	    		shootspeed = SHOOTER_MAX;
 	    	}
 	    	(Robot.ballshooter).spinnerSpeed(shootspeed);
 	    	
@@ -57,7 +61,10 @@ public class Shooter extends Command {
 	    	//brings the agitater up to speed and maintains that speed
 	    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
 	    		
-	    		agitaterspeed += 0.01;
+	    		agitaterspeed += 0.02;
+	    	}
+	    	else if (agitaterspeed > AGITATOR_MAX) {
+	    		agitaterspeed = AGITATOR_MAX;
 	    	}
 	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
     	}

@@ -56,8 +56,8 @@ public class Drive extends Subsystem {
 	
 	
 	public Drive() {
-		leftEncoder.setDistancePerPulse(1.75/360);
-		rightEncoder.setDistancePerPulse(1.75/360);
+		leftEncoder.setDistancePerPulse(1.56/360);
+		rightEncoder.setDistancePerPulse(1.56/360);
 	}
 
     public void initDefaultCommand() {

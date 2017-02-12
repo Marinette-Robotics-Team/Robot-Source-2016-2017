@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveStriaghtDistance extends Command {
 	
+	final double FINAL_ADJUST_SPEED = 0.35;
+	final double MIN_SPEED = 0.2;
+	
 	PIDController leftEncoderPID;
 	
 	double lEncoderP = 0.01;
@@ -91,6 +94,10 @@ public class DriveStriaghtDistance extends Command {
     	
     	PIDOutputGroup rightSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontRightMotor, Robot.drive.backRightMotor}, new Boolean[] {true, true}, 1.0);
 
+    	//reset PIDs
+    	Robot.drive.leftEncoder.reset();
+    	Robot.drive.rightEncoder.reset();
+    	
     	//set PID type
     	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
     	Robot.drive.rightEncoder.setPIDSourceType(PIDSourceType.kRate);
@@ -136,6 +143,12 @@ public class DriveStriaghtDistance extends Command {
     	SmartDashboard.putNumber("Right Encoder Dist", Robot.drive.leftEncoder.getDistance());
     	
     	updateState();
+    	
+    	//keep at low speed if decelerating period is up
+    	if (currentState == DriveState.decelerating && (timer.get() > tAccelerating)) {
+        	rightEncoderPID.setSetpoint(FINAL_ADJUST_SPEED);
+        	leftEncoderPID.setSetpoint(FINAL_ADJUST_SPEED);
+    	}
     }
     
     private void updateState() {
@@ -171,8 +184,8 @@ public class DriveStriaghtDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//finish if time is up or distance >= requried distance
-        return ((currentState == DriveState.decelerating) && (timer.get() > tAccelerating)) || Robot.drive.leftEncoder.getDistance() >= distance || Robot.drive.rightEncoder.getDistance() >= distance;
+    	//finish if distance >= requried distance
+        return (Robot.drive.leftEncoder.getDistance() >= distance || Robot.drive.rightEncoder.getDistance() >= distance);
     }
     
     
@@ -180,6 +193,8 @@ public class DriveStriaghtDistance extends Command {
     protected void end() {
     	leftEncoderPID.disable();
     	rightEncoderPID.disable();
+    	
+    	System.out.println("DISTANCE TRAVELED: \nRIGHT:  " + Robot.drive.rightEncoder.getDistance() + "\nLEFT: " + Robot.drive.leftEncoder.getDistance());
     }
 
     // Called when another command which requires one or more of the same
