@@ -119,8 +119,8 @@ public class DriveStriaghtDistance extends Command {
     	timer.start();
     	
     	//set timer times
-    	tAccelerating = maxVelocity / acceleration;
-    	tCruising = (distance - (Math.pow(maxVelocity, 2) / acceleration)) / maxVelocity;
+    	tAccelerating = (maxVelocity - MIN_SPEED) / acceleration;
+    	tCruising = (distance - ((Math.pow(maxVelocity - MIN_SPEED, 2) / acceleration) + (2 * (maxVelocity - MIN_SPEED) / acceleration))) / maxVelocity;
     	tTotal = 2 * tAccelerating  + tCruising;
     	
     	
