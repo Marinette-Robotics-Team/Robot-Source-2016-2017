@@ -24,7 +24,6 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Gyroscope"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
-<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="org.xguzm.pathfinding.grid.NavigationGrid"/>
 <fullyQualifiedTypeName name="org.xguzm.pathfinding.grid.finders.AStarGridFinder"/>
@@ -35,4 +34,9 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6634.robot.customClasses.Vector2"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.xguzm.pathfinding.grid.GridCell"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.HttpCamera"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.HttpCamera.HttpCameraKind"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Cameras"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.livewindow.LiveWindow"/>
 </qualifiedTypeNameHistroy>

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *Uses encoder values to drive straight a specified distance
  */
-public class DriveStriaghtDistance extends Command {
+public class DriveStraightDistance extends Command {
 	
 	final double FINAL_ADJUST_SPEED = 0.35;
 	final double MIN_SPEED = 0.2;
@@ -70,7 +70,7 @@ public class DriveStriaghtDistance extends Command {
 	 * @param maxVelocity Velocity to accelerate to (ft/s)
 	 * @param acceleration Acceleration to reach max velocity (ft/s^2)
 	 */
-    public DriveStriaghtDistance(double distance, double maxVelocity, double acceleration) {
+    public DriveStraightDistance(double distance, double maxVelocity, double acceleration) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
