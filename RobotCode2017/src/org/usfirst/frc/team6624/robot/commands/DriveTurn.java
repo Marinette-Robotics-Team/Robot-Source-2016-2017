@@ -17,11 +17,11 @@ public class DriveTurn extends Command {
 	//drive speed for rotation
 	final float ROTATE_SPEED = 0.6f;
 	
-	final double ANGLE_RANGE = 0.1;
+	final double ANGLE_RANGE = 0.3;
 	
-	double P = 0;
+	double P = 0.08;
 	double I = 0;
-	double D = 0;
+	double D = 0.16;
 	
 	PIDController PID;
 
@@ -35,7 +35,7 @@ public class DriveTurn extends Command {
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
 	 * @param absoluteRotation toggle of whether to rotate relatively from current position (default) or rotate to gloabl angle
 	 */
-    public DriveTurn(double degrees, Boolean absoluteRotation, double P, double I, double D) {
+    public DriveTurn(double degrees, Boolean absoluteRotation) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super("DriveTurn");
@@ -44,10 +44,6 @@ public class DriveTurn extends Command {
     	
     	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
-    	
-    	this.P = P;
-    	this.I = I;
-    	this.D = D;
     	
     }
 
@@ -109,10 +105,10 @@ public class DriveTurn extends Command {
     	double rotation;
     	
     	//set rotation based on angle settings
-    	if (absoluteRotation)
+    	//if (absoluteRotation)
     		rotation = Robot.gyroscope.getGlobalRotation();
-    	else
-    		rotation = Robot.gyroscope.getRotation();
+    	//else
+    		//rotation = Robot.gyroscope.getRotation();
     	
     	System.out.println("curr: " + rotation + "\n goal: " + degrees);
 

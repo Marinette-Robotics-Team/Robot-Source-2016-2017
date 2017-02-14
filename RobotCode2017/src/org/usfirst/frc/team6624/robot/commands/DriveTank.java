@@ -26,8 +26,8 @@ public class DriveTank extends Command {
     	double stickRight = OI.xbox.getRawAxis(OI.xboxRightY);
     	
     	//Sets motors to their scaled speed
-    	Robot.drive.setLeftSpeed(-stickLeft);//inverse y
-    	Robot.drive.setRightSpeed(-stickRight);
+    	Robot.drive.setLeftSpeed(-stickLeft, true);//inverse y
+    	Robot.drive.setRightSpeed(-stickRight, true);
     	
     	
     	//Debug output

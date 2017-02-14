@@ -22,8 +22,8 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.setLeftSpeed(-0.7);
-    	Robot.drive.setRightSpeed(-0.7);
+    	Robot.drive.setLeftSpeed(0.7, false);
+    	Robot.drive.setRightSpeed(0.7, false);
     	
     	Robot.drive.leftEncoder.reset();
     	Robot.drive.rightEncoder.reset();
@@ -42,14 +42,14 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.setLeftSpeed(0);
-    	Robot.drive.setRightSpeed(0);
+    	Robot.drive.setLeftSpeed(0, false);
+    	Robot.drive.setRightSpeed(0, false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drive.setLeftSpeed(0);
-    	Robot.drive.setRightSpeed(0);
+    	Robot.drive.setLeftSpeed(0, false);
+    	Robot.drive.setRightSpeed(0, false);
     }
 }

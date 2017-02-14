@@ -38,12 +38,12 @@ public class GetRotConst extends Command {
     	timer.start();
     	
     	if (angle > 0) {
-    		Robot.drive.setRightSpeed(speed);
-    		Robot.drive.setLeftSpeed(-speed);
+    		Robot.drive.setRightSpeed(speed, false);
+    		Robot.drive.setLeftSpeed(-speed, false);
     	}
     	else {
-    		Robot.drive.setLeftSpeed(speed);
-    		Robot.drive.setRightSpeed(-speed);
+    		Robot.drive.setLeftSpeed(speed, false);
+    		Robot.drive.setRightSpeed(-speed, false);
     	}
     }
 
@@ -61,8 +61,8 @@ public class GetRotConst extends Command {
     		//rotConst = (float)(Math.pow(timer.get(), 2) / angle);
     		rotConst = (float)(angle / timer.get());
     		System.out.println("Rotation constant for speed: " + speed + " and angle: " + angle +" is: " + rotConst + ".");
-    		Robot.drive.setRightSpeed(0);
-    		Robot.drive.setLeftSpeed(0);
+    		Robot.drive.setRightSpeed(0, false);
+    		Robot.drive.setLeftSpeed(0, false);
     	}
     	
         return finished;

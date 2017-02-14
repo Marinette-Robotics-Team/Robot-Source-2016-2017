@@ -40,7 +40,7 @@ public class DriveToCoords extends CommandGroup {
     	double distance = calcualteDistance();
     	
     	//add DriveTurn command to queue
-    	addSequential(new DriveTurn(angle, true, 1, 0, 0));
+    	addSequential(new DriveTurn(angle, true));
     	
     	//go to coordinate
     	//TODO: change from DriveStraight to DriveStraightDistance !!IMPORTANT

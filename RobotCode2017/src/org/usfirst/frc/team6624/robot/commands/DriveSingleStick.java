@@ -54,8 +54,8 @@ public class DriveSingleStick extends Command {
     	
     	
     	//set motors
-    	Robot.drive.setLeftSpeed(-stickY * leftPower); //negative accounts for inverse y axis
-    	Robot.drive.setRightSpeed(-stickY * rightPower);
+    	Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis
+    	Robot.drive.setRightSpeed(-stickY * rightPower, true);
     	
     	//System.out.println("Left Speed: " + -stickY * leftPower);
     	//System.out.println("Right Speed: " + -stickY * rightPower);

@@ -41,12 +41,12 @@ public class DriveTurnApprox extends Command {
     	rotTime = (float)((1 / rotConst) * Math.abs(degrees));
     	
     	if (degrees > 0) {
-    		Robot.drive.setRightSpeed(speed);
-    		Robot.drive.setLeftSpeed(-speed);
+    		Robot.drive.setRightSpeed(speed, false);
+    		Robot.drive.setLeftSpeed(-speed, false);
     	}
     	else {
-    		Robot.drive.setLeftSpeed(speed);
-    		Robot.drive.setRightSpeed(-speed);
+    		Robot.drive.setLeftSpeed(speed, false);
+    		Robot.drive.setRightSpeed(-speed, false);
     	}
     	
     }
@@ -61,8 +61,8 @@ public class DriveTurnApprox extends Command {
     	Boolean finished = (timer.get() >= rotTime);
     	
     	if (finished) {
-    		Robot.drive.setRightSpeed(0);
-    		Robot.drive.setLeftSpeed(0);
+    		Robot.drive.setRightSpeed(0, false);
+    		Robot.drive.setLeftSpeed(0, false);
     	}
     	
         return finished;

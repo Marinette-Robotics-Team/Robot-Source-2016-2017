@@ -9,7 +9,7 @@ public class RunCalibrateDriveTurn extends CommandGroup {
 
     public RunCalibrateDriveTurn() {
     	
-    	addSequential(new DriveTurn(CalibrateDriveTurn.setPoint, CalibrateDriveTurn.absolute, CalibrateDriveTurn.P, CalibrateDriveTurn.I, CalibrateDriveTurn.D));
+    	addSequential(new DriveTurn(CalibrateDriveTurn.setPoint, CalibrateDriveTurn.absolute/*, CalibrateDriveTurn.P, CalibrateDriveTurn.I, CalibrateDriveTurn.D*/));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

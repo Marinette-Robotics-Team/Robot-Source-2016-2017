@@ -21,8 +21,8 @@ public class FullForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.setLeftSpeed(0.5);
-    	Robot.drive.setRightSpeed(0.5);
+    	Robot.drive.setLeftSpeed(0.5, true);
+    	Robot.drive.setRightSpeed(0.5, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

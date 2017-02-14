@@ -93,8 +93,8 @@ public class OI {
 		xButton.whenPressed(new DriveDualPowerTurn());
 		
 		
-		rightTriggerTop.whenPressed(new DriveStriaghtDistance(8, 5, 5));
-		leftTriggerTop.whenPressed(new DriveTurn(90, true, 0.005, 0.0001, 0));
+		rightTriggerTop.whenPressed(/*new DriveStriaghtDistance(8, 5, 5)*/ new DriveTurn(180, false));
+		leftTriggerTop.whenPressed(new DriveTurn(90, true/*, 0.08, 0, 0.16*/));
 		
 		//get ultrasonic
 		two.whenPressed(new daBeeperBooper());

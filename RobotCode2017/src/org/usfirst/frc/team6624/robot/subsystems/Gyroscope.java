@@ -39,7 +39,7 @@ public class Gyroscope extends Subsystem {
      * @return double representing net rotation in degrees
      */
     public double getGlobalRotation() {
-    	return -gyro.getAngle(); //inverse to make counter clockwise positive. fite me.
+    	return gyro.getAngle();
     }
     
     /**

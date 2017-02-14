@@ -62,8 +62,8 @@ public class DriveStraight extends Command {
     	
     	// Gyro Assisted straight driving
     	
-    	Robot.drive.setLeftSpeed(driveSpeedLeft);
-    	Robot.drive.setRightSpeed(driveSpeedRight);
+    	Robot.drive.setLeftSpeed(driveSpeedLeft, false);
+    	Robot.drive.setRightSpeed(driveSpeedRight, false);
     	
     	if  (currentAngle > DEGREE_THRESHOLD) {
     		driveSpeedRight = DECELERATE_COEFFICIENT * driveSpeed;
@@ -89,8 +89,8 @@ public class DriveStraight extends Command {
     protected boolean isFinished() {
     	
     	if (timer.get() > driveTime) {
-    		Robot.drive.setLeftSpeed(0);
-        	Robot.drive.setRightSpeed(0);
+    		Robot.drive.setLeftSpeed(0, false);
+        	Robot.drive.setRightSpeed(0, false);
     	}
     	
         return timer.get() > driveTime;

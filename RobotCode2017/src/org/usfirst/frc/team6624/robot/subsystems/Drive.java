@@ -70,13 +70,18 @@ public class Drive extends Subsystem {
      * Sets speed of left drive motors
      * 
      * @param speed Speed to set, from -1 to 1
+     * @param useCurve Whether to apply drive sensitivity curve
      */
-    public void setLeftSpeed(double speed) {
-    	double sp = Math.pow(speed, 3);
+    public void setLeftSpeed(double speed, Boolean useCurve) {
+    	double sp = speed;
     	
-    	//apply trim
-    	if (this.trim < 1) {
-    		sp *= trim;
+    	if (useCurve) {
+	    	sp = Math.pow(speed, 3);
+	    	
+	    	//apply trim
+	    	if (this.trim < 1) {
+	    		sp *= trim;
+	    	}
     	}
     	
     	frontLeftMotor.set(sp);
@@ -87,13 +92,18 @@ public class Drive extends Subsystem {
      * Sets speed of right drive motors
      * 
      * @param speed Speed to set, from -1 to 1
+     * @param useCurve Whether to apply drive sensitivity curve
      */
-    public void setRightSpeed(double speed) {
-    	double sp = -Math.pow(speed, 3);
+    public void setRightSpeed(double speed, Boolean useCurve) {
+    	double sp = speed;
     	
-    	//apply trim
-    	if (this.trim > 1) {
-        	sp *= 2 - trim;
+    	if (useCurve) {
+	    	sp = -Math.pow(speed, 3);
+	    	
+	    	//apply trim
+	    	if (this.trim > 1) {
+	        	sp *= 2 - trim;
+	    	}
     	}
     	
     	frontRightMotor.set(sp);
