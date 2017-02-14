@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveToCoords extends CommandGroup {
 
+	final double DRIVE_SPEED_ACCELERATION = 5; // drive max cruising speed (ft/s) and acceleration (ft/s^2)
+	
 	Vector2 currentPosition;
 	
 	Vector2 destination;
@@ -38,13 +40,13 @@ public class DriveToCoords extends CommandGroup {
     	
     	double angle = calculateAngle();
     	double distance = calcualteDistance();
+    	double speedAcceleration = getDriveSpeedAndAcceleration(distance);
     	
     	//add DriveTurn command to queue
     	addSequential(new DriveTurn(angle, true));
     	
     	//go to coordinate
-    	//TODO: change from DriveStraight to DriveStraightDistance !!IMPORTANT
-    	addSequential(new DriveStraight(3.0f, 0.6f));
+    	addSequential(new DriveStraightDistance(distance, speedAcceleration, speedAcceleration));
     	
     	//set current position to destination
     	Robot.drive.position = destination;
@@ -90,5 +92,19 @@ public class DriveToCoords extends CommandGroup {
      */
     private double calcualteDistance() {
     	return Vector2.getDistance(currentPosition, destination);
+    }
+
+    /**
+     * Gets appropriate drive acceleration and maximum speed 
+     * @param distance distance to be driven
+     * @return the drive acceleration and maximum speed
+     */
+    private double getDriveSpeedAndAcceleration(double distance) {
+    	//this function ensures that v^2/a is always less than distance, so DriveStriaghtDistance never throws an
+    	//IllegalArgumentException
+    	double c = DRIVE_SPEED_ACCELERATION;
+    	double d = distance;
+    	
+    	return c - (Math.pow(c, 2)/(4*d));
     }
 }
