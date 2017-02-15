@@ -5,13 +5,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team6624.robot.commands.Agitate;
 import org.usfirst.frc.team6624.robot.commands.CalibrateDriveTurn;
 import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveStraight;
 import org.usfirst.frc.team6624.robot.commands.DriveStraightDistanceBasic;
-import org.usfirst.frc.team6624.robot.commands.DriveStriaghtDistance;
+import org.usfirst.frc.team6624.robot.commands.DriveStraightDistance;
 //import org.usfirst.frc.team6624.robot.commands.DriveStraightDistence;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveToCoords;
@@ -20,7 +21,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
 import org.usfirst.frc.team6624.robot.commands.Shooter;
-import org.usfirst.frc.team6624.robot.commands.ShooterClimberOff;
+import org.usfirst.frc.team6624.robot.commands.ClimberOff;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
@@ -67,6 +68,7 @@ public class OI {
 	public static int xboxLeftY = 1;
 	public static int xboxRightX = 4;
 	public static int xboxRightY = 5;
+
 	
 	//xbox buttons
 	Button aButton = new JoystickButton(xbox, 1);
@@ -74,6 +76,7 @@ public class OI {
 	Button xButton = new JoystickButton(xbox, 3);
 	Button yButton = new JoystickButton(xbox, 4);
 	
+
 	
 	Button leftTriggerTop = new JoystickButton(xbox, 5);
 	Button rightTriggerTop = new JoystickButton(xbox, 6);
@@ -92,27 +95,27 @@ public class OI {
 		aButton.whenPressed(new DriveTank());
 		xButton.whenPressed(new DriveDualPowerTurn());
 		
+		// activate agitator 
+		rightTriggerTop.whenPressed(new Agitate());
 		
-		rightTriggerTop.whenPressed(/*new DriveStriaghtDistance(8, 5, 5)*/ new DriveTurn(180, false));
-		leftTriggerTop.whenPressed(new DriveTurn(90, true/*, 0.08, 0, 0.16*/));
+		// activate shooter
+		leftTriggerTop.whenPressed(new Shooter());
 		
-		//get ultrasonic
-		two.whenPressed(new daBeeperBooper());
-		
-		
-		//agitater spin modes   
-		
-		
-	     //int rotationMode = 0;
-		//bButton.whenPressed(new Shooter());
+		//get ultrasonic  defunct
+		//two.whenPressed(new daBeeperBooper());
 		
 		
+		   
+		//bButton.whenPressed();
 		
-		//do a climb
-		//yButton.whenPressed(new ClimbRope());
 		
-		//dont do a climb and dont do a spin ball shoot
-		aButton.whenPressed(new ShooterClimberOff());
+		
+		
+		//Active rope climber
+	yButton.whenPressed(new ClimbRope());
+		
+		//turn off ball shooter and rope climber
+		aButton.whenPressed(new ClimberOff());
 		
 	}
 	
