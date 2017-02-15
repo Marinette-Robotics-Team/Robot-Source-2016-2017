@@ -15,14 +15,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Shooter extends Command {
 
 	
-	final double AGITATOR_MAX = 0.4 * 0.85;
+	//final double AGITATOR_MAX = 0.4 * 0.85;
 	final double SHOOTER_MAX = -1;
 	final double TIME_DELAY = 2;
 	
 	public static Boolean shooterOnOff = false;
 	
 	double shootspeed = 0;
-	double agitaterspeed= 0;
+	//double agitaterspeed= 0;
+	final double SHOOTSPEEDINC= 0.02;
 	
 	Timer timer;
 	
@@ -50,7 +51,7 @@ public class Shooter extends Command {
     	if(Shooter.shooterOnOff){
 	 
 	    	if (shootspeed > SHOOTER_MAX){
-	    		shootspeed -= 0.016;
+	    		shootspeed -= SHOOTSPEEDINC;
 	    	}
 	    	else {
 	    		shootspeed = SHOOTER_MAX;
@@ -59,9 +60,11 @@ public class Shooter extends Command {
 	    	
 	    	
 	    	//brings the agitater up to speed and maintains that speed
+	    	
+	    	/*
 	    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
 	    		
-	    		agitaterspeed += 0.02;
+	    		agitaterspeed += SHOOTSPEEDINC;
 	    	}
 	    	else if (agitaterspeed > AGITATOR_MAX) {
 	    		agitaterspeed = AGITATOR_MAX;
@@ -74,7 +77,7 @@ public class Shooter extends Command {
     		(Robot.ballshooter).spinnerSpeed(0);
     		timer.reset();
     		timer.start();
-    		
+    		*/
     	}
     	
     	
@@ -93,14 +96,14 @@ public class Shooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-		(Robot.ballshooter).agitaterSpeed(0);
+		//(Robot.ballshooter).agitaterSpeed(0);
 		(Robot.ballshooter).spinnerSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-		(Robot.ballshooter).agitaterSpeed(0);
+		//(Robot.ballshooter).agitaterSpeed(0);
 		(Robot.ballshooter).spinnerSpeed(0);
     }
 }

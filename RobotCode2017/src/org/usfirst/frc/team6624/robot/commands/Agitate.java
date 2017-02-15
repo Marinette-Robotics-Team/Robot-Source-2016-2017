@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 
-
 /**
  *
  */
@@ -18,11 +17,17 @@ public class Agitate extends Command {
 
 	
 	final double AGITATOR_MAX = 0.4 * 0.85;
-	
+	final double AGITATOR_SPEED_INC = 0.02;
 	public static Boolean shooterOnOff = false;
 	double agitaterspeed= 0;
 	
-
+//Whats better than this line?
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -43,7 +48,7 @@ public class Agitate extends Command {
     	
 	    	if (agitaterspeed < AGITATOR_MAX){
 	    		
-	    		agitaterspeed += 0.02;
+	    		agitaterspeed += AGITATOR_SPEED_INC;
 	    	}
 	    	else if (agitaterspeed > AGITATOR_MAX) {
 	    		agitaterspeed = AGITATOR_MAX;
