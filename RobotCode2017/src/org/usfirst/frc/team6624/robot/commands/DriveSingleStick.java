@@ -17,6 +17,8 @@ public class DriveSingleStick extends Command {
 
 	final double MAX_SPEED = 10;
 	
+	final double JOYSTICK_THRESHOLD = 0.2;
+	
 	
 	protected int xAxis;
 	protected int yAxis;
@@ -84,9 +86,23 @@ public class DriveSingleStick extends Command {
     	//set motors
     	//Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis
     	//Robot.drive.setRightSpeed(-stickY * rightPower, true);
-    	
-    	leftEncoderPID.setSetpoint(-stickY * leftPower * MAX_SPEED);
-    	rightEncoderPID.setSetpoint(-stickY * rightPower * MAX_SPEED);
+    	if (stickY >= JOYSTICK_THRESHOLD) {
+    		
+    		if (!leftEncoderPID.isEnabled() || !leftEncoderPID.isEnabled()) {
+	    		leftEncoderPID.enable();
+	    		rightEncoderPID.enable();
+    		}
+    		
+	    	leftEncoderPID.setSetpoint(-stickY * leftPower * MAX_SPEED);
+	    	rightEncoderPID.setSetpoint(-stickY * rightPower * MAX_SPEED);
+    	}
+    	else {
+    		leftEncoderPID.disable();
+    		rightEncoderPID.disable();
+    		
+    		Robot.drive.setLeftSpeed(0, false);
+    		Robot.drive.setRightSpeed(0, false);
+    	}
     	
     	//System.out.println("Left Speed: " + -stickY * leftPower);
     	//System.out.println("Right Speed: " + -stickY * rightPower);
