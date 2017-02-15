@@ -14,7 +14,7 @@ public class MapCreator {
 	public static final int MAP_WIDTH = 10;
 	public static final int MAP_HEIGHT = 10;
 	
-	public static final double BOX_SIZE = 1; //this should be the size of the robot in meters
+	public static final double BOX_SIZE = 4.25; //this should be the size of the robot in feet
 	
 	
 	static GridCell[][] map = new GridCell[MAP_WIDTH][MAP_HEIGHT];
