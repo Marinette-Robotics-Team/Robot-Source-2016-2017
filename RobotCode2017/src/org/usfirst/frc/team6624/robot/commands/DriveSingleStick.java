@@ -54,31 +54,7 @@ public class DriveSingleStick extends Command {
     	xAxis = OI.xboxLeftX;
     	yAxis = OI.xboxLeftY;
     	
-    	PIDOutputGroup leftSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontLeftMotor, Robot.drive.backLeftMotor}, new Boolean[] {false, false}, 1.0);
-    	
-    	PIDOutputGroup rightSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontRightMotor, Robot.drive.backRightMotor}, new Boolean[] {true, true}, 1.0);
-
-    	
-    	//reset PIDs
-    	Robot.drive.leftEncoder.reset();
-    	Robot.drive.rightEncoder.reset();
-    	
-    	//set PID type
-    	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
-    	Robot.drive.rightEncoder.setPIDSourceType(PIDSourceType.kRate);
-    	
-    	leftEncoderPID = new PIDController(lEncoderP, lEncoderI, lEncoderD, Robot.drive.leftEncoder,  leftSide);
-    	
-    	rightEncoderPID = new PIDController(rEncoderP, rEncoderI, rEncoderD, Robot.drive.rightEncoder, rightSide);
-    	
-    	leftEncoderPID.setContinuous();
-    	rightEncoderPID.setContinuous();
-    	
-    
-    	leftEncoderPID.enable();
-    	rightEncoderPID.enable();
-    	
-    	
+    	setupPIDs();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -136,5 +112,31 @@ public class DriveSingleStick extends Command {
     protected void interrupted() {
     	leftEncoderPID.disable();
     	rightEncoderPID.disable();
+    }
+    
+    protected void setupPIDs() {
+    	PIDOutputGroup leftSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontLeftMotor, Robot.drive.backLeftMotor}, new Boolean[] {false, false}, 1.0);
+    	
+    	PIDOutputGroup rightSide = new PIDOutputGroup(new PIDOutput[] {Robot.drive.frontRightMotor, Robot.drive.backRightMotor}, new Boolean[] {true, true}, 1.0);
+
+    	
+    	//reset PIDs
+    	Robot.drive.leftEncoder.reset();
+    	Robot.drive.rightEncoder.reset();
+    	
+    	//set PID type
+    	Robot.drive.leftEncoder.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.drive.rightEncoder.setPIDSourceType(PIDSourceType.kRate);
+    	
+    	leftEncoderPID = new PIDController(lEncoderP, lEncoderI, lEncoderD, Robot.drive.leftEncoder,  leftSide);
+    	
+    	rightEncoderPID = new PIDController(rEncoderP, rEncoderI, rEncoderD, Robot.drive.rightEncoder, rightSide);
+    	
+    	leftEncoderPID.setContinuous();
+    	rightEncoderPID.setContinuous();
+    	
+    
+    	leftEncoderPID.enable();
+    	rightEncoderPID.enable();
     }
 }

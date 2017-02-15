@@ -21,6 +21,8 @@ public class DriveDualPowerTurn extends DriveSingleStick {
     	//change x axis to right stick
     	xAxis = OI.xboxRightX;
     	yAxis = OI.xboxLeftY;
+    	
+    	super.setupPIDs();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,10 +37,14 @@ public class DriveDualPowerTurn extends DriveSingleStick {
 
     // Called once after isFinished returns true
     protected void end() {
+    	leftEncoderPID.disable();
+    	rightEncoderPID.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	leftEncoderPID.disable();
+    	rightEncoderPID.disable();
     }
 }
