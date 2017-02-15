@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveSingleStick extends Command {
 
+	final double MAX_SPEED = 10;
+	
+	
 	protected int xAxis;
 	protected int yAxis;
 	
@@ -106,8 +109,8 @@ public class DriveSingleStick extends Command {
     	//Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis
     	//Robot.drive.setRightSpeed(-stickY * rightPower, true);
     	
-    	leftEncoderPID.setSetpoint(-stickY * leftPower);
-    	rightEncoderPID.setSetpoint(-stickY * rightPower);
+    	leftEncoderPID.setSetpoint(-stickY * leftPower * MAX_SPEED);
+    	rightEncoderPID.setSetpoint(-stickY * rightPower * MAX_SPEED);
     	
     	//System.out.println("Left Speed: " + -stickY * leftPower);
     	//System.out.println("Right Speed: " + -stickY * rightPower);
