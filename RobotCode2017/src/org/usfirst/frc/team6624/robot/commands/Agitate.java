@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
+import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -17,19 +18,18 @@ public class Agitate extends Command {
 
 	
 	final double AGITATOR_MAX = 0.4 * 0.85;
-	final double TIME_DELAY = 2;
 	
 	public static Boolean shooterOnOff = false;
 	double agitaterspeed= 0;
 	
-	Timer timer;
-	
+
 	
 	
 	
     public Agitate() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ballshooter);
     }
 
     // Called just before this Command runs the first time
@@ -39,22 +39,22 @@ public class Agitate extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
-    		
-    		agitaterspeed += 0.02;
+    	if (OI.rightTriggerTop.get()) {
+    	
+	    	if (agitaterspeed < AGITATOR_MAX){
+	    		
+	    		agitaterspeed += 0.02;
+	    	}
+	    	else if (agitaterspeed > AGITATOR_MAX) {
+	    		agitaterspeed = AGITATOR_MAX;
+	    	}
+	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
     	}
-    	else if (agitaterspeed > AGITATOR_MAX) {
-    		agitaterspeed = AGITATOR_MAX;
+    	else {
+    			
+    		(Robot.ballshooter).agitaterSpeed(0);
+    			
     	}
-    	 else {
-    			
-    			(Robot.ballshooter).agitaterSpeed(0);
-    			(Robot.ballshooter).spinnerSpeed(0);
-    			timer.reset();
-    			timer.start();
-    			
-    		}
-    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
     	
 	}
 	

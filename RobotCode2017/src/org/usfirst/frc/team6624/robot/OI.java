@@ -78,8 +78,8 @@ public class OI {
 	
 
 	
-	Button leftTriggerTop = new JoystickButton(xbox, 5);
-	Button rightTriggerTop = new JoystickButton(xbox, 6);
+	public static Button leftTriggerTop = new JoystickButton(xbox, 5);
+	public static Button rightTriggerTop = new JoystickButton(xbox, 6);
 	
 	//Joystick consts
 	public static int joystickX = 0;

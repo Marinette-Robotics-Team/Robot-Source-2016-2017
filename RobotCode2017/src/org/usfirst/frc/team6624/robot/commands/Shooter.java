@@ -45,7 +45,7 @@ public class Shooter extends Command {
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	Shooter.shooterOnOff = OI.xbox.getBButton();
+    	Shooter.shooterOnOff = OI.leftTriggerTop.get();
     	
     	if(Shooter.shooterOnOff){
 	 
