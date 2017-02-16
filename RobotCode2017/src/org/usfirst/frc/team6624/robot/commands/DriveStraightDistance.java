@@ -17,6 +17,8 @@ public class DriveStraightDistance extends Command {
 	
 	final double FINAL_ADJUST_SPEED = 0.35;
 	final double MIN_SPEED = 0.2;
+	final double ROTATION_THRESHOLD = 2;
+	final double ROTATION_PERCENT = 0.98;
 	
 	PIDController leftEncoderPID;
 	
@@ -124,7 +126,7 @@ public class DriveStraightDistance extends Command {
     	tTotal = 2 * tAccelerating  + tCruising;
     	
     	
-    	
+    	Robot.gyroscope.reset();
     	
     	//set starting state
     	currentState = DriveState.accelerating;
@@ -132,8 +134,19 @@ public class DriveStraightDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	rightEncoderPID.setSetpoint(getVelocity());
-    	leftEncoderPID.setSetpoint(getVelocity());
+    	double adjustPercentLeft = 1;
+    	double adjustPercentRight = 1;
+    	if (Math.abs(Robot.gyroscope.getRotation()) > ROTATION_THRESHOLD) {
+    		if (Robot.gyroscope.getRotation() > 0) {
+    			adjustPercentRight = ROTATION_PERCENT;
+    		}
+    		else {
+    			adjustPercentLeft = ROTATION_PERCENT;
+    		}
+    	}
+    	
+    	rightEncoderPID.setSetpoint(getVelocity() * adjustPercentRight);
+    	leftEncoderPID.setSetpoint(getVelocity() * adjustPercentLeft);
     	
     	//print out debug data to smartdash
     	SmartDashboard.putNumber("Left Encoder Vel:", Robot.drive.leftEncoder.getRate());

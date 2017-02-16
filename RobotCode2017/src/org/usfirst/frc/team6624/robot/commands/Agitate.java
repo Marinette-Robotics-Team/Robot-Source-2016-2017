@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Agitate extends Command {
 
 	
-	final double AGITATOR_MAX = 0.4 * 0.85;
+	final double AGITATOR_MAX = 0.4 * 0.70;
 	final double AGITATOR_SPEED_INC = 0.02;
 	public static Boolean shooterOnOff = false;
 	double agitaterspeed= 0;
@@ -34,7 +34,7 @@ public class Agitate extends Command {
     public Agitate() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballshooter);
+    	requires(Robot.agitator);
     }
 
     // Called just before this Command runs the first time
@@ -53,11 +53,11 @@ public class Agitate extends Command {
 	    	else if (agitaterspeed > AGITATOR_MAX) {
 	    		agitaterspeed = AGITATOR_MAX;
 	    	}
-	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
+	    	(Robot.agitator).agitaterSpeed(agitaterspeed);
     	}
     	else {
     			
-    		(Robot.ballshooter).agitaterSpeed(0);
+    		(Robot.agitator).agitaterSpeed(0);
     			
     	}
     	

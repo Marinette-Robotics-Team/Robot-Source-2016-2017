@@ -56,7 +56,7 @@ public class DriveSingleStick extends Command {
     	xAxis = OI.xboxLeftX;
     	yAxis = OI.xboxLeftY;
     	
-    	setupPIDs();
+    	//setupPIDs();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -84,9 +84,10 @@ public class DriveSingleStick extends Command {
     	
     	
     	//set motors
-    	//Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis
-    	//Robot.drive.setRightSpeed(-stickY * rightPower, true);
-    	if (stickY >= JOYSTICK_THRESHOLD) {
+    	Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis
+    	Robot.drive.setRightSpeed(-stickY * rightPower, true);
+    	/*
+    	if (Math.abs(stickY) >= JOYSTICK_THRESHOLD) {
     		
     		if (!leftEncoderPID.isEnabled() || !leftEncoderPID.isEnabled()) {
 	    		leftEncoderPID.enable();
@@ -100,9 +101,9 @@ public class DriveSingleStick extends Command {
     		leftEncoderPID.disable();
     		rightEncoderPID.disable();
     		
-    		Robot.drive.setLeftSpeed(0, false);
-    		Robot.drive.setRightSpeed(0, false);
-    	}
+	    	leftEncoderPID.setSetpoint(0);
+	    	rightEncoderPID.setSetpoint(0);
+    	}*/
     	
     	//System.out.println("Left Speed: " + -stickY * leftPower);
     	//System.out.println("Right Speed: " + -stickY * rightPower);
@@ -119,15 +120,15 @@ public class DriveSingleStick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	leftEncoderPID.disable();
-    	rightEncoderPID.disable();
+    	/*leftEncoderPID.disable();
+    	rightEncoderPID.disable();*/
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	leftEncoderPID.disable();
-    	rightEncoderPID.disable();
+    	/*leftEncoderPID.disable();
+    	rightEncoderPID.disable();*/
     }
     
     protected void setupPIDs() {
@@ -152,7 +153,7 @@ public class DriveSingleStick extends Command {
     	rightEncoderPID.setContinuous();
     	
     
-    	leftEncoderPID.enable();
-    	rightEncoderPID.enable();
+    	leftEncoderPID.disable();
+    	rightEncoderPID.disable();
     }
 }

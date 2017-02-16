@@ -23,9 +23,7 @@ public class Shooter extends Command {
 	
 	double shootspeed = 0;
 	//double agitaterspeed= 0;
-	final double SHOOTSPEEDINC= 0.02;
-	
-	Timer timer;
+	final double SHOOTSPEEDINC= 0.1;
 	
 	
 	
@@ -33,13 +31,10 @@ public class Shooter extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.ballshooter);
-    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
     }
  
     
@@ -69,15 +64,12 @@ public class Shooter extends Command {
 	    	else if (agitaterspeed > AGITATOR_MAX) {
 	    		agitaterspeed = AGITATOR_MAX;
 	    	}
-	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);
+	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);*/
     	}
     	else{
     		
-    		(Robot.ballshooter).agitaterSpeed(0);
     		(Robot.ballshooter).spinnerSpeed(0);
-    		timer.reset();
-    		timer.start();
-    		*/
+    		
     	}
     	
     	

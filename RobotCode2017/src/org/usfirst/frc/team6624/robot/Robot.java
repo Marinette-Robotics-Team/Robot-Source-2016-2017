@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
+import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 import org.usfirst.frc.team6624.robot.subsystems.Cameras;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public static Accel accel;
 	public static RoperClimberr roperclimberr;
 	public static BallShooter ballshooter;
+	public static Agitator agitator;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -52,6 +54,7 @@ public class Robot extends IterativeRobot {
 		roperclimberr = new RoperClimberr();
 		accel = new Accel();
 		ballshooter = new BallShooter();
+		agitator = new Agitator();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

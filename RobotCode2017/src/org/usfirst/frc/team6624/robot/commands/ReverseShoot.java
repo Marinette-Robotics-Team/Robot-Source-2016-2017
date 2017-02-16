@@ -17,6 +17,7 @@ public class ReverseShoot extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.ballshooter);
+    	requires(Robot.agitator);
     }
 
     // Called just before this Command runs the first time
@@ -25,9 +26,13 @@ public class ReverseShoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (OI.xbox.getPOV(0) == 0) {
-    		Robot.ballshooter.agitaterSpeed(AGITATOR_SPEED);
+    	if (OI.xbox.getBButton()) {
+    		Robot.agitator.agitaterSpeed(AGITATOR_SPEED);
     		Robot.ballshooter.spinnerSpeed(SHOOT_SPEED);
+    	}
+    	else {
+    		Robot.agitator.agitaterSpeed(0);
+    		Robot.ballshooter.spinnerSpeed(0);
     	}
     }
 
@@ -38,10 +43,14 @@ public class ReverseShoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+		Robot.agitator.agitaterSpeed(0);
+		Robot.ballshooter.spinnerSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+		Robot.agitator.agitaterSpeed(0);
+		Robot.ballshooter.spinnerSpeed(0);
     }
 }

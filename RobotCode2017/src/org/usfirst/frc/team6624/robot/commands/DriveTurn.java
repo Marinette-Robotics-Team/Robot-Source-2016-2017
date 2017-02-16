@@ -45,6 +45,8 @@ public class DriveTurn extends Command {
     	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
     	
+    	System.out.println("DriveTurn Queued");
+    	
     }
 
     // Called just before this Command runs the first time
@@ -119,11 +121,13 @@ public class DriveTurn extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	PID.disable();
+    	System.out.println("Rotation done");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	PID.disable();
+    	System.out.println("Rotation done");
     }
 }

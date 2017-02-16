@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team6624.robot.commands.Agitate;
+import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
 import org.usfirst.frc.team6624.robot.commands.CalibrateDriveTurn;
 import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
@@ -20,6 +21,7 @@ import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
 import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
+import org.usfirst.frc.team6624.robot.commands.ReverseShoot;
 import org.usfirst.frc.team6624.robot.commands.Shooter;
 import org.usfirst.frc.team6624.robot.commands.ClimberOff;
 import org.usfirst.frc.team6624.robot.commands.daBeeperBooper;
@@ -92,7 +94,6 @@ public class OI {
 	public OI() {
 		
 		//toggle input schemes
-		aButton.whenPressed(new DriveTank());
 		xButton.whenPressed(new DriveDualPowerTurn());
 		
 		// activate agitator 
@@ -106,19 +107,18 @@ public class OI {
 		
 		
 		   
-		//bButton.whenPressed();
+		bButton.whenPressed(new ReverseShoot());
 		
 		
 		
 		
 		//Active rope climber
-	yButton.whenPressed(new ClimbRope());
+		yButton.whenPressed(new ClimbRope());
 		
 		//turn off ball shooter and rope climber
-		aButton.whenPressed(new ClimberOff());
+		aButton.whenPressed(new AutonomousTest());
 		
 	}
-	
 	
 	
 }
