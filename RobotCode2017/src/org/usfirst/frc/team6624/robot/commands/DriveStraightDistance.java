@@ -47,6 +47,7 @@ public class DriveStraightDistance extends Command {
 	double distance;
 	double maxVelocity;
 	double acceleration;
+	double targetAngle;
 	
 	
 	//speed calculation vars
@@ -55,6 +56,10 @@ public class DriveStraightDistance extends Command {
 	double tAccelerating;
 	double tCruising;
 	double tTotal;
+	
+	//gyro adjust vars
+	double adjustPercentLeft = 1;
+	double adjustPercentRight = 1;
 	
 	
 	//state of the command
@@ -85,6 +90,7 @@ public class DriveStraightDistance extends Command {
     	this.distance = distance;
     	this.maxVelocity = maxVelocity;
     	this.acceleration = acceleration;
+    	this.targetAngle = targetAngle;
     	
     }
 
@@ -125,7 +131,7 @@ public class DriveStraightDistance extends Command {
     	tCruising = (distance - (Math.pow(maxVelocity, 2) / acceleration)) / maxVelocity;
     	tTotal = 2 * tAccelerating  + tCruising;
     	
-    	
+    	//reset gyro
     	Robot.gyroscope.reset();
     	
     	//set starting state
@@ -134,13 +140,13 @@ public class DriveStraightDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double adjustPercentLeft = 1;
-    	double adjustPercentRight = 1;
     	if (Math.abs(Robot.gyroscope.getRotation()) > ROTATION_THRESHOLD) {
     		if (Robot.gyroscope.getRotation() > 0) {
     			adjustPercentRight = ROTATION_PERCENT;
+    			adjustPercentLeft = 1;
     		}
     		else {
+    			adjustPercentRight = 1;
     			adjustPercentLeft = ROTATION_PERCENT;
     		}
     	}

@@ -39,4 +39,5 @@
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.subsystems.Cameras"/>
 <fullyQualifiedTypeName name="org.usfirst.frc.team6624.robot.Robot"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.livewindow.LiveWindow"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 </qualifiedTypeNameHistroy>

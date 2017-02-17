@@ -1114,3 +1114,70 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.equinox.p2.repository 4 1007 2017-02-17 13:01:43.936
 !MESSAGE Authentication failed for http://first.wpi.edu/FRC/roborio/release/eclipse/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2017-02-17 13:17:14.212
+!MESSAGE Exception during event notification
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater.sameProfile(AutomaticUpdater.java:76)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater$1.notify(AutomaticUpdater.java:63)
+	at org.eclipse.equinox.internal.p2.core.ProvisioningEventBus.dispatchEvent(ProvisioningEventBus.java:108)
+	at org.eclipse.equinox.internal.p2.core.ProvisioningEventBus.dispatchEvent(ProvisioningEventBus.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SESSION 2017-02-17 13:17:25.392 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/robotics/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -data file:/Users/robotics/Robot-Source-2016-2017/ -product org.eclipse.epp.package.java.product -keyring /Users/robotics/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2017-02-17 13:17:33.691
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:40.852
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:40.863
+!MESSAGE Install necessary for tools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:41.379
+!MESSAGE unzip /var/folders/dj/rqt21gq55ms3hgh768gs30mh0000gn/T/tools-5398882882823950845.zip -d /Users/robotics/wpilib/tools
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2017-02-17 13:17:41.435
+!MESSAGE fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:42.145
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:42.149
+!MESSAGE Installing cpp if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:42.155
+!MESSAGE Install necessary for cpp
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:42.629
+!MESSAGE unzip /var/folders/dj/rqt21gq55ms3hgh768gs30mh0000gn/T/cpp-1253706124787549825.zip -d /Users/robotics/wpilib/cpp/current
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:43.897
+!MESSAGE Installedcpp
+
+!ENTRY WPILib_CPP_Robot_Development 1 0 2017-02-17 13:17:43.899
+!MESSAGE Updating projects
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:43.988
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:43.989
+!MESSAGE Install necessary for java
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:44.252
+!MESSAGE unzip /var/folders/dj/rqt21gq55ms3hgh768gs30mh0000gn/T/java-8123201960113315442.zip -d /Users/robotics/wpilib/java/current
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-02-17 13:17:44.925
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-02-17 13:17:44.927
+!MESSAGE Updating projects
