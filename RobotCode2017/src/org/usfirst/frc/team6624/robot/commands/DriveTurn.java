@@ -42,7 +42,10 @@ public class DriveTurn extends Command {
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
-    	this.degrees = Gyroscope.simplifyAngle(degrees);
+    	if (absoluteRotation)
+    		this.degrees = Gyroscope.simplifyAngle(degrees);
+    	
+    	
     	this.absoluteRotation = absoluteRotation;
     	
     	System.out.println("DriveTurn Queued");
@@ -77,13 +80,9 @@ public class DriveTurn extends Command {
     		}
     	}
     	else {
-	    	if (degrees > 0)
-	    		rotateDirection = 1;
-	    	else
-	    		rotateDirection = -1;
-	    	
+	    	rotateDirection = 1;
 	    	//adjust degrees by starting pos
-	    	degrees += Robot.gyroscope.gyro.getAngle();
+	    	degrees += Robot.gyroscope.getGlobalRotation();
     	}
     	
     	//setup PID and set setpoint
