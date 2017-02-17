@@ -1,6 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,7 +23,7 @@ public class ClimbRope extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (OI.xbox.getYButton())//ONLY climb if Y pressed
+    	if (IO.xbox.getYButton())//ONLY climb if Y pressed
     		(Robot.roperclimberr).climb(climbingSpeed);
     	else
     		(Robot.roperclimberr).climb(0);

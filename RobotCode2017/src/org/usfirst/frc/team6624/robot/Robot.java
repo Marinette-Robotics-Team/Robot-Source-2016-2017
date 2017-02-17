@@ -30,7 +30,7 @@ import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
 public class Robot extends IterativeRobot {
 	
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
+	public static IO IO;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
 	public static UltraSonicSensors USS;
@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
 		accel = new Accel();
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
-		oi = new OI();
+		IO = new IO();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);

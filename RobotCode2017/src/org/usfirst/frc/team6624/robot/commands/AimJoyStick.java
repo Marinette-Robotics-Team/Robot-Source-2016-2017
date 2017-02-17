@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 /**
  *
@@ -22,8 +22,8 @@ public class AimJoyStick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double joystickX = OI.joystick.getRawAxis(OI.joystickX);
-    	double joystickY = OI.joystick.getRawAxis(OI.joystickY);
+    	double joystickX = IO.joystick.getRawAxis(IO.joystickX);
+    	double joystickY = IO.joystick.getRawAxis(IO.joystickY);
     	
     	//X axis control
     	if (joystickX < 0.1 && joystickX >-0.1 ){

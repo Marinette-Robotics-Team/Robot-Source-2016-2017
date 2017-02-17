@@ -31,7 +31,7 @@ import org.usfirst.frc.team6634.robot.customClasses.Vector2;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class IO {
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -91,7 +91,7 @@ public class OI {
 	Button two = new JoystickButton(joystick, 2);
 
 	
-	public OI() {
+	public IO() {
 		
 		//toggle input schemes
 		xButton.whenPressed(new DriveDualPowerTurn());

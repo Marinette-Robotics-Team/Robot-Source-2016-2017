@@ -1,6 +1,6 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
@@ -135,7 +135,7 @@ public class Drive extends Subsystem {
      * updates trim based on d-pad
      */
     public void updateTrimInput() {
-    	int dPad = OI.xbox.getPOV(0);
+    	int dPad = IO.xbox.getPOV(0);
     	
     	if (dPad != -1) {
     		isDpadPressed = true;

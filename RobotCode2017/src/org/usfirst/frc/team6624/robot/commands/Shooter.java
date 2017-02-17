@@ -1,6 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 
@@ -41,7 +41,7 @@ public class Shooter extends Command {
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	Shooter.shooterOnOff = OI.leftTriggerTop.get();
+    	Shooter.shooterOnOff = IO.leftTriggerTop.get();
     	
     	if(Shooter.shooterOnOff){
 	 

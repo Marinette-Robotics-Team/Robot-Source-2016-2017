@@ -1,6 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -54,7 +54,7 @@ public class GetRotConst extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	
-    	Boolean finished = OI.xbox.getBButton();
+    	Boolean finished = IO.xbox.getBButton();
     	
     	if (finished) {
     		System.out.println(timer.get());

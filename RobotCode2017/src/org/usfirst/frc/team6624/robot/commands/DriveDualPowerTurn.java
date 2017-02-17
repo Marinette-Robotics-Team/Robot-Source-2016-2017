@@ -1,6 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,8 +19,8 @@ public class DriveDualPowerTurn extends DriveSingleStick {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//change x axis to right stick
-    	xAxis = OI.xboxRightX;
-    	yAxis = OI.xboxLeftY;
+    	xAxis = IO.xboxRightX;
+    	yAxis = IO.xboxLeftY;
     	
     	super.setupPIDs();
     }

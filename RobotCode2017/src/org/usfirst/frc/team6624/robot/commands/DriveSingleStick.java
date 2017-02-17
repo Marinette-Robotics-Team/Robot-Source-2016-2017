@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands;
 
 
-import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.IO;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 
@@ -53,8 +53,8 @@ public class DriveSingleStick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	xAxis = OI.xboxLeftX;
-    	yAxis = OI.xboxLeftY;
+    	xAxis = IO.xboxLeftX;
+    	yAxis = IO.xboxLeftY;
     	
     	//setupPIDs();
     }
@@ -62,8 +62,8 @@ public class DriveSingleStick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//get axis values (0 - 255)
-    	double stickX = OI.xbox.getRawAxis(xAxis);
-    	double stickY = OI.xbox.getRawAxis(yAxis);
+    	double stickX = IO.xbox.getRawAxis(xAxis);
+    	double stickY = IO.xbox.getRawAxis(yAxis);
     	
     	//scale right and left motor power by x axis
     	double rightPower;
