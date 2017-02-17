@@ -104,12 +104,12 @@ public class DriveToCoords extends CommandGroup {
     private double getDriveSpeedAndAcceleration(double distance) {
     	//this function ensures that v^2/a is always less than distance, so DriveStriaghtDistance never throws an
     	//IllegalArgumentException
-    	if (distance < DRIVE_SPEED_ACCELERATION) {
-    		return distance;
-    	}
-    	else {
-    		return DRIVE_SPEED_ACCELERATION;
-    	}
+    	
+    	double c = DRIVE_SPEED_ACCELERATION;
+    	double k = Math.PI / (2 * c);
+    	double x = distance;
+    	
+    	return ((2 * c) / Math.PI) * Math.atan(k * x);
     	
     }
 }
