@@ -18,7 +18,6 @@ import org.usfirst.frc.team6624.robot.commands.DriveTank;
 import org.usfirst.frc.team6624.robot.commands.DriveToCoords;
 import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveTurnApprox;
-import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6624.robot.commands.GetRotConst;
 import org.usfirst.frc.team6624.robot.commands.ReverseShoot;
 import org.usfirst.frc.team6624.robot.commands.Shooter;

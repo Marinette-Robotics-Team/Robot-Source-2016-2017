@@ -8,13 +8,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6624.robot.commands.ExampleCommand;
+import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
 import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 import org.usfirst.frc.team6624.robot.subsystems.Cameras;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
-import org.usfirst.frc.team6624.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team6624.robot.subsystems.RoperClimberr;
 import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
@@ -29,7 +28,6 @@ import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
 
 public class Robot extends IterativeRobot {
 	
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static IO IO;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
@@ -56,7 +54,7 @@ public class Robot extends IterativeRobot {
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
 		IO = new IO();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		chooser.addDefault("Default Auto", new AutonomousTest());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
