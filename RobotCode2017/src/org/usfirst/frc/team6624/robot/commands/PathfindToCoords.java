@@ -51,7 +51,7 @@ public class PathfindToCoords extends CommandGroup {
     	
     	//reset to final angle
     	//TODO: FIX PID VALUES BEFORE TESTING
-    	addSequential(new DriveTurn(finalRotation, true));
+    	addSequential(new DriveTurn(finalRotation));
 
     }
     

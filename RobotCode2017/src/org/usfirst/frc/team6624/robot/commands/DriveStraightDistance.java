@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands;
 
 import org.usfirst.frc.team6624.robot.Robot;
+import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -47,6 +48,7 @@ public class DriveStraightDistance extends Command {
 	double distance;
 	double maxVelocity;
 	double acceleration;
+	Boolean useTargetAngle;
 	double targetAngle;
 	
 	
@@ -77,7 +79,7 @@ public class DriveStraightDistance extends Command {
 	 * @param maxVelocity Velocity to accelerate to (ft/s)
 	 * @param acceleration Acceleration to reach max velocity (ft/s^2)
 	 */
-    public DriveStraightDistance(double distance, double maxVelocity, double acceleration) {
+    public DriveStraightDistance(double distance, double maxVelocity, double acceleration, Boolean useTargetAngle,double targetAngle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
@@ -90,6 +92,7 @@ public class DriveStraightDistance extends Command {
     	this.distance = distance;
     	this.maxVelocity = maxVelocity;
     	this.acceleration = acceleration;
+    	this.useTargetAngle = useTargetAngle;
     	this.targetAngle = targetAngle;
     	
     }
@@ -140,7 +143,17 @@ public class DriveStraightDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Math.abs(Robot.gyroscope.getRotation()) > ROTATION_THRESHOLD) {
+    	
+    	double angleDifference;
+    	
+    	if (useTargetAngle) {
+    		angleDifference = Math.abs(Gyroscope.simplifyAngle(Robot.gyroscope.getGlobalRotation()) - Gyroscope.simplifyAngle(targetAngle));
+    	}
+    	else {
+    		angleDifference = Math.abs(Robot.gyroscope.getRotation());
+    	}
+    	
+    	if (angleDifference > ROTATION_THRESHOLD) {
     		if (Robot.gyroscope.getRotation() > 0) {
     			adjustPercentRight = ROTATION_PERCENT;
     			adjustPercentLeft = 1;

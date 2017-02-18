@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team6624.robot.commands.Agitate;
 import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
-import org.usfirst.frc.team6624.robot.commands.CalibrateDriveTurn;
 import org.usfirst.frc.team6624.robot.commands.ClimbRope;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
@@ -78,10 +77,17 @@ public class IO {
 	Button xButton = new JoystickButton(xbox, 3);
 	Button yButton = new JoystickButton(xbox, 4);
 	
-
-	
+	//static for external accesibility reasons
 	public static Button leftTriggerTop = new JoystickButton(xbox, 5);
 	public static Button rightTriggerTop = new JoystickButton(xbox, 6);
+	
+	Button backButton = new JoystickButton(xbox, 7);
+	Button startButton = new JoystickButton(xbox, 8);
+	
+	Button leftJoystickDown = new JoystickButton(xbox, 9);
+	Button rightJoystickDown = new JoystickButton(xbox, 10);
+	
+	
 	
 	//Joystick consts
 	public static int joystickX = 0;
@@ -102,21 +108,18 @@ public class IO {
 		// activate shooter
 		leftTriggerTop.whenPressed(new Shooter());
 		
-		//get ultrasonic  defunct
-		//two.whenPressed(new daBeeperBooper());
-		
 		
 		   
-		bButton.whenPressed(new ReverseShoot());
-		
-		
-		
+		//bButton.whenPressed(new ReverseShoot());
 		
 		//Active rope climber
 		yButton.whenPressed(new ClimbRope());
 		
 		//turn off ball shooter and rope climber
 		aButton.whenPressed(new AutonomousTest());
+		
+		//bButton.whenPressed(new DriveStraightDistance(8, 5, 5, false, 0));
+		bButton.whenPressed(new DriveTurn(90));
 		
 	}
 	

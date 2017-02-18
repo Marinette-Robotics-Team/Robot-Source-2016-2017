@@ -7,6 +7,7 @@ import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
 import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
 import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
 import org.usfirst.frc.team6624.robot.commands.DriveTank;
+import org.usfirst.frc.team6624.robot.commands.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.FullForward;
 import org.usfirst.frc.team6634.robot.customClasses.MapCreator;
 import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
@@ -42,7 +43,7 @@ public class Drive extends Subsystem {
 	//PIDOutput for drive
 	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
 													frontRightMotor, backRightMotor}, 
-													new Boolean[] { false, false, false, false}, 0.5);
+													new Boolean[] { false, false, false, false}, DriveTurn.ROTATE_SPEED);
 	
 	//encoders for drivetrain
 	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true);

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTurn extends Command {
 	
 	//drive speed for rotation
-	final float ROTATE_SPEED = 0.6f;
+	public static final float ROTATE_SPEED = 0.3f;
 	
 	final double ANGLE_RANGE = 0.3;
 	
@@ -35,17 +35,14 @@ public class DriveTurn extends Command {
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
 	 * @param absoluteRotation toggle of whether to rotate relatively from current position (default) or rotate to gloabl angle
 	 */
-    public DriveTurn(double degrees, Boolean absoluteRotation) {
+    public DriveTurn(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super("DriveTurn");
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
-    	if (absoluteRotation)
-    		this.degrees = Gyroscope.simplifyAngle(degrees);
-    	
-    	
+    	this.degrees = Gyroscope.simplifyAngle(degrees);
     	this.absoluteRotation = absoluteRotation;
     	
     	System.out.println("DriveTurn Queued");
@@ -54,36 +51,6 @@ public class DriveTurn extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gyroscope.reset();
-    	
-    	//calcualte which direction to rotate
-    	if (absoluteRotation) {
-    		
-    		double current = Gyroscope.simplifyAngle( Robot.gyroscope.getGlobalRotation() );
-    		
-    		
-    		if (Math.max(degrees, current) - Math.min(degrees, current) <= 180) {
-    			if (Math.min(degrees, current) == current) {
-    				rotateDirection = 1;
-    			}
-    			else {
-    				rotateDirection = -1;
-    			}
-    		}
-    		else {
-    			if (Math.min(degrees, current) == current)  {
-    				rotateDirection = -1;
-    			}
-    			else {
-    				rotateDirection = 1;
-    			}
-    		}
-    	}
-    	else {
-	    	rotateDirection = 1;
-	    	//adjust degrees by starting pos
-	    	degrees += Robot.gyroscope.getGlobalRotation();
-    	}
     	
     	//setup PID and set setpoint
     	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
@@ -120,7 +87,8 @@ public class DriveTurn extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	PID.disable();
-    	System.out.println("Rotation done");
+    	double rotation = Robot.gyroscope.getGlobalRotation();
+    	System.out.println("Completed at: " + rotation + "\n With Error: " + (rotation - degrees) );
     }
 
     // Called when another command which requires one or more of the same
@@ -128,5 +96,7 @@ public class DriveTurn extends Command {
     protected void interrupted() {
     	PID.disable();
     	System.out.println("Rotation done");
+    	double rotation = Robot.gyroscope.getGlobalRotation();
+    	System.out.println("Interrupted at: " + rotation + "\n With Error: " + (rotation - degrees) );
     }
 }
