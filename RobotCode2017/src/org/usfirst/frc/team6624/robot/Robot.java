@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
+import org.usfirst.frc.team6624.robot.commands.GearAuto;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
 import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
@@ -28,6 +29,16 @@ import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
 
 public class Robot extends IterativeRobot {
 	
+	//autonomous setup
+	final int LEFT_PEG = 0;
+	final int MIDDLE_PEG = 1;
+	final int RIGHT_PEG = 2;
+	
+	
+	//autonomous arguments
+	final int TARGET_PEG = LEFT_PEG; 
+	
+	//substystems
 	public static IO IO;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
@@ -54,7 +65,7 @@ public class Robot extends IterativeRobot {
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
 		IO = new IO();
-		chooser.addDefault("Default Auto", new AutonomousTest());
+		chooser.addDefault("Default Auto", new GearAuto(TARGET_PEG));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
