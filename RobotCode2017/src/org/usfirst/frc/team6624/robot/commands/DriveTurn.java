@@ -17,7 +17,7 @@ public class DriveTurn extends Command {
 	//drive speed for rotation
 	public static final float ROTATE_SPEED = 0.3f;
 	
-	final double ANGLE_RANGE = 0.3;
+	final double ANGLE_RANGE = 0.8;
 	
 	double P = 0.08;
 	double I = 0;

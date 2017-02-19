@@ -38,6 +38,8 @@ public class DriveToCoords extends CommandGroup {
     	this.destination = destination;
     	this.currentPosition = Robot.drive.position;
     	
+    	System.out.println("CURRENT POS: " + currentPosition);
+    	
     	currentState = CommandState.waiting;
     	
     	double angle = calculateAngle();

@@ -115,7 +115,7 @@ public class IO {
 		yButton.whenPressed(new ClimbRope());
 		
 		//turn off ball shooter and rope climber
-		aButton.whenPressed(new AutonomousTest());
+		//aButton.whenPressed(new AutonomousTest());
 		
 		//bButton.whenPressed(new DriveStraightDistance(8, 5, 5, false, 0));
 		bButton.whenPressed(new DriveTurn(90));
