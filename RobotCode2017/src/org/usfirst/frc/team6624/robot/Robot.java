@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
+import org.usfirst.frc.team6624.robot.commands.DrivePathTest;
 import org.usfirst.frc.team6624.robot.commands.GearAuto;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
 import org.usfirst.frc.team6624.robot.subsystems.Agitator;
@@ -65,7 +66,7 @@ public class Robot extends IterativeRobot {
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
 		IO = new IO();
-		chooser.addDefault("Default Auto", new GearAuto(TARGET_PEG));
+		chooser.addDefault("Default Auto", new DrivePathTest());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
