@@ -14,11 +14,11 @@ public class AutonomousTest extends CommandGroup {
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
-    	addSequential(new DriveToCoords(new Vector2(0, 51)));
-    	addSequential(new DriveToCoords(new Vector2(-43, 51)));
-    	addSequential(new DriveToCoords(new Vector2(-43, 76)));
-    	addSequential(new DriveToCoords(new Vector2(-43, 51)));
-    	addSequential(new DriveToCoords(new Vector2(0, 51)));
+    	addSequential(new DriveToCoords(new Vector2(51, 0)));
+    	addSequential(new DriveToCoords(new Vector2(51, 43)));
+    	addSequential(new DriveToCoords(new Vector2(76, 43)));
+    	addSequential(new DriveToCoords(new Vector2(51, 43)));
+    	addSequential(new DriveToCoords(new Vector2(51, 0)));
     	addSequential(new DriveToCoords(new Vector2(0, 0)));
     	
         // Add Commands here:

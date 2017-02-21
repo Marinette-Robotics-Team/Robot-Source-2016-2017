@@ -29,7 +29,7 @@ public class Drive extends Subsystem {
 	
 	//coordinate system
 	//set starting position here
-	public Vector2 position = new Vector2(0, 13.5);
+	public Vector2 position = Vector2.Zero;
 	
 	public GridCell[][] map = MapCreator.createMap();
 	

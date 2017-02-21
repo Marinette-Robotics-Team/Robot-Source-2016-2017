@@ -12,11 +12,6 @@ public class Vector2 {
 		this.Y = y;
 	}
 	
-	@Override
-	public String toString() {
-		return "(" + X + ", " + Y + ")";
-	}
-	
 	public static Vector2 Zero = new Vector2(0, 0);
 	
 	/**

@@ -163,7 +163,7 @@ public class ADXRS453Gyro implements PIDSource {
 		return status;
 	}
 	public double getAngle() {
-		return angle;
+		return -angle; //inverse to make counter clockwise positive. fite me.
 	}
 
 	public double getPos() {

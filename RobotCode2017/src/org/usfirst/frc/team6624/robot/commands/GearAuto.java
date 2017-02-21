@@ -1,7 +1,6 @@
 package org.usfirst.frc.team6624.robot.commands;
 
 import org.usfirst.frc.team6624.robot.Robot;
-import org.usfirst.frc.team6634.robot.customClasses.Path;
 import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,6 +20,19 @@ public class GearAuto extends CommandGroup {
 	final double APPROACH_MAX_VELOCITY = 1; // ft/s
 	final double APPROACH_ACCELERATION = 1; // ft/s^2
 	
+	//Vector2s directly in from of corresponding gear pins
+	Vector2 lineup0 =  new Vector2(4.66, 2.66);
+	Vector2 lineup1 = new Vector2(6.75, 0);
+	Vector2 lineup2 = new Vector2(4.66, 4.33);
+	
+	Vector2[] gearLineupCoords = new Vector2[] {lineup0, lineup1, lineup2};
+	
+	//angles for final lineup
+	double lineupAngle0 = -60;
+	double lineupAngle1 = 0;
+	double lineupAngle2 = 60;
+	
+	double[] lineupAngle = new double[] {lineupAngle0, lineupAngle1, lineupAngle2};
 	
 	
 	/**
@@ -48,29 +60,27 @@ public class GearAuto extends CommandGroup {
     	
     	Vector2 currentpos = Robot.drive.position;
     	
-    	//create paths
-    	Path path0 = new Path();
-    	Path path1 = new Path();
-    	Path path2 = new Path();
-    	
-    	//setup paths
-    	path0.add(new Vector2(4.5, 9));
-    	path0.add(new Vector2(9.09, 12.07));
-    	
-    	path1.add(new Vector2(13.5, 6));
-    	path1.add(new Vector2(13.5, 9.53));
-    	
-    	path2.add(new Vector2(22.5, 9));
-    	path2.add(new Vector2(17.83, 12.07));
-    	
-    	//put paths together
-    	
-    	Path[] paths = new Path[] {path0, path1, path2};
-    	
-    	
     	addSequential(new DriveToCoords(new Vector2(currentpos.X + ROBOT_CLEARANCE_DISTANCE, currentpos.Y)));
-
-    	addSequential(new DrivePath( paths[peg] ));
+    	addSequential(new DriveToCoords(gearLineupCoords[peg]));
     	
+    	addSequential(new DriveTurn(lineupAngle[peg]));
+    	addSequential(new DriveStraightDistance(APPROACH_DISTANCE, APPROACH_MAX_VELOCITY, APPROACH_ACCELERATION, false, 0));
+    	
+        // Add Commands here:
+        // e.g. addSequential(new Command1());
+        //      addSequential(new Command2());
+        // these will run in order.
+
+        // To run multiple commands at the same time,
+        // use addParallel()
+        // e.g. addParallel(new Command1());
+        //      addSequential(new Command2());
+        // Command1 and Command2 will run in parallel.
+
+        // A command group will require all of the subsystems that each member
+        // would require.
+        // e.g. if Command1 requires chassis, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chassis and the
+        // arm.
     }
 }
