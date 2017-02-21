@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
 		IO = new IO();
-		chooser.addDefault("Default Auto", new DrivePathTest());
+		chooser.addDefault("Default Auto", new GearAuto(TARGET_PEG));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}

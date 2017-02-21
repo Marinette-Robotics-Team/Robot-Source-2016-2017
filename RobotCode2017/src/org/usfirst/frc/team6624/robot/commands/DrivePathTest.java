@@ -6,6 +6,7 @@ import org.usfirst.frc.team6634.robot.customClasses.Vector2;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+
 /**
  *
  */
@@ -18,8 +19,9 @@ public class DrivePathTest extends CommandGroup {
     	
     	Path path = new Path();
     	
-    	path.add(new Vector2(0, 10));
-    	path.add(new Vector2(10, 10));
+    	path.add(new Vector2(0, 5));
+    	path.add(new Vector2(0, 8));
+    	path.add(new Vector2(5, 8));
     	
     	addSequential(new DrivePath( path ));*/
     	

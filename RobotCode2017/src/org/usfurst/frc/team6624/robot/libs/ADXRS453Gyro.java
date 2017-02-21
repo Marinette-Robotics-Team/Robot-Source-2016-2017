@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Kevin Harrilal (kevin@team2168.org)
  */
 public class ADXRS453Gyro implements PIDSource {
+	final double ANGLE_DISPLACEMENT = 90;
 
 	static final int DATA_SIZE = 4; //4 bytes = 32 bits
 	static final byte PARITY_BIT = (byte) 0x01; //parity check on first bit
@@ -163,7 +164,7 @@ public class ADXRS453Gyro implements PIDSource {
 		return status;
 	}
 	public double getAngle() {
-		return -angle; //inverse to make counter clockwise positive. fite me.
+		return -angle + ANGLE_DISPLACEMENT; //inverse to make counter clockwise positive. fite me.
 	}
 
 	public double getPos() {

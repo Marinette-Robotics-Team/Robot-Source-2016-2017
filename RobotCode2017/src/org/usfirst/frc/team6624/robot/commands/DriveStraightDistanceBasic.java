@@ -22,8 +22,8 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.setLeftSpeed(0.7, false);
-    	Robot.drive.setRightSpeed(0.7, false);
+    	Robot.drive.setLeftSpeed(0.2, false);
+    	Robot.drive.setRightSpeed(0.2, false);
     	
     	Robot.drive.leftEncoder.reset();
     	Robot.drive.rightEncoder.reset();
