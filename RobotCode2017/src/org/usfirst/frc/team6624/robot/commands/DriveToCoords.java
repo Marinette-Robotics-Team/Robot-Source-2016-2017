@@ -13,6 +13,9 @@ public class DriveToCoords extends CommandGroup {
 
 	final double DRIVE_SPEED_ACCELERATION = 4; // drive max cruising speed (ft/s) and acceleration (ft/s^2)
 	
+	//if high, faseter less acc, lower slower, more acc
+	final double A_OVER_V = 4;
+	
 	Vector2 currentPosition;
 	
 	Vector2 destination;
@@ -42,13 +45,14 @@ public class DriveToCoords extends CommandGroup {
     	
     	double angle = calculateAngle();
     	double distance = calcualteDistance();
-    	double speedAcceleration = getDriveSpeedAndAcceleration(distance);
+    	double accel = getDriveAcceleration(distance);
+    	double vel = getDriveAcceleration(distance);
     	
     	//add DriveTurn command to queue
     	addSequential(new DriveTurn(angle));
     	
     	//go to coordinate
-    	addSequential(new DriveStraightDistance(distance, speedAcceleration, speedAcceleration, true, angle));
+    	addSequential(new DriveStraightDistance(distance, vel, accel, true, angle));
     	
     	//set current position to destination
     	Robot.drive.position = destination;
@@ -101,7 +105,7 @@ public class DriveToCoords extends CommandGroup {
      * @param distance distance to be driven
      * @return the drive acceleration and maximum speed
      */
-    private double getDriveSpeedAndAcceleration(double distance) {
+    private double getDriveAcceleration(double distance) {
     	//this function ensures that v^2/a is always less than distance, so DriveStriaghtDistance never throws an
     	//IllegalArgumentException
     	
@@ -111,5 +115,9 @@ public class DriveToCoords extends CommandGroup {
     	
     	return ((2 * c) / Math.PI) * Math.atan(k * x);
     	
+    }
+    
+    private double getDriveVelocity(double distance) {
+    	return getDriveAcceleration(distance) / A_OVER_V;
     }
 }

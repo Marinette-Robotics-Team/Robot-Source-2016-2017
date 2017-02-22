@@ -12,15 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearAuto extends CommandGroup {
 	
 	 //number of feet the robot needs to go forward from the wall to be able to turn
-	final double ROBOT_CLEARANCE_DISTANCE = 3;
+	final double ROBOT_CLEARANCE_DISTANCE = 1;
 	
-	//number of feet to go forward to approach gear
-	final double APPROACH_DISTANCE = 3;
-	
-	//approach max velocity and acceleration (make sure v^2/a is less than APPROACH_DISTANCE)
-	final double APPROACH_MAX_VELOCITY = 1; // ft/s
-	final double APPROACH_ACCELERATION = 1; // ft/s^2
-	
+	final double ROBOT_LENGTH = 3.166;
 	
 	
 	/**
@@ -54,21 +48,26 @@ public class GearAuto extends CommandGroup {
     	Path path2 = new Path();
     	
     	//setup paths
-    	path0.add(new Vector2(4.5, 9));
-    	path0.add(new Vector2(9.09, 12.07));
     	
-    	path1.add(new Vector2(13.5, 6));
-    	path1.add(new Vector2(13.5, 9.53));
+    	//setup is (y,-x)
+    	path0.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	path0.add(new Vector2(7, -6));
+    	path0.add(new Vector2(11.708 - (ROBOT_LENGTH / 2) - 1, -8.885));
     	
-    	path2.add(new Vector2(22.5, 9));
-    	path2.add(new Vector2(17.83, 12.07));
+    	path1.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	path1.add(new Vector2(6 - (ROBOT_LENGTH), -13.5));
+    	path1.add(new Vector2(9.525 - (ROBOT_LENGTH), -13.5));
+    	
+    	path2.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	path2.add(new Vector2(6, -23));
+    	path2.add(new Vector2(11.708 - (ROBOT_LENGTH / 2), -18.11));
+    	
+    	System.out.println(path1);
     	
     	//put paths together
     	
     	Path[] paths = new Path[] {path0, path1, path2};
     	
-    	
-    	addSequential(new DriveToCoords(new Vector2(currentpos.X, currentpos.Y + ROBOT_CLEARANCE_DISTANCE)));
 
     	addSequential(new DrivePath( paths[peg] ));
     	

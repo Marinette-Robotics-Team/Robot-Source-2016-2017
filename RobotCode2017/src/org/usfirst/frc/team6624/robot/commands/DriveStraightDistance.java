@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveStraightDistance extends Command {
 	
-	final double FINAL_ADJUST_SPEED = 0.35;
+	final double FINAL_ADJUST_SPEED = 0.5;
 	final double MIN_SPEED = 0.2;
 	final double ROTATION_THRESHOLD = 2;
 	final double ROTATION_PERCENT = 0.98;

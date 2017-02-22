@@ -109,7 +109,7 @@ public class IO {
 		
 		
 		   
-		//bButton.whenPressed(new ReverseShoot());
+		bButton.whenPressed(new ReverseShoot());
 		
 		//Active rope climber
 		yButton.whenPressed(new ClimbRope());
@@ -118,7 +118,7 @@ public class IO {
 		//aButton.whenPressed(new AutonomousTest());
 		
 		//bButton.whenPressed(new DriveStraightDistance(8, 5, 5, false, 0));
-		bButton.whenPressed(new DriveStraightDistanceBasic(5));
+		//bButton.whenPressed(new DriveStraightDistanceBasic(5));
 		
 	}
 	

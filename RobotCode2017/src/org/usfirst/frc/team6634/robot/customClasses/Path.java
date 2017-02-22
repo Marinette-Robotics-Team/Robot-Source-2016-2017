@@ -21,7 +21,14 @@ public class Path {
 	}
 	
 	public int simplify(Vector2 startingPos) {
+		
+		System.out.println("Loopin'from 0 to " + (path.size() - 1));
+		
 		for (int i = 0; i < path.size() - 1; i++) { // exclude end point, as it cannot be removed.
+			
+			System.out.println("i: " + i);
+			
+			System.out.println("Path: " + path.get(i));
 			
 			Vector2 previousPos;
 			Vector2 currentPos = path.get(i);
@@ -41,8 +48,18 @@ public class Path {
 			System.out.println("OUT: " + outgoingAngle);
 			
 			if (Math.abs(incomingAngle - outgoingAngle) <= DEGREE_THRESHOLD) {
+				
+				System.out.println("PATH BURNED PAINFULLY: " + path.get(i));
+				
 				path.remove(i);
+				
+				i -= 1;
 			}
+			else {
+				System.out.println("PATH SAVED (for now): " + path.get(i));
+			}
+			
+			
 		}
 		
 		return path.size();

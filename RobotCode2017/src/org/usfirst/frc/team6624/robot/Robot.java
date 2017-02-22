@@ -35,7 +35,6 @@ public class Robot extends IterativeRobot {
 	final int MIDDLE_PEG = 1;
 	final int RIGHT_PEG = 2;
 	
-	
 	//autonomous arguments
 	final int TARGET_PEG = LEFT_PEG; 
 	
