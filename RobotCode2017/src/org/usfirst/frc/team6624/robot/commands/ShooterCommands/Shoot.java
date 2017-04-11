@@ -1,0 +1,101 @@
+package org.usfirst.frc.team6624.robot.commands.ShooterCommands;
+
+import org.usfirst.frc.team6624.robot.OI;
+import org.usfirst.frc.team6624.robot.Robot;
+import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+
+
+
+/**
+ *
+ */
+public class Shoot extends Command {
+
+	
+	//final double AGITATOR_MAX = 0.4 * 0.85;
+	final double SHOOTER_MAX = -1;
+	final double TIME_DELAY = 2;
+	
+	public static Boolean shooterOnOff = false;
+	
+	double shootspeed = 0;
+	//double agitaterspeed= 0;
+	final double SHOOTSPEEDINC= 0.1;
+	
+	
+	
+    public Shoot() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.ballshooter);
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    }
+ 
+    
+    // Slowly brings the ball shooter motor up to speed and maintains that speed
+    protected void execute() {
+    	
+    	Shoot.shooterOnOff = OI.leftTriggerTop.get();
+    	
+    	if(Shoot.shooterOnOff){
+	 
+	    	if (shootspeed > SHOOTER_MAX){
+	    		shootspeed -= SHOOTSPEEDINC;
+	    	}
+	    	else {
+	    		shootspeed = SHOOTER_MAX;
+	    	}
+	    	(Robot.ballshooter).setSpinnerSpeed(shootspeed);
+	    	
+	    	
+	    	//brings the agitater up to speed and maintains that speed
+	    	
+	    	/*
+	    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
+	    		
+	    		agitaterspeed += SHOOTSPEEDINC;
+	    	}
+	    	else if (agitaterspeed > AGITATOR_MAX) {
+	    		agitaterspeed = AGITATOR_MAX;
+	    	}
+	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);*/
+    	}
+    	else{
+    		
+    		(Robot.ballshooter).setSpinnerSpeed(0);
+    		
+    	}
+    	
+    	
+    	 
+    	
+    	
+    	
+    	
+    	
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+		//(Robot.ballshooter).agitaterSpeed(0);
+		(Robot.ballshooter).setSpinnerSpeed(0);
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+		//(Robot.ballshooter).agitaterSpeed(0);
+		(Robot.ballshooter).setSpinnerSpeed(0);
+    }
+}

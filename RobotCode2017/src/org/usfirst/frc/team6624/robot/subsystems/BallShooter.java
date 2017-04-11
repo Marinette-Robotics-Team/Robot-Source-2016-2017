@@ -1,34 +1,36 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.commands.Shooter;
+import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Shoot;
+import org.usfirst.frc.team6624.robot.commands.input.ShooterInputListener;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ * This subsystem controls the ball shooter.
+ * 
+ * This subsystem can:
+ * 	-Set the speed of the drive wheel for the shooter
  *
  */
 public class BallShooter extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
-	Spark ShooterMotor = new Spark (RobotMap.ShooterMotor);
+	Spark shooterMotor = new Spark (RobotMap.ShooterMotor);
 	
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	//listen for control input by default
     	
-    	setDefaultCommand(new Shooter());
+    	setDefaultCommand(new ShooterInputListener());
     	
-    	
+    	//setDefaultCommand(new Shooter());    	
     }
     
     
-    public void spinnerSpeed( double shootspeed) {	
-    	ShooterMotor.set(shootspeed);
+    public void setSpinnerSpeed( double shootspeed) {	
+    	shooterMotor.set(shootspeed);
     }
 
-	}
+}

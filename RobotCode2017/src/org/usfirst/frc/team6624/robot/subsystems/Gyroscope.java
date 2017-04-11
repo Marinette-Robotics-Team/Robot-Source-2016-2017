@@ -1,8 +1,8 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.commands.PrintGyro;
-import org.usfurst.frc.team6624.robot.libs.ADXRS453Gyro;
+import org.usfirst.frc.team6624.robot.commands.test.PrintGyro;
+import org.usfirst.frc.team6624.robot.libs.ADXRS453Gyro;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;

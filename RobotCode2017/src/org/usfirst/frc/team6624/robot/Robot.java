@@ -8,13 +8,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6624.robot.commands.AutonomousTest;
-import org.usfirst.frc.team6624.robot.commands.DrivePathTest;
-import org.usfirst.frc.team6624.robot.commands.GearAuto;
+import org.usfirst.frc.team6624.robot.commands.autonomous.GearAuto;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
 import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
-import org.usfirst.frc.team6624.robot.subsystems.Cameras;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team6624.robot.subsystems.RoperClimberr;
@@ -39,7 +36,7 @@ public class Robot extends IterativeRobot {
 	final int TARGET_PEG = LEFT_PEG; 
 	
 	//substystems
-	public static IO IO;
+	public static OI IO;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
 	public static UltraSonicSensors USS;
@@ -64,7 +61,7 @@ public class Robot extends IterativeRobot {
 		accel = new Accel();
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
-		IO = new IO();
+		IO = new OI();
 		chooser.addDefault("Default Auto", new GearAuto(TARGET_PEG));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);

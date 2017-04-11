@@ -79,8 +79,6 @@ public class DriveStraight extends Command {
     		driveSpeedLeft = driveSpeed;
     	}
     	
-    	Robot.drive.updateTrimInput();
-    	
     	
     	
     }

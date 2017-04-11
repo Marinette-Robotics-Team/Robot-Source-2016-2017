@@ -1,17 +1,14 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
-import org.usfirst.frc.team6624.robot.IO;
+import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.commands.AimJoyStick;
-import org.usfirst.frc.team6624.robot.commands.DriveDualPowerTurn;
-import org.usfirst.frc.team6624.robot.commands.DriveSingleStick;
-import org.usfirst.frc.team6624.robot.commands.DriveTank;
-import org.usfirst.frc.team6624.robot.commands.DriveTurn;
-import org.usfirst.frc.team6624.robot.commands.FullForward;
-import org.usfirst.frc.team6634.robot.customClasses.MapCreator;
-import org.usfirst.frc.team6634.robot.customClasses.PIDOutputGroup;
-import org.usfirst.frc.team6634.robot.customClasses.Vector2;
+import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
+import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
+import org.usfirst.frc.team6624.robot.commands.input.DriveTank;
+import org.usfirst.frc.team6624.robot.customClasses.MapCreator;
+import org.usfirst.frc.team6624.robot.customClasses.PIDOutputGroup;
+import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import org.xguzm.pathfinding.grid.GridCell;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,6 +17,12 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ *This subsystem controls the drivetrain motors.
+ *
+ *This subsystem can:
+ *	-Set left and right drivetrain speeds (-1 to 1, not encoder based)
+ *
+ *
  *
  */
 public class Drive extends Subsystem {
@@ -62,9 +65,7 @@ public class Drive extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DriveDualPowerTurn());
+    	setDefaultCommand(new CarDrive());
     }
     
     /**
@@ -111,49 +112,5 @@ public class Drive extends Subsystem {
     	backRightMotor.set(sp);
     }
     
-    /**
-     * Set trim for drive
-     * 1 : even voltage
-     * 0 - 1 : tend left
-     * 1 -2 : tend right
-     * 
-     * @param trim set trim value
-     */
-    public void setTrim(double trim) {
-    	this.trim = trim;
-    }
-    
-    /**
-     * Increment or decrement trim
-     * @param inc amount to increment
-     */
-    public void incrementTrim(double inc) {
-    	this.trim += inc;
-    }
-    
-    /**
-     * function to be called by every manual control command
-     * updates trim based on d-pad
-     */
-    public void updateTrimInput() {
-    	int dPad = IO.xbox.getPOV(0);
-    	
-    	if (dPad != -1) {
-    		isDpadPressed = true;
-    		prevDpad = dPad;
-    	}
-    	else if (isDpadPressed) {
-    		isDpadPressed = false;
-    		
-        	if (prevDpad == 90) {//right pressed (tend left)
-        		incrementTrim(-0.01);
-        	}
-        	else if (prevDpad == 270) { //left pressed (tend right)
-        		incrementTrim(0.01);
-        	}
-    	}
-    	
-    	//System.out.println(trim);
-    }
 }
 
