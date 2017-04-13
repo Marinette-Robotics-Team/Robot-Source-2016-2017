@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team6624.robot.commands.ShooterCommands.ReverseShoot;
+import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
 
 /**
@@ -48,33 +49,31 @@ public class OI {
 	public static int joystickX = 0;
 	public static int joystickY = 1;
 	
-	//Joystick buttons (to be setup later)
-	Button two = new JoystickButton(joystick, 2);
+	//Joystick buttons
+	public static Button joystickOne = new JoystickButton(joystick, 1);
+	public static Button joystickTwo = new JoystickButton(joystick, 2);
+	public static Button joystickThree = new JoystickButton(joystick, 3);
+	public static Button joystickFour = new JoystickButton(joystick, 4);
+	public static Button joystickFive = new JoystickButton(joystick, 5);
+	public static Button joystickSix = new JoystickButton(joystick, 6);
+	public static Button joystickSeven = new JoystickButton(joystick, 7);
+	public static Button joystickEight = new JoystickButton(joystick, 8);
+	public static Button joystickNine = new JoystickButton(joystick, 9);
+	public static Button joystickTen = new JoystickButton(joystick, 10);
 
 	
 	public OI() {
-		
-		//toggle input schemes
+	
 		xButton.whenPressed(new CarDrive());
 		
-		// activate agitator 
-		//rightTriggerTop.whenPressed(new Agitate());
-		
-		// activate shooter
-		//leftTriggerTop.whenPressed(new Shoot());
-		
-		
-		   
 		bButton.whenPressed(new ReverseShoot());
 		
-		//Active rope climber
-		//yButton.whenPressed(new ClimbRope());
+		//rotate to peg orientations when buttons pressed
+		joystickOne.whenPressed(new DriveTurn(-30)); //peg 0          \              /
+		joystickTwo.whenPressed(new DriveTurn(0)); //peg 1           0 \            / 2
+		joystickThree.whenPressed(new DriveTurn(30)); //peg 2           \----------/  
+		                                              //                      1 
 		
-		//turn off ball shooter and rope climber
-		//aButton.whenPressed(new AutonomousTest());
-		
-		//bButton.whenPressed(new DriveStraightDistance(8, 5, 5, false, 0));
-		//bButton.whenPressed(new DriveStraightDistanceBasic(5));
 		
 	}
 	
