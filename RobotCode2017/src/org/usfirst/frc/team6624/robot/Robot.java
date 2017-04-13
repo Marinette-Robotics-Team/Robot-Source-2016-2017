@@ -14,8 +14,7 @@ import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
 import org.usfirst.frc.team6624.robot.subsystems.Drive;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
-import org.usfirst.frc.team6624.robot.subsystems.RoperClimberr;
-import org.usfirst.frc.team6624.robot.subsystems.UltraSonicSensors;
+import org.usfirst.frc.team6624.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,13 +34,12 @@ public class Robot extends IterativeRobot {
 	//autonomous arguments
 	final int TARGET_PEG = LEFT_PEG; 
 	
-	//substystems
+	//declare substystems
 	public static OI IO;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
-	public static UltraSonicSensors USS;
 	public static Accel accel;
-	public static RoperClimberr roperclimberr;
+	public static Climber climber;
 	public static BallShooter ballshooter;
 	public static Agitator agitator;
 
@@ -54,10 +52,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		//init subsystems
 		gyroscope = new Gyroscope();
-		USS = new UltraSonicSensors();
 		drive = new Drive();
-		roperclimberr = new RoperClimberr();
+		climber = new Climber();
 		accel = new Accel();
 		ballshooter = new BallShooter();
 		agitator = new Agitator();

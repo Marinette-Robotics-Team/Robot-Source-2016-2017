@@ -6,9 +6,9 @@ import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
 import org.usfirst.frc.team6624.robot.commands.input.DriveTank;
-import org.usfirst.frc.team6624.robot.customClasses.MapCreator;
 import org.usfirst.frc.team6624.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
+import org.usfirst.frc.team6624.robot.pathfinding.MapCreator;
 import org.xguzm.pathfinding.grid.GridCell;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -46,17 +46,12 @@ public class Drive extends Subsystem {
 	//PIDOutput for drive
 	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
 													frontRightMotor, backRightMotor}, 
-													new Boolean[] { false, false, false, false}, DriveTurn.ROTATE_SPEED);
+													new Boolean[] { false, false, false, false}, RobotMap.ROTATE_SPEED_MAX);
 	
 	//encoders for drivetrain
 	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true);
 	public Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false);
 	
-	//trim vals
-	double trim = 1;
-	
-	Boolean isDpadPressed = false;
-	int prevDpad = -1;
 	
 	
 	public Drive() {
@@ -79,11 +74,6 @@ public class Drive extends Subsystem {
     	
     	if (useCurve) {
 	    	sp = Math.pow(speed, 3);
-	    	
-	    	//apply trim
-	    	if (this.trim < 1) {
-	    		sp *= trim;
-	    	}
     	}
     	
     	frontLeftMotor.set(sp);
@@ -101,11 +91,6 @@ public class Drive extends Subsystem {
     	
     	if (useCurve) {
 	    	sp = -Math.pow(speed, 3);
-	    	
-	    	//apply trim
-	    	if (this.trim > 1) {
-	        	sp *= 2 - trim;
-	    	}
     	}
     	
     	frontRightMotor.set(sp);

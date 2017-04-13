@@ -1,8 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands.ShooterCommands;
 
-import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
-import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
+import org.usfirst.frc.team6624.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,27 +9,20 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- *
+ * Command for activating the shooter.
+ * 
+ * Revs the shooter up to RobotMap.SHOOTER_MAX over RobotMap.SHOOTER_REV_UP_TIME,
+ * then maintains speed. 
  */
 public class Shoot extends Command {
-
 	
-	//final double AGITATOR_MAX = 0.4 * 0.85;
-	final double SHOOTER_MAX = -1;
-	final double TIME_DELAY = 2;
-	
-	public static Boolean shooterOnOff = false;
-	
-	double shootspeed = 0;
-	//double agitaterspeed= 0;
-	final double SHOOTSPEEDINC= 0.1;
-	
-	
+	Timer revUpTimer;
+		
 	
     public Shoot() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.ballshooter);
+    	
+    	revUpTimer = new Timer(); 
     }
 
     // Called just before this Command runs the first time
@@ -41,61 +33,26 @@ public class Shoot extends Command {
     // Slowly brings the ball shooter motor up to speed and maintains that speed
     protected void execute() {
     	
-    	Shoot.shooterOnOff = OI.leftTriggerTop.get();
-    	
-    	if(Shoot.shooterOnOff){
-	 
-	    	if (shootspeed > SHOOTER_MAX){
-	    		shootspeed -= SHOOTSPEEDINC;
-	    	}
-	    	else {
-	    		shootspeed = SHOOTER_MAX;
-	    	}
-	    	(Robot.ballshooter).setSpinnerSpeed(shootspeed);
-	    	
-	    	
-	    	//brings the agitater up to speed and maintains that speed
-	    	
-	    	/*
-	    	if (agitaterspeed < AGITATOR_MAX && timer.get() >= TIME_DELAY){
-	    		
-	    		agitaterspeed += SHOOTSPEEDINC;
-	    	}
-	    	else if (agitaterspeed > AGITATOR_MAX) {
-	    		agitaterspeed = AGITATOR_MAX;
-	    	}
-	    	(Robot.ballshooter).agitaterSpeed(agitaterspeed);*/
+    	if (revUpTimer.get() < RobotMap.SHOOTER_REV_UP_TIME) {
+    		Robot.ballshooter.setSpinnerSpeed((RobotMap.SHOOTER_MAX / RobotMap.SHOOTER_REV_UP_TIME) * revUpTimer.get());
     	}
-    	else{
-    		
-    		(Robot.ballshooter).setSpinnerSpeed(0);
-    		
-    	}
-    	
-    	
-    	 
-    	
-    	
-    	
+    	else {
+    		Robot.ballshooter.setSpinnerSpeed(RobotMap.SHOOTER_MAX);
+    	} 	
     	
     	
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
-		//(Robot.ballshooter).agitaterSpeed(0);
 		(Robot.ballshooter).setSpinnerSpeed(0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+
     protected void interrupted() {
-		//(Robot.ballshooter).agitaterSpeed(0);
 		(Robot.ballshooter).setSpinnerSpeed(0);
     }
 }

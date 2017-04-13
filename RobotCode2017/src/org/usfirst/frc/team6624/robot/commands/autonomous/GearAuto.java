@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands.autonomous;
 
 import org.usfirst.frc.team6624.robot.Robot;
-import org.usfirst.frc.team6624.robot.commands.DrivePath;
+import org.usfirst.frc.team6624.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team6624.robot.customClasses.Path;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 

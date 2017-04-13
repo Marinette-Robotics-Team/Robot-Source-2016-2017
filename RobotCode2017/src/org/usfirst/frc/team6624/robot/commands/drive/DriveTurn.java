@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6624.robot.commands.drive;
 
 import org.usfirst.frc.team6624.robot.Robot;
+import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
 
@@ -10,26 +11,26 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
+ * This command rotates the robot to the angle given in the argument, 
+ * with the initial position at the last gyro calibration given as 0 degrees, 
+ * the angle increasing in the counter-clockwise direction.
+ * 
+ * The command is PID Controlled, with the PID and P, I and D value set in RobotMap.
+ * 
+ * Values set in RobotMap:
+ * DRIVE_TURN_P, ''_I, ''_D - P, I, and D values for PID.
+ * ROTATE_SPEED_MAX - maximum speed at which the robot can rotate.
+ * ROTATE_ANGLE_TOLERANCE - the number of degrees within which the PID considers that it hit the target.
+ * 
  *
  */
 public class DriveTurn extends Command {
-	
-	//drive speed for rotation
-	public static final float ROTATE_SPEED = 0.3f;
-	
-	final double ANGLE_RANGE = 1.5;
-	
-	double P = 0.08;
-	double I = 0;
-	double D = 0.16;
 	
 	PIDController PID;
 
 	double degrees;
 	
 	int rotateDirection;
-	
-	Boolean absoluteRotation;
 	
 	/**
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
@@ -43,58 +44,63 @@ public class DriveTurn extends Command {
     	requires(Robot.gyroscope);
     	
     	this.degrees = Gyroscope.simplifyAngle(degrees);
-    	this.absoluteRotation = absoluteRotation;
     	
     	System.out.println("DriveTurn Queued");
     	
     }
 
-    // Called just before this Command runs the first time
+
     protected void initialize() {
     	
     	//setup PID and set setpoint
-    	PID = new PIDController(P, I, D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
+    	PID = new PIDController(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
     	
     	PID.setContinuous();
     	PID.setSetpoint(degrees);
-    	PID.setAbsoluteTolerance(ANGLE_RANGE);
+    	PID.setAbsoluteTolerance(RobotMap.ROTATE_ANGLE_TOLERANCE);
     	
     	PID.enable();
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    
     protected void execute() {
     	SmartDashboard.putNumber("Error", PID.getError());
+    	
+    	printStatusOutput();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	
+    /**
+     * print out the current status of the turning loop (current rotation, and the end goal)
+     */
+    private void printStatusOutput() {
     	double rotation;
     	
-    	//set rotation based on angle settings
-    	//if (absoluteRotation)
-    		rotation = Robot.gyroscope.getGlobalRotation();
-    	//else
-    		//rotation = Robot.gyroscope.getRotation();
+    	rotation = Robot.gyroscope.getGlobalRotation();
     	
     	System.out.println("curr: " + rotation + "\n goal: " + degrees);
-
-    	
+    }
+    
+    
+    protected boolean isFinished() {
+    	//finish if the PID is where its supposed to be
         return PID.onTarget();
     }
 
-    // Called once after isFinished returns true
+    
     protected void end() {
     	PID.disable();
+    	
+    	//print debug messages
     	double rotation = Robot.gyroscope.getGlobalRotation();
     	System.out.println("Completed at: " + rotation + "\n With Error: " + (rotation - degrees) );
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+
+    
     protected void interrupted() {
     	PID.disable();
+    	
+    	//print debug messages
     	System.out.println("Rotation done");
     	double rotation = Robot.gyroscope.getGlobalRotation();
     	System.out.println("Interrupted at: " + rotation + "\n With Error: " + (rotation - degrees) );

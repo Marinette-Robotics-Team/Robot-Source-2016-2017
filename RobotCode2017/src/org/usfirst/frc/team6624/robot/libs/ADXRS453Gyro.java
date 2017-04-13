@@ -5,21 +5,19 @@ import java.nio.ByteOrder;
 import java.util.BitSet;
 import java.util.TimerTask;
 
-import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
-
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.Timer;
 
-
-//This code was imported as an open source library from: https://gist.github.com/jcorcoran/6d721cf6570f772b51f8
-//https://www.chiefdelphi.com/forums/showthread.php?t=136591
-
 /**
- * @author Kevin Harrilal (kevin@team2168.org)
- */
+*
+*This code was imported as an open source library from: https://gist.github.com/jcorcoran/6d721cf6570f772b51f8
+*https://www.chiefdelphi.com/forums/showthread.php?t=136591
+*
+* @author Kevin Harrilal (kevin@team2168.org)
+*/
 public class ADXRS453Gyro implements PIDSource {
 
 	static final int DATA_SIZE = 4; //4 bytes = 32 bits

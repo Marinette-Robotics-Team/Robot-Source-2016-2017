@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *This command listens for  xbox controller input,
- *then activates the ballshooter while it is pressed (trigger scheme)
+ *then activates the ballshooter when it is pressed (toggle scheme)
  *
  *This is a subclass of InputListener which handles all of the button logic.
  *

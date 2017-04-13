@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * 
  * Command that extend this class must:
  * 	-Call the super() constructor with the button to listen on and the ListenerType
- * 	-isntantiate the Command command with the proper command type in initialize
+ * 	-instantiate the Command command with the proper command type in initialize
  * 
  * 
  * InputListener responds to button input differently based on the set ListenerType

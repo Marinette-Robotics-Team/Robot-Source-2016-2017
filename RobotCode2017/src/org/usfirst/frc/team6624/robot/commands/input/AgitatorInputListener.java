@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *This command listens for  xbox controller input,
- *then activates the agitator while it is pressed (trigger scheme)
+ *then activates the agitator when it is pressed (toggle scheme)
  *
  *This is a subclass of InputListener which handles all of the button logic.
  *
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AgitatorInputListener extends InputListener {
 
     public AgitatorInputListener() {
-    	super(OI.AGITATOR_BUTTON, InputListener.ListenerType.trigger);
+    	super(OI.AGITATOR_BUTTON, InputListener.ListenerType.toggle);
     }
 
     protected void initialize() {

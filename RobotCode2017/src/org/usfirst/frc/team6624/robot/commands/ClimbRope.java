@@ -1,47 +1,44 @@
 package org.usfirst.frc.team6624.robot.commands;
 
-import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
+import org.usfirst.frc.team6624.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Command for activating the climber.
+ * 
+ * Motor speed is set by RobotMap.CLIMBER_SPEED.
+ * 
+ * The motor runs until the command is ended.
+ * 
  */
 public class ClimbRope extends Command {
 
-	public static double climbingSpeed = 1;
     public ClimbRope() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.roperclimberr);
+    	requires(Robot.climber);
     }
 
-    // Called just before this Command runs the first time
+
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+
     protected void execute() {
-    	if (OI.xbox.getYButton())//ONLY climb if Y pressed
-    		(Robot.roperclimberr).climb(climbingSpeed);
-    	else
-    		(Robot.roperclimberr).climb(0);
+    	Robot.climber.setClimberSpeed(RobotMap.CLIMBER_SPEED);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
-    	(Robot.roperclimberr).climb(0);
+    	Robot.climber.setClimberSpeed(0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+
     protected void interrupted() {
-    	(Robot.roperclimberr).climb(0);
+    	Robot.climber.setClimberSpeed(0);
     }
 }

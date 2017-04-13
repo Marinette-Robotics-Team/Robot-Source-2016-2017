@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveToCoords;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
-import org.usfirst.frc.team6624.robot.customClasses.MapCreator;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import org.usfirst.frc.team6624.robot.libs.LinearRegression;
+import org.usfirst.frc.team6624.robot.pathfinding.MapCreator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -18,6 +18,13 @@ import org.xguzm.pathfinding.grid.finders.AStarGridFinder;
 import org.xguzm.pathfinding.grid.finders.GridFinderOptions;
 
 /**
+ *
+ * This function takes a Vector2 for a final destination, and uses the environment set in MapCreator to 
+ * pathfind to the Vector2
+ * 
+ * 
+ * It break and A* path into a series of line sgments and drives along those segments.
+ *
  *
  */
 public class PathfindToCoords extends CommandGroup {
@@ -76,7 +83,7 @@ public class PathfindToCoords extends CommandGroup {
     	
     }
     
-    //filters out unnecessary points to simplify path
+    //filters out unnecessary points using R^2 regression to simplify path
     public static ArrayList<GridCell> removeUnnecessaryPoints(ArrayList<GridCell> pathLocs) {
     	ArrayList<GridCell> finalPoints = new ArrayList<GridCell>();
     	
