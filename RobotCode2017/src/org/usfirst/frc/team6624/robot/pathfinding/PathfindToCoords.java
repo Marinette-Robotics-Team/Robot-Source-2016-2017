@@ -1,6 +1,5 @@
-package org.usfirst.frc.team6624.robot.commands;
+package org.usfirst.frc.team6624.robot.pathfinding;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team6624.robot.Robot;
@@ -8,7 +7,6 @@ import org.usfirst.frc.team6624.robot.commands.drive.DriveToCoords;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import org.usfirst.frc.team6624.robot.libs.LinearRegression;
-import org.usfirst.frc.team6624.robot.pathfinding.MapCreator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

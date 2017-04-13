@@ -2,7 +2,6 @@ package org.usfirst.frc.team6624.robot.pathfinding;
 
 import java.util.ArrayList;
 
-import org.usfirst.frc.team6624.robot.customClasses.MapObject;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import org.xguzm.pathfinding.grid.GridCell;
 

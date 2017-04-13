@@ -1,11 +1,8 @@
 package org.usfirst.frc.team6624.robot.commands.input;
 
 import org.usfirst.frc.team6624.robot.OI;
-import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Shoot;
 import org.usfirst.frc.team6624.robot.customClasses.InputListener;
-
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *This command listens for  xbox controller input,

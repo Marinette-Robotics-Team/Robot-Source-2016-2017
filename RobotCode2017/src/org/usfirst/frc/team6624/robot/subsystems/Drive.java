@@ -6,6 +6,7 @@ import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
 import org.usfirst.frc.team6624.robot.commands.input.DriveTank;
+import org.usfirst.frc.team6624.robot.customClasses.CompoundPIDOutput;
 import org.usfirst.frc.team6624.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import org.usfirst.frc.team6624.robot.pathfinding.MapCreator;
@@ -43,10 +44,16 @@ public class Drive extends Subsystem {
 	public Spark backLeftMotor = new Spark(RobotMap.backLeftMotorPort);
 	public Spark backRightMotor = new Spark(RobotMap.backRightMotorPort);
 	
-	//PIDOutput for drive
-	public PIDOutputGroup driveGroup = new PIDOutputGroup(new PIDOutput[] { frontLeftMotor, backLeftMotor,
-													frontRightMotor, backRightMotor}, 
-													new Boolean[] { false, false, false, false}, RobotMap.ROTATE_SPEED_MAX);
+	//make CompoundPIDOutputs for left and right drive train motors
+	CompoundPIDOutput leftDriveTrain = new CompoundPIDOutput(new PIDOutput[] {frontLeftMotor, backLeftMotor});
+	CompoundPIDOutput rightDriveTrain = new CompoundPIDOutput(new PIDOutput[] {frontRightMotor, backRightMotor});
+	
+	//PIDOutput for turning counter clockwise and clockwise
+	public PIDOutputGroup driveTurnCCW = new PIDOutputGroup(new PIDOutput[] { leftDriveTrain, rightDriveTrain}, 
+													new Boolean[] { false, false }, RobotMap.ROTATE_SPEED_MAX);
+	
+	public PIDOutputGroup driveTurnCW = new PIDOutputGroup(new PIDOutput[] { leftDriveTrain, rightDriveTrain}, 
+			new Boolean[] { true, true }, RobotMap.ROTATE_SPEED_MAX);	
 	
 	//encoders for drivetrain
 	public Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true);

@@ -4,8 +4,6 @@ import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Agitate;
 import org.usfirst.frc.team6624.robot.customClasses.InputListener;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *This command listens for  xbox controller input,
  *then activates the agitator when it is pressed (toggle scheme)

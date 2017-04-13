@@ -1,9 +1,5 @@
 package org.usfirst.frc.team6624.robot.customClasses;
 
-import org.usfirst.frc.team6624.robot.Robot;
-import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Agitate;
-
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 

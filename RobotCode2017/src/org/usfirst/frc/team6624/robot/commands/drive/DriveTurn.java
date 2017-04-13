@@ -2,11 +2,9 @@ package org.usfirst.frc.team6624.robot.commands.drive;
 
 import org.usfirst.frc.team6624.robot.Robot;
 import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.customClasses.PIDOutputGroup;
 import org.usfirst.frc.team6624.robot.subsystems.Gyroscope;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -32,18 +30,27 @@ public class DriveTurn extends Command {
 	
 	int rotateDirection;
 	
+	//enum for rotation direction
+	enum RotationDirection {
+		CW,
+		CCW
+	}
+	
+	RotationDirection direction;
+	
 	/**
 	 * @param degrees dumber of degrees to rotate to the left (negative for right)
 	 * @param absoluteRotation toggle of whether to rotate relatively from current position (default) or rotate to gloabl angle
 	 */
     public DriveTurn(double degrees) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	super("DriveTurn");
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
     	this.degrees = Gyroscope.simplifyAngle(degrees);
+    	
+    	//get rotation direction
+    	direction = getRotateDirection();
     	
     	System.out.println("DriveTurn Queued");
     	
@@ -52,8 +59,13 @@ public class DriveTurn extends Command {
 
     protected void initialize() {
     	
-    	//setup PID and set setpoint
-    	PID = new PIDController(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D, Robot.gyroscope.gyro, Robot.drive.driveGroup.setInverted(new Boolean[] {true, true, true, true}));
+    	//setup PID and set setpoint based on rotation direction
+    	if (direction == RotationDirection.CW) {
+    		PID = new PIDController(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D, Robot.gyroscope.gyro, Robot.drive.driveTurnCW);
+    	}
+    	else if (direction == RotationDirection.CCW) {
+    		PID = new PIDController(-RobotMap.DRIVE_TURN_P, -RobotMap.DRIVE_TURN_I, -RobotMap.DRIVE_TURN_D, Robot.gyroscope.gyro, Robot.drive.driveTurnCCW);
+    	}
     	
     	PID.setContinuous();
     	PID.setSetpoint(degrees);
@@ -62,6 +74,36 @@ public class DriveTurn extends Command {
     	PID.enable();
     }
 
+    /**
+     *  Returns an enum corresponding to the direction in which the robot should rotate
+     *  to reach its target the fastest.
+     *  @return enum RotateDircetion, CW for Clockwise, CCW for counter-clockwise
+     */
+    private RotationDirection getRotateDirection() {
+		double current = Gyroscope.simplifyAngle( Robot.gyroscope.getGlobalRotation() );
+		
+		
+		if (Math.max(degrees, current) - Math.min(degrees, current) <= 180) {
+			if (Math.min(degrees, current) == current) {
+				return RotationDirection.CCW;
+			}
+			else {
+				return RotationDirection.CW;
+			}
+		}
+		else {
+			if (Math.min(degrees, current) == current)  {
+				return RotationDirection.CW;
+			}
+			else {
+				return RotationDirection.CCW;
+			}
+			
+		}
+		
+		
+		
+    }
     
     protected void execute() {
     	SmartDashboard.putNumber("Error", PID.getError());

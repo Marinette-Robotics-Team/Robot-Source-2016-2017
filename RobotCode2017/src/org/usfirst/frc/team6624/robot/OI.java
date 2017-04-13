@@ -5,10 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team6624.robot.commands.ClimbRope;
-import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Agitate;
 import org.usfirst.frc.team6624.robot.commands.ShooterCommands.ReverseShoot;
-import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Shoot;
 import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
 
 /**

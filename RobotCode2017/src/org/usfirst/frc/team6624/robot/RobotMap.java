@@ -1,6 +1,5 @@
 package org.usfirst.frc.team6624.robot;
 
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**

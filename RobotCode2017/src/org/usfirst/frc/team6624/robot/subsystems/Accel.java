@@ -1,7 +1,5 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
-import org.usfirst.frc.team6624.robot.commands.ShooterCommands.PrintAccelerometer;
-
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
