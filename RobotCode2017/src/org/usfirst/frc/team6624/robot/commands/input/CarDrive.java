@@ -2,6 +2,7 @@ package org.usfirst.frc.team6624.robot.commands.input;
 
 import org.usfirst.frc.team6624.robot.OI;
 import org.usfirst.frc.team6624.robot.Robot;
+import org.usfirst.frc.team6624.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,9 +23,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CarDrive extends Command {
 
-	//set axes from each joystick
-	int xAxis = OI.xboxRightX;
-	int yAxis = OI.xboxLeftY; 
+
 	
     public CarDrive() {
     	requires(Robot.drive);
@@ -36,9 +35,12 @@ public class CarDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	//Start of Main Driver Code
+    	
     	//get axis values
-    	double stickX = OI.xbox.getRawAxis(xAxis);
-    	double stickY = OI.xbox.getRawAxis(yAxis);
+    	double stickX = OI.xbox.getRawAxis(OI.xboxRightX);
+    	double stickY = OI.xbox.getRawAxis(OI.xboxLeftY);
     	
     	//scale right and left motor power by x axis
     	double rightPower;
@@ -57,10 +59,39 @@ public class CarDrive extends Command {
     		rightPower = 1;
     	}
     	
+    	//Start of CO-Pilot code
+    	//Expects value from -1 to +1
+    	double JoysticX = OI.joystick.getRawAxis(OI.joystickX);
+    	double JoysticY = OI.joystick.getRawAxis(OI.joystickY);
+    	
+    	
+    	
+    	double assistY = JoysticY * (RobotMap.ASSIST_DOWN_SCALE_FACTOR);
+    	double assistX = JoysticX * (RobotMap.ASSIST_DOWN_SCALE_FACTOR);
+    	
+    	double leftAssist = 0;
+    	double rightAssist = 0;
+    	
+    	
+    	if(assistX<-RobotMap.ASSIST_X_THRESHOLD){
+    		 leftAssist = assistX; 
+    	}
+    	else if (assistX> RobotMap.ASSIST_X_THRESHOLD){
+    		 rightAssist = assistX;
+    		
+    	}
+    	else{
+    		leftAssist = 0;
+    		rightAssist = 0;
+    	}
+    	
+    	
     	
     	//set motors
-    	Robot.drive.setLeftSpeed(-stickY * leftPower, true); //negative accounts for inverse y axis on xbox controls
-    	Robot.drive.setRightSpeed(-stickY * rightPower, true);
+    	Robot.drive.setLeftSpeed((-stickY + assistY) * (leftPower + leftAssist), true); //negative accounts for inverse y axis on xbox controls
+    	Robot.drive.setRightSpeed((-stickY + assistY) * (rightPower + rightAssist), true);
+    	
+    	
     }
 
     protected boolean isFinished() {

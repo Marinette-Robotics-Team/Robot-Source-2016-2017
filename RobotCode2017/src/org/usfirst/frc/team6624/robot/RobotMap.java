@@ -64,6 +64,9 @@ public class RobotMap {
 	public static final double ROTATE_SPEED_MAX = 0.3;
 	public static final double ROTATE_ANGLE_TOLERANCE = 1.5;
 	
+	//driver joystick assist constants
+	public static final double ASSIST_X_THRESHOLD = 0.10;
+	public static final double ASSIST_DOWN_SCALE_FACTOR = 0.25;
 	
 	
 	////////////////////////////////////////////PIDS/////////////////////////////////////
