@@ -5,7 +5,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team6624.robot.commands.ClimbRope;
+import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Agitate;
 import org.usfirst.frc.team6624.robot.commands.ShooterCommands.ReverseShoot;
+import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Shoot;
 import org.usfirst.frc.team6624.robot.commands.drive.DriveTurn;
 import org.usfirst.frc.team6624.robot.commands.input.CarDrive;
 
@@ -64,9 +67,17 @@ public class OI {
 	
 	public OI() {
 	
+		///////////DRIVE MODE///////////////////
 		xButton.whenPressed(new CarDrive());
 		
-		bButton.whenPressed(new ReverseShoot());
+		
+		/////////////COMMAND INPUT///////////////////////////////////
+		
+		AGITATOR_BUTTON.toggleWhenPressed(new Agitate());
+		SHOOTER_BUTTON.toggleWhenPressed(new Shoot());
+		CLIMBER_BUTTON.toggleWhenPressed(new ClimbRope());
+		
+		REVERSE_SHOOT_BUTTON.whenPressed(new ReverseShoot());
 		
 		//rotate to peg orientations when buttons pressed
 		joystickOne.whenPressed(new DriveTurn(-30)); //peg 0          \              /
@@ -84,5 +95,6 @@ public class OI {
 	public static final Button AGITATOR_BUTTON = rightTriggerTop;
 	public static final Button SHOOTER_BUTTON = leftTriggerTop;
 	public static final Button CLIMBER_BUTTON = yButton;
+	public static final Button REVERSE_SHOOT_BUTTON = bButton;
 	
 }

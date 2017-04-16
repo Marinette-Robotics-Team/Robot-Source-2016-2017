@@ -1,9 +1,6 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
 import org.usfirst.frc.team6624.robot.RobotMap;
-import org.usfirst.frc.team6624.robot.commands.ShooterCommands.Shoot;
-import org.usfirst.frc.team6624.robot.commands.input.ShooterInputListener;
-
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,11 +18,6 @@ public class BallShooter extends Subsystem {
 	
 
     public void initDefaultCommand() {
-    	//listen for control input by default
-    	
-    	setDefaultCommand(new ShooterInputListener());
-    	
-    	//setDefaultCommand(new Shooter());    	
     }
     
     
