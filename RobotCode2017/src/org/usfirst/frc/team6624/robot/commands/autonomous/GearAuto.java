@@ -50,7 +50,17 @@ public class GearAuto extends CommandGroup {
     	requires(Robot.drive);
     	requires(Robot.gyroscope);
     	
-    	//calculate path relative to saarting position
+    	/*switch(peg) {
+    	case 0:
+    		Robot.drive.position = new Vector2(0, -6);
+    	case 1: 
+    		Robot.drive.position = new Vector2(0, -13.5);
+    	case 2:
+    		Robot.drive.position = new Vector2(0, -21);
+    	}*/
+    	
+    	Robot.drive.position = Vector2.Zero;
+    	
     	Vector2 currentpos = Robot.drive.position;
     	
     	//create paths
@@ -61,18 +71,18 @@ public class GearAuto extends CommandGroup {
     	
     	//Set Up Paths
     	
-    	//due to some quirks with the coordinate system, the conversion from the robot to the field is (y,-x)
-    	path0.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
-    	path0.add(new Vector2(7, -6));
-    	path0.add(new Vector2(11.708 - (ROBOT_LENGTH / 2) - 1, -8.885));
+    	//setup is (y,-x)
+    	//path0.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	path0.add(new Vector2(8, -6 + 6));
+    	path0.add(new Vector2(10.83, -10.58 + 6));
     	
-    	path1.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	//path1.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
     	path1.add(new Vector2(6 - (ROBOT_LENGTH), -13.5));
     	path1.add(new Vector2(9.525 - (ROBOT_LENGTH), -13.5));
     	
-    	path2.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
-    	path2.add(new Vector2(6, -23));
-    	path2.add(new Vector2(11.708 - (ROBOT_LENGTH / 2), -18.11));
+    	//path2.add(new Vector2(currentpos.X +  ROBOT_CLEARANCE_DISTANCE, currentpos.Y));
+    	path2.add(new Vector2(8, -21 + 21));
+    	path2.add(new Vector2(10.83, -16.42 + 21));
     	
     	System.out.println(path1);
     	

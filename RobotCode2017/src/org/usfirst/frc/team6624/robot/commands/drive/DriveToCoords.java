@@ -21,10 +21,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveToCoords extends CommandGroup {
 
-	final double DRIVE_SPEED_ACCELERATION = 4; // drive max cruising speed (ft/s) and acceleration (ft/s^2)
+	final double DRIVE_SPEED_ACCELERATION = 7; // drive max cruising speed (ft/s) and acceleration (ft/s^2)
 	
 	//if high, faseter less acc, lower slower, more acc
-	final double A_OVER_V = 4;
+	final double A_OVER_V = 7;
 	
 	Vector2 currentPosition;
 	

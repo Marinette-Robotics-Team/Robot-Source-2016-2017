@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6624.robot.commands.autonomous.GearAuto;
+import org.usfirst.frc.team6624.robot.commands.autonomous.QueueGearAuto;
+import org.usfirst.frc.team6624.robot.commands.drive.DriveStraightDistanceBasic;
 import org.usfirst.frc.team6624.robot.subsystems.Accel;
 import org.usfirst.frc.team6624.robot.subsystems.Agitator;
 import org.usfirst.frc.team6624.robot.subsystems.BallShooter;
@@ -31,11 +33,8 @@ public class Robot extends IterativeRobot {
 	final int MIDDLE_PEG = 1;
 	final int RIGHT_PEG = 2;
 	
-	//autonomous arguments
-	final int TARGET_PEG = LEFT_PEG; 
-	
-	//declare substystems
-	public static OI IO;
+	//substystems
+	public static OI OI;
 	public static Drive drive;
 	public static Gyroscope gyroscope;
 	public static Accel accel;
@@ -59,10 +58,13 @@ public class Robot extends IterativeRobot {
 		accel = new Accel();
 		ballshooter = new BallShooter();
 		agitator = new Agitator();
-		IO = new OI();
-		chooser.addDefault("Default Auto", new GearAuto(TARGET_PEG));
+		OI = new OI();
+		chooser.addDefault("Cross Line", new DriveStraightDistanceBasic(18));
+		chooser.addDefault("Middle Peg", new DriveStraightDistanceBasic(11));
+		chooser.addObject("Left Peg", new QueueGearAuto(LEFT_PEG));
+		chooser.addObject("Right Peg", new QueueGearAuto(RIGHT_PEG));
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("AUTO CHOOSER FOR STUFF", chooser);
 	}
 
 	/**

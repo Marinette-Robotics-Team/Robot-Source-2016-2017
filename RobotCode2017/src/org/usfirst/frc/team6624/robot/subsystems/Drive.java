@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+
 /**
  *This subsystem controls the drivetrain motors.
  *
@@ -33,7 +35,7 @@ public class Drive extends Subsystem {
 	
 	//coordinate system
 	//set starting position here
-	public Vector2 position = new Vector2(0,-13.5);
+	public Vector2 position = new Vector2(0, 0/*0,-13.5*/);
 	
 	public GridCell[][] map = MapCreator.createMap();
 	
@@ -61,9 +63,12 @@ public class Drive extends Subsystem {
 	
 	
 	
+	double ratio = 1.17;
+	
+	
 	public Drive() {
-		leftEncoder.setDistancePerPulse(1.56/360);
-		rightEncoder.setDistancePerPulse(1.56/360);
+		leftEncoder.setDistancePerPulse((1.57 * ratio)/360);
+		rightEncoder.setDistancePerPulse((1.57 * ratio)/360);
 	}
 
     public void initDefaultCommand() {
@@ -80,7 +85,7 @@ public class Drive extends Subsystem {
     	double sp = speed;
     	
     	if (useCurve) {
-	    	sp = Math.pow(speed, 3);
+    		sp = applyCurve(speed);
     	}
     	
     	frontLeftMotor.set(sp);
@@ -97,12 +102,30 @@ public class Drive extends Subsystem {
     	double sp = speed;
     	
     	if (useCurve) {
-	    	sp = -Math.pow(speed, 3);
+	    	sp = -applyCurve(speed);
     	}
     	
     	frontRightMotor.set(sp);
     	backRightMotor.set(sp);
     }
     
+    public double applyCurve(double speed) {
+    	double sp = (1 - RobotMap.TORQUE_RESISTANCE_THRESHOLD) * Math.pow(speed, 3);
+    	
+    	if (speed > 0) {
+    		sp += RobotMap.TORQUE_RESISTANCE_THRESHOLD;
+    	}
+    	else if (speed < 0) {
+    		sp -= RobotMap.TORQUE_RESISTANCE_THRESHOLD;
+    	}
+    	
+    	
+    	//apply threshold
+    	if (Math.abs(speed) <= RobotMap.DRIVE_JOYSTICK_BUFFER) {
+    		return 0;
+    	}
+    	
+    	return sp;
+    }
 }
 

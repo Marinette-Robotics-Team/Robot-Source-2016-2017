@@ -39,6 +39,7 @@ public class RobotMap {
 	public static int leftEncoderChannelA = 2;
 	public static int leftEncoderChannelB = 3;
 	
+	
 	/////////////////////////Input map/////////////////////////////////////////////////
 	//maps different commands to button on the xbox controller/joystick
 	
@@ -66,7 +67,18 @@ public class RobotMap {
 	
 	//driver joystick assist constants
 	public static final double ASSIST_X_THRESHOLD = 0.10;
+	public static final double ASSIST_THRESHOLD = 0.10;
 	public static final double ASSIST_DOWN_SCALE_FACTOR = 0.25;
+	
+	
+	
+	//drive constants
+	//threshold after which torque created by motors overcomes resistance of drive and
+	//carpet
+	public static final double TORQUE_RESISTANCE_THRESHOLD = 0.30; 
+	
+	public static final double DRIVE_JOYSTICK_BUFFER = 0.15;
+	
 	
 	
 	////////////////////////////////////////////PIDS/////////////////////////////////////

@@ -33,8 +33,8 @@ public class DriveStraightDistanceBasic extends Command {
 
     // Turn on motors at the start of the command
     protected void initialize() {
-    	Robot.drive.setLeftSpeed(0.2, false);
-    	Robot.drive.setRightSpeed(0.2, false);
+    	Robot.drive.setLeftSpeed(0.6, false);
+    	Robot.drive.setRightSpeed(-0.6, false);
     	
     	Robot.drive.leftEncoder.reset();
     	Robot.drive.rightEncoder.reset();

@@ -33,13 +33,13 @@ public class DriveStraightDistance extends Command {
 	
 	PIDController leftEncoderPID;
 	
-	double lEncoderP = 0.01;
+	double lEncoderP = 0.015;
 	double lEncoderI = 0;
 	double lEncoderD = 0;
 	
 	PIDController rightEncoderPID;
 	
-	double rEncoderP = 0.01;
+	double rEncoderP = 0.015;
 	double rEncoderI = 0;
 	double rEncoderD = 0;
 	
