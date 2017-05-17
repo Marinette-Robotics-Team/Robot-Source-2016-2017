@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Simple subsystem for controlling the climber motor.
  * 
- * Provides direct access to motor voltage.
+ * This subsystem can:
+ * 	-set the speed of the climbing motor
  */
 public class Climber extends Subsystem {
 

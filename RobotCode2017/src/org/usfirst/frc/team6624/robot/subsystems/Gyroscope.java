@@ -1,21 +1,26 @@
 package org.usfirst.frc.team6624.robot.subsystems;
 
-import org.usfirst.frc.team6624.robot.RobotMap;
 import org.usfirst.frc.team6624.robot.commands.test.PrintGyro;
 import org.usfirst.frc.team6624.robot.libs.ADXRS453Gyro;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * This class acts as an abstraction of the Gyroscope functionality while adding extra functions
+ * 
+ * This class contains both funtions pertaining to the hardware gyro as well as static functions
+ * useful for dealing with angles.
+ * 
+ * 
+ * This class can:
+ * 	-get the current angle relative to the starting position
+ * 	-get relative angle between 2 states
+ * 
+ * This class contains static methods to:
+ * 	-check if 2 angles are equivalent
+ * 	-simplify angles onto [0, 360)
  */
 public class Gyroscope extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands
 	
 	public ADXRS453Gyro gyro;
 	
@@ -29,8 +34,6 @@ public class Gyroscope extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new PrintGyro(false));
     }
     
@@ -58,7 +61,7 @@ public class Gyroscope extends Subsystem {
     }
     
     /**
-     * Returns boolean if 2 angles are equivalent (degrees)
+     * Returns boolean if 2 angles are equivalent (degrees or radians)
      * @param a1 First angle
      * @param a2 Second angle
      * @param percentError Percent error within which angles will be considered 
@@ -80,7 +83,7 @@ public class Gyroscope extends Subsystem {
     }
     
     /**
-     * Simplify degree angle to be in the range [0, 360)
+     * Simplify degree angle to be in the range [0, 360) (degrees)
      * @param angle the angle to be simplified
      * @return the simplified angle
      */

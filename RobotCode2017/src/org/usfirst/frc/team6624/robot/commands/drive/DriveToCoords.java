@@ -6,8 +6,18 @@ import org.usfirst.frc.team6624.robot.customClasses.Vector2;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * This CommandGroup rotates the robot and drives to a given Vector2 
- * coordinate on the field using DriveStraightDistance and DriveTurn
+ * This CommandGroup queues a combination of DriveTurn and DriveStraightDistance to move the robot
+ * to a given Vector2 coordinate relative to its current position.
+ * 
+ * It takes one argument:
+ * 		- Vector2 destination - the destination coordinate to drive to
+ * 
+ * This command uses the DriveStraightDistance command to drive from the current position do the 
+ * destination position, which requires an acceleration argument and a cruising velocity argument
+ * 
+ * 
+ * 
+ * 
  */
 public class DriveToCoords extends CommandGroup {
 
@@ -46,7 +56,7 @@ public class DriveToCoords extends CommandGroup {
     	double angle = calculateAngle();
     	double distance = calcualteDistance();
     	double accel = getDriveAcceleration(distance);
-    	double vel = getDriveAcceleration(distance);
+    	double vel = getDriveVelocity(distance);
     	
     	//add DriveTurn command to queue
     	addSequential(new DriveTurn(angle));
@@ -57,23 +67,6 @@ public class DriveToCoords extends CommandGroup {
     	//set current position to destination
     	Robot.drive.position = destination;
     	
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    
     }
     
     /**
@@ -87,7 +80,7 @@ public class DriveToCoords extends CommandGroup {
      * Calculates angle to rotate to in order to drive to destination coords
      */
     private double calculateAngle() {
-	    //get arctan of distance between current and destination positions
+	    //get arctan of vector between current and destination positions
     	double arctan = Math.atan2((destination.Y - currentPosition.Y), (destination.X - currentPosition.X)); //all hail atan2
     	
     	return Math.toDegrees(arctan);
